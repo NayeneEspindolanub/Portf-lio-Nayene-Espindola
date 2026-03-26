@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <style>
     :root {
       --lotion: #FFFCF7; --alabaster: #EFECE7; --dust: #DED2C4;
@@ -176,6 +178,28 @@
     .cn-line { flex: 1; height: 2px; background: var(--dust); margin-bottom: 14px; position: relative; overflow: hidden; min-width: 40px; }
     .cn-line-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--charcoal); width: 0%; transition: width .5s ease; }
     @media(max-width:480px) { .cn-label { display: none; } .cn-step.cn-active .cn-label { display: block; } }
+
+    /* ── Marquee Q&A ── */
+    .marquee-wrap { overflow: hidden; position: relative; }
+    .marquee-wrap::before, .marquee-wrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+    }
+    .marquee-wrap::before { left: 0; background: linear-gradient(to right, var(--alabaster), transparent); }
+    .marquee-wrap::after  { right: 0; background: linear-gradient(to left, var(--alabaster), transparent); }
+    .marquee-track { display: flex; gap: 12px; width: max-content; }
+    .marquee-left  { animation: mqLeft  40s linear infinite; }
+    .marquee-right { animation: mqRight 40s linear infinite; }
+    .marquee-wrap:hover .marquee-left,
+    .marquee-wrap:hover .marquee-right { animation-play-state: paused; }
+    @keyframes mqLeft  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes mqRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+    .marquee-card {
+      flex-shrink: 0; width: 240px; border-radius: 14px; padding: 16px;
+      cursor: default;
+    }
+
+    /* ── ScrollReveal words ── */
+    .sr-word { display: inline-block; }
   </style>
 </head>
 <body>
@@ -212,8 +236,9 @@
 </nav>
 
 <!-- ═══ HERO ═══ -->
-<section class="min-h-screen flex items-center bg-[#FFFCF7] pt-20">
-  <div class="max-w-[1360px] mx-auto px-6 lg:px-16 py-24 w-full">
+<section class="min-h-screen flex items-center bg-[#FFFCF7] pt-20" style="position:relative;overflow:hidden;">
+  <canvas id="dot-grid" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16 py-24 w-full" style="position:relative;z-index:1;">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div>
         <div class="reveal mb-5">
@@ -255,7 +280,7 @@
         <h2 class="reveal text-4xl lg:text-6xl font-bold text-[#333] tracking-tight leading-tight mb-4">
           Casino Royale — <span class="text-[#7C756B]">Portal MI6</span>
         </h2>
-        <p class="reveal text-lg text-[#7C756B] leading-relaxed max-w-2xl">
+        <p class="reveal text-lg text-[#7C756B] leading-relaxed">
           Redesenho completo do fluxo de suporte do BPO — unificando um ecossistema fragmentado entre Brasil, México e Colômbia, eliminando 10 fricções críticas e reduzindo o TMA de 10 para 3 minutos.
         </p>
       </div>
@@ -285,7 +310,7 @@
     <!-- ─── ROADMAP (animated, 4 steps) ─── -->
     <div class="reveal mb-20">
       <p class="text-xs text-[#7C756B] uppercase tracking-[.22em] mb-2">Roadmap do Projeto</p>
-      <h3 class="text-xl font-bold text-[#333] mb-10">Etapas de Entrega</h3>
+      <h3 class="text-xl font-bold text-[#333] mb-10">Etapas percorridas do projeto até março</h3>
       <div style="overflow-x: auto; padding: 14px 0 4px;">
         <div class="rm-track min-w-max" id="rm-track">
           <!-- 01 -->
@@ -376,6 +401,48 @@
           </div>
         </div>
       </div>
+      <!-- Double Diamond -->
+      <div class="reveal bg-[#111] rounded-2xl p-8 lg:p-12 mb-8">
+        <p class="text-xs text-white/40 uppercase tracking-[.2em] mb-2">Estratégia Usada</p>
+        <h4 class="text-2xl font-bold text-white mb-2 leading-tight">Double Diamond</h4>
+        <p class="text-white/55 text-sm mb-8">Estrutura que guiou o processo do MI6 — do problema nebuloso à solução validada, passando por duas fases de divergência e convergência.</p>
+        <div class="flex justify-center mb-8 overflow-x-auto">
+          <svg viewBox="0 0 560 120" width="100%" style="max-width:560px;min-width:280px;" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="20,60 140,10 260,60 140,110" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+            <polygon points="300,60 420,10 540,60 420,110" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
+            <text x="100" y="57" fill="rgba(255,255,255,0.45)" font-size="9" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" letter-spacing="1">DISCOVER</text>
+            <text x="180" y="57" fill="rgba(255,255,255,0.45)" font-size="9" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" letter-spacing="1">DEFINE</text>
+            <text x="370" y="57" fill="rgba(255,255,255,0.45)" font-size="9" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" letter-spacing="1">DEVELOP</text>
+            <text x="470" y="57" fill="rgba(255,255,255,0.45)" font-size="9" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" letter-spacing="1">DELIVER</text>
+            <circle cx="140" cy="60" r="4" fill="rgba(255,255,255,0.25)"/>
+            <circle cx="420" cy="60" r="5" fill="white" opacity="0.7"/>
+            <line x1="260" y1="60" x2="300" y2="60" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-dasharray="4,3"/>
+          </svg>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <div class="bg-white/[.05] border border-white/10 rounded-xl p-5">
+            <div class="text-[#DED2C4] text-[10px] uppercase tracking-widest mb-2">Fase 01</div>
+            <h5 class="text-white font-semibold text-sm mb-2">Discover</h5>
+            <p class="text-white/50 text-xs leading-relaxed">Shadowing com BPOs, mapeamento de 50+ telas e identificação de 10 fricções críticas no fluxo atual.</p>
+          </div>
+          <div class="bg-white/[.05] border border-white/10 rounded-xl p-5">
+            <div class="text-[#DED2C4] text-[10px] uppercase tracking-widest mb-2">Fase 02</div>
+            <h5 class="text-white font-semibold text-sm mb-2">Define</h5>
+            <p class="text-white/50 text-xs leading-relaxed">Síntese dos insights em HMW statements, priorização por impacto e definição do problema central a resolver.</p>
+          </div>
+          <div class="bg-white/[.07] border border-white/15 rounded-xl p-5">
+            <div class="text-[#DED2C4] text-[10px] uppercase tracking-widest mb-2">Fase 03</div>
+            <h5 class="text-white font-semibold text-sm mb-2">Develop</h5>
+            <p class="text-white/50 text-xs leading-relaxed">3 cenários de prototipagem no Figma Make, alinhamento com Engenharia e validação da estrutura lógica.</p>
+          </div>
+          <div class="bg-white/[.07] border border-white/15 rounded-xl p-5">
+            <div class="text-[#DED2C4] text-[10px] uppercase tracking-widest mb-2">Fase 04</div>
+            <h5 class="text-white font-semibold text-sm mb-2">Deliver</h5>
+            <p class="text-white/50 text-xs leading-relaxed">MVP funcional com fluxo em steps e cards — validação com BPOs antes do refinamento visual em hi-fi.</p>
+          </div>
+        </div>
+      </div>
+
       <!-- Process mapping -->
       <div class="reveal mb-6"><h4 class="text-xs font-semibold text-[#333] uppercase tracking-[.15em]">Mapeamento de Processos Atuais (As-Is)</h4></div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -410,7 +477,7 @@
         <div><span class="text-xs text-[#7C756B] uppercase tracking-widest block">Etapa 02</span><h3 class="text-xl font-bold text-[#333]">Shadowing & Evidências Qualitativas</h3></div>
       </div>
       <div class="reveal bg-[#FFFCF7] rounded-2xl p-7 mb-8">
-        <p class="text-[#7C756B] leading-relaxed text-sm max-w-3xl">Realizei sessões de observação direta com BPOs (Teleperformance e Paschoalotto) e times de suporte para capturar comportamentos reais sob pressão operacional — não o que o processo dizia, mas o que realmente acontecia.</p>
+        <p class="text-[#7C756B] leading-relaxed text-sm">Realizei sessões de observação direta com BPOs (Teleperformance e Paschoalotto) e times de suporte para capturar comportamentos reais sob pressão operacional — não o que o processo dizia, mas o que realmente acontecia.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-14">
         <div class="reveal bg-[#FFFCF7] rounded-2xl p-6 card-lift">
@@ -421,9 +488,9 @@
         </div>
         <div class="reveal d1 bg-[#FFFCF7] rounded-2xl p-6 card-lift">
           <span class="tag bg-[#EFECE7] text-[#333] mb-4 block w-fit">Insight 02</span>
-          <h5 class="font-bold text-[#333] mb-3 text-sm">Shadow IT — Os Caminhos Paralelos</h5>
-          <p class="text-[#7C756B] text-sm leading-relaxed mb-3">MX e CO usam Slack e planilhas porque o Zammad não funciona para eles. Se o sistema oficial falha, o time cria seus próprios atalhos para trabalhar.</p>
-          <p class="text-[#333] text-xs font-semibold">Múltiplos canais = confusão, erros e histórico zero.</p>
+          <h5 class="font-bold text-[#333] mb-3 text-sm">Ticket invisível para o time</h5>
+          <p class="text-[#7C756B] text-sm leading-relaxed mb-3">Lucas abre um ticket mas só ele consegue ver. Quando a Rafaela assume o turno e Lucas não está, o ticket some — o time fica sem acesso e a operação trava.</p>
+          <p class="text-[#333] text-xs font-semibold">Ticket pertence à pessoa, não ao time — e isso custa horas de operação.</p>
         </div>
         <div class="reveal d2 bg-[#FFFCF7] rounded-2xl p-6 card-lift">
           <span class="tag bg-[#EFECE7] text-[#333] mb-4 block w-fit">Insight 03</span>
@@ -433,11 +500,52 @@
         </div>
       </div>
 
+      <!-- ── SHADOWING Q&A MARQUEE ── -->
+      <div class="reveal mb-14">
+        <p class="text-xs text-[#7C756B] uppercase tracking-[.22em] mb-5">Perguntas &amp; Respostas do Shadowing</p>
+        <!-- Row 1: Paschoalotto (light, scrolls left) -->
+        <div class="marquee-wrap mb-3">
+          <div class="marquee-track marquee-left">
+            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q1</div><p class="text-[#333] text-xs font-semibold mb-1">"Quantas abas você abre por turno?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Umas 15. Cada sistema é uma janela. Zammad, CRM, planilha, Slack..."</p></div>
+            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q2</div><p class="text-[#333] text-xs font-semibold mb-1">"O que acontece quando você erra a categoria?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Trava tudo. Cancelo e começo do zero. Acontece mais do que devia."</p></div>
+            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q3</div><p class="text-[#333] text-xs font-semibold mb-1">"Quanto tempo leva pra abrir um ticket?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Rápido são 5 minutos. Às vezes 15–20 por causa do sistema lento."</p></div>
+            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q4</div><p class="text-[#333] text-xs font-semibold mb-1">"Como você sabe o status do chamado?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Pergunto no Slack. Não tem como ver no sistema. Fica no escuro."</p></div>
+            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q5</div><p class="text-[#333] text-xs font-semibold mb-1">"E quando o coordenador sai do turno?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"O ticket fica parado. Só ele consegue ver. O time fica sem acesso."</p></div>
+            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q6</div><p class="text-[#333] text-xs font-semibold mb-1">"Qual a pior parte do processo atual?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Preencher tudo de novo quando trava. Você perde tudo que já digitou."</p></div>
+            <!-- duplicate for seamless loop -->
+            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q1</div><p class="text-[#333] text-xs font-semibold mb-1">"Quantas abas você abre por turno?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Umas 15. Cada sistema é uma janela. Zammad, CRM, planilha, Slack..."</p></div>
+            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q2</div><p class="text-[#333] text-xs font-semibold mb-1">"O que acontece quando você erra a categoria?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Trava tudo. Cancelo e começo do zero. Acontece mais do que devia."</p></div>
+            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q3</div><p class="text-[#333] text-xs font-semibold mb-1">"Quanto tempo leva pra abrir um ticket?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Rápido são 5 minutos. Às vezes 15–20 por causa do sistema lento."</p></div>
+            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q4</div><p class="text-[#333] text-xs font-semibold mb-1">"Como você sabe o status do chamado?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Pergunto no Slack. Não tem como ver no sistema. Fica no escuro."</p></div>
+            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q5</div><p class="text-[#333] text-xs font-semibold mb-1">"E quando o coordenador sai do turno?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"O ticket fica parado. Só ele consegue ver. O time fica sem acesso."</p></div>
+            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q6</div><p class="text-[#333] text-xs font-semibold mb-1">"Qual a pior parte do processo atual?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Preencher tudo de novo quando trava. Você perde tudo que já digitou."</p></div>
+          </div>
+        </div>
+        <!-- Row 2: Teleperformance (dark, scrolls right) -->
+        <div class="marquee-wrap">
+          <div class="marquee-track marquee-right">
+            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q1</div><p class="text-white text-xs font-semibold mb-1">"O MX usa Slack porque o Zammad não suporta vocês?"</p><p class="text-white/55 text-xs leading-relaxed">"Exato. A gente abre chamado no Slack e reza pra alguém ver."</p></div>
+            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q2</div><p class="text-white text-xs font-semibold mb-1">"Vocês têm histórico dos tickets?"</p><p class="text-white/55 text-xs leading-relaxed">"Histórico? Não. Quando o problema some do Slack, sumiu. Sem rastreio."</p></div>
+            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q3</div><p class="text-white text-xs font-semibold mb-1">"Como é o onboarding de um agente novo?"</p><p class="text-white/55 text-xs leading-relaxed">"5 tickets diferentes, às vezes mais. Cada acesso é um pedido separado."</p></div>
+            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q4</div><p class="text-white text-xs font-semibold mb-1">"Quando tem crise, como você escala?"</p><p class="text-white/55 text-xs leading-relaxed">"Slack mesmo. O sistema não tem urgência. Fica na fila com todos."</p></div>
+            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q5</div><p class="text-white text-xs font-semibold mb-1">"O suporte pede testes que você já fez?"</p><p class="text-white/55 text-xs leading-relaxed">"Sempre. Refaço tudo do começo porque eles não veem o que tentei."</p></div>
+            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q6</div><p class="text-white text-xs font-semibold mb-1">"O que te daria mais confiança no sistema?"</p><p class="text-white/55 text-xs leading-relaxed">"Saber que meu ticket existe e que alguém vai olhar. Só isso já ajudava."</p></div>
+            <!-- duplicate -->
+            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q1</div><p class="text-white text-xs font-semibold mb-1">"O MX usa Slack porque o Zammad não suporta vocês?"</p><p class="text-white/55 text-xs leading-relaxed">"Exato. A gente abre chamado no Slack e reza pra alguém ver."</p></div>
+            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q2</div><p class="text-white text-xs font-semibold mb-1">"Vocês têm histórico dos tickets?"</p><p class="text-white/55 text-xs leading-relaxed">"Histórico? Não. Quando o problema some do Slack, sumiu. Sem rastreio."</p></div>
+            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q3</div><p class="text-white text-xs font-semibold mb-1">"Como é o onboarding de um agente novo?"</p><p class="text-white/55 text-xs leading-relaxed">"5 tickets diferentes, às vezes mais. Cada acesso é um pedido separado."</p></div>
+            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q4</div><p class="text-white text-xs font-semibold mb-1">"Quando tem crise, como você escala?"</p><p class="text-white/55 text-xs leading-relaxed">"Slack mesmo. O sistema não tem urgência. Fica na fila com todos."</p></div>
+            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q5</div><p class="text-white text-xs font-semibold mb-1">"O suporte pede testes que você já fez?"</p><p class="text-white/55 text-xs leading-relaxed">"Sempre. Refaço tudo do começo porque eles não veem o que tentei."</p></div>
+            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q6</div><p class="text-white text-xs font-semibold mb-1">"O que te daria mais confiança no sistema?"</p><p class="text-white/55 text-xs leading-relaxed">"Saber que meu ticket existe e que alguém vai olhar. Só isso já ajudava."</p></div>
+          </div>
+        </div>
+      </div>
+
       <!-- ── 10 PAIN POINTS TABLE ── -->
       <div class="reveal mb-4">
         <p class="text-xs text-[#7C756B] uppercase tracking-[.22em] mb-2">Pain Points</p>
         <h4 class="text-xl font-bold text-[#333] mb-2">10 Atritos Críticos Identificados</h4>
-        <p class="text-[#7C756B] text-sm mb-8 max-w-2xl">O Discovery identificou as fricções que bloqueiam a produtividade dos coordenadores, categorizadas por impacto e criticidade.</p>
+        <p class="text-[#7C756B] text-sm mb-8">O Discovery identificou as fricções que bloqueiam a produtividade dos coordenadores, categorizadas por impacto e criticidade.</p>
       </div>
 
       <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -552,72 +660,36 @@
         <div><span class="text-xs text-[#7C756B] uppercase tracking-widest block">Etapa 03</span><h3 class="text-xl font-bold text-[#333]">Prototipagem & Validação (To-Be)</h3></div>
       </div>
 
-      <!-- Sticky scroll (zeroheight style) -->
-      <div class="zh-outer" id="zh-wrap">
-        <div class="zh-sticky">
-
-          <!-- Light panel -->
-          <div class="zh-light-panel">
-            <p class="text-xs text-[#7C756B] uppercase tracking-[.2em] mb-3">Etapa 03</p>
-            <h4 class="text-2xl lg:text-3xl font-bold text-[#333] mb-4 leading-tight">Do Caos para a Clareza</h4>
-            <p class="text-[#7C756B] leading-relaxed max-w-2xl mb-10 text-sm">Com o discovery consolidado, o objetivo era traduzir os insights em solução visual concreta — mantendo a identidade do Nubank, mas resolvendo a bagunça do BPO de uma vez por todas.</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10" style="max-width:640px;">
-              <div class="bg-white border border-[#DED2C4] rounded-xl p-5">
-                <div class="text-xs text-[#7C756B] uppercase tracking-widest mb-2">Método 01</div>
-                <h5 class="text-[#333] font-semibold text-sm">Prompt Estratégico + Figma Make</h5>
-              </div>
-              <div class="bg-white border border-[#DED2C4] rounded-xl p-5">
-                <div class="text-xs text-[#7C756B] uppercase tracking-widest mb-2">Método 02</div>
-                <h5 class="text-[#333] font-semibold text-sm">3 Cenários de Visualização</h5>
-              </div>
-              <div class="bg-white border border-[#DED2C4] rounded-xl p-5">
-                <div class="text-xs text-[#7C756B] uppercase tracking-widest mb-2">Método 03</div>
-                <h5 class="text-[#333] font-semibold text-sm">Foco em Heurísticas</h5>
-              </div>
-            </div>
-            <p class="text-xs text-[#7C756B] opacity-60">Role para ver a estratégia completa ↓</p>
+      <!-- Flat layout with GSAP ScrollReveal headline -->
+      <div class="mb-8">
+        <h4 class="sr-headline text-2xl lg:text-3xl font-bold text-[#333] mb-4 leading-tight">Do Caos para a Clareza</h4>
+        <p class="text-[#7C756B] leading-relaxed mb-10 text-sm">Com o discovery consolidado, o objetivo era traduzir os insights em solução visual concreta — mantendo a identidade do Nubank, mas resolvendo a bagunça do BPO de uma vez por todas.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+          <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-6 card-lift">
+            <div class="text-xs text-[#7C756B] uppercase tracking-widest mb-2">Método 01</div>
+            <h5 class="text-[#333] font-semibold text-sm mb-2">Prompt Estratégico + Figma Make</h5>
+            <p class="text-[#7C756B] text-xs leading-relaxed">Prompts detalhados para traduzir o fluxo idealizado, respeitando a identidade do Nubank desde o primeiro rascunho.</p>
           </div>
-
-          <!-- Dark clip panel (reveals via clip-path on scroll) -->
-          <div class="zh-clip-panel" id="zh-clip"></div>
-
-          <!-- Dark content panel -->
-          <div class="zh-dark-panel" id="zh-dark">
-            <div class="w-full" style="max-width:860px;">
-              <p class="text-xs text-white/40 uppercase tracking-[.2em] mb-3">Estratégia de Prototipagem</p>
-              <h4 class="text-2xl lg:text-3xl font-bold text-white mb-8 leading-tight" style="max-width:480px;">
-                Do diagnóstico à primeira tela funcional — em dias, não semanas.
-              </h4>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
-                <div class="border border-white/12 rounded-xl p-5 bg-white/[.03]">
-                  <div class="text-[#DED2C4] text-xs uppercase tracking-widest mb-2">Método 01</div>
-                  <h5 class="text-white font-semibold mb-2 text-sm">Prompt Estratégico + Figma Make</h5>
-                  <p class="text-white/55 text-xs leading-relaxed">Prompts detalhados para traduzir o fluxo idealizado, respeitando a identidade do Nubank desde o primeiro rascunho.</p>
-                </div>
-                <div class="border border-white/12 rounded-xl p-5 bg-white/[.03]">
-                  <div class="text-[#DED2C4] text-xs uppercase tracking-widest mb-2">Método 02</div>
-                  <h5 class="text-white font-semibold mb-2 text-sm">3 Cenários de Visualização</h5>
-                  <p class="text-white/55 text-xs leading-relaxed">Cards, Selects e Steps. Objetivo: qual modelo abre ticket com menos cliques e menor carga cognitiva.</p>
-                </div>
-                <div class="border border-white/12 rounded-xl p-5 bg-white/[.03]">
-                  <div class="text-[#DED2C4] text-xs uppercase tracking-widest mb-2">Método 03</div>
-                  <h5 class="text-white font-semibold mb-2 text-sm">Foco em Heurísticas</h5>
-                  <p class="text-white/55 text-xs leading-relaxed">Usuário pode corrigir sem perder o trabalho. TMA 10→3 min como KPI principal de todo o redesenho.</p>
-                </div>
-              </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="border border-white/12 rounded-xl p-5 bg-white/[.03]">
-                  <h5 class="text-white font-semibold mb-2 text-sm">Alinhamento com Engenharia</h5>
-                  <p class="text-white/55 text-xs leading-relaxed">Antes de qualquer protótipo, alinhei com os devs do Casino as restrições técnicas. Não adianta idealizar o impossível.</p>
-                </div>
-                <div class="border border-white/12 rounded-xl p-5 bg-white/[.03]">
-                  <h5 class="text-white font-semibold mb-2 text-sm">Revisão de Taxonomia</h5>
-                  <p class="text-white/55 text-xs leading-relaxed">Questionei cada campo: "isso é realmente necessário para o MI6?" O Zammad travava por excesso — não podia repetir o mesmo erro.</p>
-                </div>
-              </div>
-            </div>
+          <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-6 card-lift">
+            <div class="text-xs text-[#7C756B] uppercase tracking-widest mb-2">Método 02</div>
+            <h5 class="text-[#333] font-semibold text-sm mb-2">3 Cenários de Visualização</h5>
+            <p class="text-[#7C756B] text-xs leading-relaxed">Cards, Selects e Steps. Objetivo: qual modelo abre ticket com menos cliques e menor carga cognitiva.</p>
           </div>
-
+          <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-6 card-lift">
+            <div class="text-xs text-[#7C756B] uppercase tracking-widest mb-2">Método 03</div>
+            <h5 class="text-[#333] font-semibold text-sm mb-2">Foco em Heurísticas</h5>
+            <p class="text-[#7C756B] text-xs leading-relaxed">Usuário pode corrigir sem perder o trabalho. TMA 10→3 min como KPI principal de todo o redesenho.</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-6 card-lift">
+            <h5 class="font-semibold text-[#333] mb-2 text-sm">Alinhamento com Engenharia</h5>
+            <p class="text-[#7C756B] text-xs leading-relaxed">Antes de qualquer protótipo, alinhei com os devs do Casino as restrições técnicas. Não adianta idealizar o impossível.</p>
+          </div>
+          <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-6 card-lift">
+            <h5 class="font-semibold text-[#333] mb-2 text-sm">Revisão de Taxonomia</h5>
+            <p class="text-[#7C756B] text-xs leading-relaxed">Questionei cada campo: "isso é realmente necessário para o MI6?" O Zammad travava por excesso — não podia repetir o mesmo erro.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -704,7 +776,7 @@
         <div class="lg:col-span-8">
           <div class="bg-[#FFFCF7] rounded-2xl p-8 border-l-4 border-[#333]">
             <svg width="32" height="22" viewBox="0 0 32 22" fill="none" class="mb-5"><path d="M0 22V13C0 5.82 4.67 1.53 14 0L15.5 2.5C10.83 3.83 8.17 6.33 7.5 10H13V22H0ZM19 22V13C19 5.82 23.67 1.53 33 0L34.5 2.5C29.83 3.83 27.17 6.33 26.5 10H32V22H19Z" fill="#DED2C4"/></svg>
-            <p class="text-[#333] font-medium leading-relaxed text-base lg:text-lg">
+            <p id="ia-quote" class="text-[#333] font-medium leading-relaxed text-base lg:text-lg">
               "Usar IA na prototipagem acelerou muito o alinhamento com Devs e PMs. Conseguimos sair da ideia abstrata para algo visual em minutos, mantendo a consistência visual que o Casino Royale precisava. No final das contas, o melhor design é aquele que o usuário nem percebe que está usando."
             </p>
             <div class="mt-5 pt-5 border-t border-[#EFECE7]">
@@ -723,7 +795,7 @@
         <div><span class="text-xs text-[#7C756B] uppercase tracking-widest block">Etapa 04 · Atualização Março 2026</span><h3 class="text-xl font-bold text-[#333]">MVP — Validação de Fluxo</h3></div>
       </div>
       <div class="reveal bg-[#FFFCF7] rounded-2xl p-7 mb-8">
-        <p class="text-[#7C756B] leading-relaxed text-sm mb-4 max-w-3xl">O foco saiu do diagnóstico e entrou na materialização da solução. O objetivo central é validar a estrutura lógica do novo sistema de tickets antes de investir tempo no refinamento visual de alta fidelidade.</p>
+        <p class="text-[#7C756B] leading-relaxed text-sm mb-4">O foco saiu do diagnóstico e entrou na materialização da solução. O objetivo central é validar a estrutura lógica do novo sistema de tickets antes de investir tempo no refinamento visual de alta fidelidade.</p>
         <div class="flex flex-wrap gap-2">
           <span class="tag bg-[#EFECE7] text-[#333]">Fluxo em Steps</span>
           <span class="tag bg-[#EFECE7] text-[#333]">Interface em Cards</span>
@@ -735,6 +807,7 @@
       <div class="reveal mb-8">
         <div class="rounded-2xl overflow-hidden shadow-xl bg-[#111]">
           <video controls preload="metadata" class="w-full h-auto block" style="max-height:520px">
+            <source src="images/VIDEO-MVP.mov" type="video/mp4"/>
             <source src="images/VIDEO-MVP.mov" type="video/quicktime"/>
             <div class="img-ph aspect-video w-full flex-col gap-2">
               <svg width="40" height="40" fill="none" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" stroke="#DED2C4" stroke-width="1.5"/><path d="M16 14l12 6-12 6V14z" fill="#DED2C4"/></svg>
@@ -762,33 +835,61 @@
         </div>
       </div>
       <div class="reveal">
-        <p class="text-xs text-[#7C756B] uppercase tracking-[.2em] mb-8">Próximos Passos</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 relative">
-          <!-- Step 1 -->
-          <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-tl-2xl rounded-bl-2xl p-8 relative">
-            <div style="font-size:4.5rem;font-weight:900;color:#DED2C4;line-height:1;margin-bottom:16px;user-select:none;">01</div>
-            <h5 class="font-bold text-[#333] mb-3">Definição de Campos</h5>
-            <p class="text-[#7C756B] text-sm leading-relaxed">Cortar campos burocráticos, manter só o que o suporte precisa para resolver. "Squad" e "ID de Job" em crise? Fora.</p>
+        <p class="text-xs text-[#7C756B] uppercase tracking-[.2em] mb-6">Próximos Passos</p>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+          <div><h4 class="text-2xl font-bold text-[#333] leading-tight">O caminho até o produto final.</h4></div>
+          <div><p class="text-[#7C756B] text-sm leading-relaxed">Cada etapa validada antes da próxima. Fluxo aprovado antes do hi-fi. Hi-fi aprovado antes do dev.</p></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Light cards -->
+          <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-6 relative overflow-hidden">
+            <div style="font-size:5rem;font-weight:900;color:#DED2C4;line-height:1;position:absolute;right:16px;bottom:-8px;user-select:none;opacity:0.7;">01</div>
+            <div class="w-9 h-9 bg-[#EFECE7] rounded-xl flex items-center justify-center mb-4">
+              <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2" stroke="#7C756B" stroke-width="1.5"/><path d="M5 5h6M5 8h4" stroke="#7C756B" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <h5 class="font-bold text-[#333] mb-2 text-sm">Definição de Campos</h5>
+            <p class="text-[#7C756B] text-xs leading-relaxed">Cortar campos burocráticos, manter só o que o suporte precisa para resolver. Nada de "Squad" em crise.</p>
           </div>
-          <!-- Arrow 1 -->
-          <div class="hidden md:flex absolute z-10 bg-[#EFECE7] border border-[#DED2C4] w-8 h-8 rounded-full items-center justify-content-center justify-center" style="left:33.33%;top:50%;transform:translate(-50%,-50%);">
-            <svg width="12" height="12" fill="none" viewBox="0 0 12 12"><path d="M2 6h8M7 3l3 3-3 3" stroke="#7C756B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-6 relative overflow-hidden">
+            <div style="font-size:5rem;font-weight:900;color:#DED2C4;line-height:1;position:absolute;right:16px;bottom:-8px;user-select:none;opacity:0.7;">02</div>
+            <div class="w-9 h-9 bg-[#EFECE7] rounded-xl flex items-center justify-center mb-4">
+              <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="6" r="3" stroke="#7C756B" stroke-width="1.5"/><path d="M3 14c0-2.76 2.24-5 5-5s5 2.24 5 5" stroke="#7C756B" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <h5 class="font-bold text-[#333] mb-2 text-sm">Validação com BPOs</h5>
+            <p class="text-[#7C756B] text-xs leading-relaxed">Levar o modelo de cards direto pra quem usa. TMA de 10 pra 3 — não no papel, na operação real.</p>
           </div>
-          <!-- Step 2 -->
-          <div class="bg-[#EFECE7] border-t border-b border-[#DED2C4] p-8 relative">
-            <div style="font-size:4.5rem;font-weight:900;color:#DED2C4;line-height:1;margin-bottom:16px;user-select:none;">02</div>
-            <h5 class="font-bold text-[#333] mb-3">Validação com BPOs</h5>
-            <p class="text-[#7C756B] text-sm leading-relaxed">Levar o modelo de cards direto pra quem usa. Ver se o TMA cai de 10 pra 3 minutos — não no papel, na operação real.</p>
+          <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-6 relative overflow-hidden">
+            <div style="font-size:5rem;font-weight:900;color:#DED2C4;line-height:1;position:absolute;right:16px;bottom:-8px;user-select:none;opacity:0.7;">03</div>
+            <div class="w-9 h-9 bg-[#EFECE7] rounded-xl flex items-center justify-center mb-4">
+              <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M2 14l4-4 3 3 5-8" stroke="#7C756B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h5 class="font-bold text-[#333] mb-2 text-sm">Refinamento Visual</h5>
+            <p class="text-[#7C756B] text-xs leading-relaxed">Com fluxo validado, aplicar o Design System do Nubank. Beleza vem depois da funcionalidade.</p>
           </div>
-          <!-- Arrow 2 -->
-          <div class="hidden md:flex absolute z-10 bg-[#EFECE7] border border-[#DED2C4] w-8 h-8 rounded-full items-center justify-center" style="left:66.66%;top:50%;transform:translate(-50%,-50%);">
-            <svg width="12" height="12" fill="none" viewBox="0 0 12 12"><path d="M2 6h8M7 3l3 3-3 3" stroke="#7C756B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <!-- Dark cards -->
+          <div class="bg-[#333] rounded-2xl p-6 relative overflow-hidden">
+            <div style="font-size:5rem;font-weight:900;color:rgba(255,255,255,0.1);line-height:1;position:absolute;right:16px;bottom:-8px;user-select:none;">04</div>
+            <div class="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center mb-4">
+              <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2" stroke="white" stroke-width="1.5" opacity="0.7"/><path d="M6 8l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h5 class="font-bold text-white mb-2 text-sm">Handoff para Dev</h5>
+            <p class="text-white/55 text-xs leading-relaxed">Especificações técnicas, guia de componentes e documentação para implementação no Casino Royale.</p>
           </div>
-          <!-- Step 3 -->
-          <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-tr-2xl rounded-br-2xl p-8">
-            <div style="font-size:4.5rem;font-weight:900;color:#DED2C4;line-height:1;margin-bottom:16px;user-select:none;">03</div>
-            <h5 class="font-bold text-[#333] mb-3">Refinamento Visual</h5>
-            <p class="text-[#7C756B] text-sm leading-relaxed">Quando o fluxo estiver validado, aí sim aplica o Design System do Nubank. Beleza sem funcionar não adianta.</p>
+          <div class="bg-[#333] rounded-2xl p-6 relative overflow-hidden">
+            <div style="font-size:5rem;font-weight:900;color:rgba(255,255,255,0.1);line-height:1;position:absolute;right:16px;bottom:-8px;user-select:none;">05</div>
+            <div class="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center mb-4">
+              <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="white" stroke-width="1.5" opacity="0.7"/><path d="M5 8h6M8 5v6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <h5 class="font-bold text-white mb-2 text-sm">Expansão para MX e CO</h5>
+            <p class="text-white/55 text-xs leading-relaxed">Adaptar o fluxo para México e Colômbia — contextos diferentes, mesma estrutura unificada.</p>
+          </div>
+          <div class="bg-[#333] rounded-2xl p-6 relative overflow-hidden">
+            <div style="font-size:5rem;font-weight:900;color:rgba(255,255,255,0.1);line-height:1;position:absolute;right:16px;bottom:-8px;user-select:none;">06</div>
+            <div class="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center mb-4">
+              <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="white" stroke-width="1.5" opacity="0.7"/><path d="M8 5v3l2 2" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <h5 class="font-bold text-white mb-2 text-sm">Medição de Impacto</h5>
+            <p class="text-white/55 text-xs leading-relaxed">Acompanhamento do TMA em produção. Meta: 10→3 min comprovado na operação real dos três países.</p>
           </div>
         </div>
       </div>
@@ -981,28 +1082,19 @@ function goTo(id) {
   if (el) window.scrollTo({ top: el.getBoundingClientRect().top + pageYOffset - 110, behavior: 'smooth' });
 }
 
-/* ── roadmap animated line + active node ── */
-const rmSections = ['discovery','shadowing','prototipagem','mvp'];
-const rmObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    const idx = rmSections.indexOf(e.target.id);
-    if (idx < 0) return;
-    // activate nodes up to idx
-    document.querySelectorAll('.rm-node').forEach((n, i) => {
-      n.classList.toggle('active', i <= idx);
-    });
-    // fill lines up to idx-1
-    for (let i = 0; i < 3; i++) {
-      const fill = document.getElementById('rf-' + i);
-      if (fill) fill.style.width = i < idx ? '100%' : (i === idx - 1 ? '100%' : '0%');
-    }
+/* ── roadmap: steps 01-03 permanently active, 04 pending ── */
+(function() {
+  [0,1,2].forEach(function(i) {
+    var n = document.getElementById('rm-' + i);
+    if (n) n.classList.add('active');
   });
-}, { threshold: 0.35 });
-rmSections.forEach(id => { const el = document.getElementById(id); if (el) rmObs.observe(el); });
-
-// Immediately activate first node
-document.querySelector('.rm-node')?.classList.add('active');
+  var rf0 = document.getElementById('rf-0'), rf1 = document.getElementById('rf-1'), rf2 = document.getElementById('rf-2');
+  setTimeout(function() {
+    if (rf0) rf0.style.width = '100%';
+    if (rf1) rf1.style.width = '100%';
+    if (rf2) rf2.style.width = '60%';
+  }, 300);
+})();
 
 /* ── Bottom case nav ── */
 var mi6El = document.getElementById('case-mi6');
@@ -1029,27 +1121,109 @@ function updateCaseNav() {
 window.addEventListener('scroll', updateCaseNav, { passive: true });
 updateCaseNav();
 
-/* ── Sticky zh scroll ── */
-var zhWrap = document.getElementById('zh-wrap');
-if (zhWrap) {
-  var zhClip = document.getElementById('zh-clip');
-  var zhDark = document.getElementById('zh-dark');
-  var zhLight = zhWrap.querySelector('.zh-light-panel');
-  function animateZH() {
-    var rect = zhWrap.getBoundingClientRect();
-    var total = zhWrap.offsetHeight - window.innerHeight;
-    if (total <= 0) return;
-    var p = Math.max(0, Math.min(1, -rect.top / total));
-    if (zhClip) {
-      var top = Math.max(0, 100 - (p / 0.75) * 100);
-      zhClip.style.clipPath = 'inset(' + top.toFixed(1) + '% 0 0 0)';
-    }
-    if (zhDark) zhDark.style.opacity = p > 0.65 ? Math.min(1, (p - 0.65) / 0.2) : 0;
-    if (zhLight) zhLight.style.opacity = p > 0.4 ? Math.max(0, 1 - (p - 0.4) / 0.25) : 1;
+/* ── GSAP ScrollReveal word-by-word (sr-headline) ── */
+if (window.gsap && window.ScrollTrigger) {
+  gsap.registerPlugin(ScrollTrigger);
+  document.querySelectorAll('.sr-headline').forEach(function(h) {
+    var words = h.innerText.split(' ');
+    h.innerHTML = words.map(function(w) {
+      return '<span class="sr-word">' + w + '</span>';
+    }).join(' ');
+    gsap.fromTo(h.querySelectorAll('.sr-word'),
+      { opacity: 0.08, filter: 'blur(4px)' },
+      { opacity: 1, filter: 'blur(0px)', stagger: 0.08,
+        scrollTrigger: { trigger: h, start: 'top 82%', end: 'bottom 30%', scrub: true }
+      }
+    );
+  });
+
+  /* ── SplitText char-by-char on IA quote ── */
+  var quoteEl = document.getElementById('ia-quote');
+  if (quoteEl) {
+    var rawText = quoteEl.innerText;
+    quoteEl.innerHTML = rawText.split('').map(function(c) {
+      return c === ' ' ? ' ' : '<span class="split-char" style="display:inline-block;">' + c + '</span>';
+    }).join('');
+    gsap.fromTo('#ia-quote .split-char',
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, stagger: 0.008, duration: 0.3, ease: 'power2.out',
+        scrollTrigger: { trigger: quoteEl, start: 'top 78%', once: true }
+      }
+    );
   }
-  window.addEventListener('scroll', animateZH, { passive: true });
-  animateZH();
 }
+
+/* ── DotGrid canvas ── */
+(function() {
+  var canvas = document.getElementById('dot-grid');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var SPACING = 30, RADIUS = 1.8, PROXIMITY = 100;
+  var BASE_R = 222, BASE_G = 210, BASE_B = 196; /* #DED2C4 */
+  var ACT_R  =  90, ACT_G  =  85, ACT_B  =  80; /* #5A5550 */
+  var mouse = { x: -9999, y: -9999 };
+  var dots = [];
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth  || canvas.parentElement.offsetWidth;
+    canvas.height = canvas.offsetHeight || canvas.parentElement.offsetHeight;
+    buildDots();
+  }
+  function buildDots() {
+    dots = [];
+    var cols = Math.ceil(canvas.width / SPACING) + 1;
+    var rows = Math.ceil(canvas.height / SPACING) + 1;
+    for (var r = 0; r < rows; r++) {
+      for (var c = 0; c < cols; c++) {
+        var ox = c * SPACING, oy = r * SPACING;
+        dots.push({ x: ox, y: oy, ox: ox, oy: oy, vx: 0, vy: 0 });
+      }
+    }
+  }
+  var section = canvas.parentElement;
+  section.addEventListener('mousemove', function(e) {
+    var rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  section.addEventListener('mouseleave', function() { mouse.x = -9999; mouse.y = -9999; });
+  section.addEventListener('click', function(e) {
+    var rect = canvas.getBoundingClientRect();
+    var cx = e.clientX - rect.left, cy = e.clientY - rect.top;
+    dots.forEach(function(d) {
+      var dx = d.x - cx, dy = d.y - cy;
+      var dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 90 && dist > 0) {
+        var f = (90 - dist) / 90 * 7;
+        d.vx += dx / dist * f;
+        d.vy += dy / dist * f;
+      }
+    });
+  });
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    dots.forEach(function(d) {
+      d.vx += (d.ox - d.x) * 0.1;
+      d.vy += (d.oy - d.y) * 0.1;
+      d.vx *= 0.72; d.vy *= 0.72;
+      d.x += d.vx; d.y += d.vy;
+      var dx = d.x - mouse.x, dy = d.y - mouse.y;
+      var dist = Math.sqrt(dx*dx + dy*dy);
+      var t = Math.max(0, 1 - dist / PROXIMITY);
+      var r = Math.round(BASE_R + (ACT_R - BASE_R) * t);
+      var g = Math.round(BASE_G + (ACT_G - BASE_G) * t);
+      var b = Math.round(BASE_B + (ACT_B - BASE_B) * t);
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, RADIUS + t * 1.4, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
 </script>
 </body>
 </html>
