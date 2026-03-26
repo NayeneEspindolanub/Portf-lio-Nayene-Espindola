@@ -63,32 +63,33 @@
       background: var(--charcoal); color: #fff; border-color: var(--charcoal);
       box-shadow: 0 0 0 6px rgba(51,51,51,.1);
     }
+    .rm-circle-wrap { padding: 12px; overflow: visible; display: flex; justify-content: center; }
     .rm-node.active .rm-circle::after {
-      content: ''; position: absolute; inset: -6px; border-radius: 50%;
-      border: 2px solid rgba(51,51,51,.15);
+      content: ''; position: absolute; inset: -5px; border-radius: 50%;
+      border: 2px solid rgba(51,51,51,.18);
       animation: pulse-ring 2s ease-out infinite;
     }
     @keyframes pulse-ring {
       0%   { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(1.45); }
+      100% { opacity: 0; transform: scale(1.3); }
     }
 
-    /* ── Zeroheight dark-fill ── */
-    .zh-section {
-      position: relative; border-radius: 20px; overflow: hidden;
-      /* start with a tall enough min-height to cover all cards */
+    /* ── Sticky zh scroll (zeroheight style) ── */
+    .zh-outer { height: 250vh; position: relative; margin-bottom: 0; }
+    .zh-sticky { position: sticky; top: 80px; height: calc(100vh - 80px); overflow: hidden; border-radius: 20px; }
+    .zh-light-panel {
+      position: absolute; inset: 0; background: var(--alabaster);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 48px 56px; transition: opacity .3s ease;
     }
-    .zh-dark-bg {
+    .zh-clip-panel {
       position: absolute; inset: 0; background: #111;
-      transform: scaleY(0); transform-origin: bottom;
-      transition: transform 1.3s cubic-bezier(.76,0,.24,1);
-      border-radius: 20px; z-index: 0;
+      clip-path: inset(100% 0 0 0);
     }
-    .zh-section.zh-filling .zh-dark-bg { transform: scaleY(1); }
-    .zh-light { transition: opacity .4s ease; }
-    .zh-dark  { opacity: 0; transition: opacity .55s .7s ease; pointer-events: none; }
-    .zh-section.zh-filling .zh-light { opacity: 0; pointer-events: none; }
-    .zh-section.zh-filling .zh-dark  { opacity: 1; pointer-events: auto; }
+    .zh-dark-panel {
+      position: absolute; inset: 0; display: flex; align-items: center;
+      padding: 48px 56px; opacity: 0; transition: opacity .3s ease;
+    }
 
     /* ── IA cards equal height ── */
     .ia-card {
@@ -154,6 +155,27 @@
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--alabaster); }
     ::-webkit-scrollbar-thumb { background: var(--dust); border-radius: 3px; }
+
+    /* ── Case nav (bottom fixed) ── */
+    #case-nav {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+      background: rgba(255,252,247,.97); backdrop-filter: blur(14px);
+      border-top: 1px solid var(--dust); padding: 10px 24px;
+      opacity: 0; transform: translateY(100%);
+      transition: opacity .4s ease, transform .4s ease;
+    }
+    #case-nav.visible { opacity: 1; transform: translateY(0); }
+    .cn-steps { display: flex; align-items: center; justify-content: center; max-width: 520px; margin: 0 auto; }
+    .cn-step { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; flex-shrink: 0; padding: 0 6px; }
+    .cn-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--dust); background: transparent; transition: all .3s; }
+    .cn-step.cn-done .cn-dot   { background: var(--charcoal); border-color: var(--charcoal); }
+    .cn-step.cn-active .cn-dot { background: var(--charcoal); border-color: var(--charcoal); animation: cnPulse 1.8s ease-in-out infinite; }
+    @keyframes cnPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(51,51,51,.3); } 50% { box-shadow: 0 0 0 4px rgba(51,51,51,0); } }
+    .cn-label { font-size: .6rem; color: var(--silver); text-transform: uppercase; letter-spacing: .08em; transition: color .3s; }
+    .cn-step.cn-active .cn-label, .cn-step.cn-done .cn-label { color: var(--charcoal); font-weight: 600; }
+    .cn-line { flex: 1; height: 2px; background: var(--dust); margin-bottom: 14px; position: relative; overflow: hidden; min-width: 40px; }
+    .cn-line-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--charcoal); width: 0%; transition: width .5s ease; }
+    @media(max-width:480px) { .cn-label { display: none; } .cn-step.cn-active .cn-label { display: block; } }
   </style>
 </head>
 <body>
@@ -234,7 +256,7 @@
           Casino Royale — <span class="text-[#7C756B]">Portal MI6</span>
         </h2>
         <p class="reveal text-lg text-[#7C756B] leading-relaxed max-w-2xl">
-          Redesenho completo da jornada de suporte de BPO — unificando um ecossistema fragmentado entre Brasil, México e Colômbia, eliminando 10 fricções críticas e reduzindo o TMA de 10 para 3 minutos.
+          Redesenho completo do fluxo de suporte do BPO — unificando um ecossistema fragmentado entre Brasil, México e Colômbia, eliminando 10 fricções críticas e reduzindo o TMA de 10 para 3 minutos.
         </p>
       </div>
       <div class="lg:col-span-4 flex flex-wrap gap-2 lg:justify-end">
@@ -264,11 +286,11 @@
     <div class="reveal mb-20">
       <p class="text-xs text-[#7C756B] uppercase tracking-[.22em] mb-2">Roadmap do Projeto</p>
       <h3 class="text-xl font-bold text-[#333] mb-10">Etapas de Entrega</h3>
-      <div class="overflow-x-auto pb-4">
+      <div style="overflow-x: auto; padding: 14px 0 4px;">
         <div class="rm-track min-w-max" id="rm-track">
           <!-- 01 -->
           <div class="rm-node" id="rm-0" onclick="goTo('discovery')">
-            <div class="rm-circle">01</div>
+            <div class="rm-circle-wrap"><div class="rm-circle">01</div></div>
             <div class="w-px h-5 bg-[#DED2C4] mt-1"></div>
             <div class="text-center mt-1" style="max-width:90px">
               <div class="text-xs font-semibold text-[#333]">Discovery</div>
@@ -278,7 +300,7 @@
           <div class="rm-line-wrap"><div class="rm-line-fill" id="rf-0"></div></div>
           <!-- 02 -->
           <div class="rm-node" id="rm-1" onclick="goTo('shadowing')">
-            <div class="rm-circle">02</div>
+            <div class="rm-circle-wrap"><div class="rm-circle">02</div></div>
             <div class="w-px h-5 bg-[#DED2C4] mt-1"></div>
             <div class="text-center mt-1" style="max-width:90px">
               <div class="text-xs font-semibold text-[#333]">Shadowing</div>
@@ -288,7 +310,7 @@
           <div class="rm-line-wrap"><div class="rm-line-fill" id="rf-1"></div></div>
           <!-- 03 -->
           <div class="rm-node" id="rm-2" onclick="goTo('prototipagem')">
-            <div class="rm-circle">03</div>
+            <div class="rm-circle-wrap"><div class="rm-circle">03</div></div>
             <div class="w-px h-5 bg-[#DED2C4] mt-1"></div>
             <div class="text-center mt-1" style="max-width:90px">
               <div class="text-xs font-semibold text-[#333]">Prototipagem</div>
@@ -298,7 +320,7 @@
           <div class="rm-line-wrap"><div class="rm-line-fill" id="rf-2"></div></div>
           <!-- 04 -->
           <div class="rm-node" id="rm-3" onclick="goTo('mvp')">
-            <div class="rm-circle">04</div>
+            <div class="rm-circle-wrap"><div class="rm-circle">04</div></div>
             <div class="w-px h-5 bg-[#DED2C4] mt-1"></div>
             <div class="text-center mt-1" style="max-width:90px">
               <div class="text-xs font-semibold text-[#333]">MVP</div>
@@ -418,103 +440,108 @@
         <p class="text-[#7C756B] text-sm mb-8 max-w-2xl">O Discovery identificou as fricções que bloqueiam a produtividade dos coordenadores, categorizadas por impacto e criticidade.</p>
       </div>
 
-      <!-- Table header -->
-      <div class="reveal hidden md:grid grid-cols-[2fr_2fr_2fr_1fr] gap-2 px-4 mb-2">
-        <span class="text-xs font-bold text-[#7C756B] uppercase tracking-[.1em]">Pain Point</span>
-        <span class="text-xs font-bold text-[#7C756B] uppercase tracking-[.1em]">O que acontece / Impacto</span>
-        <span class="text-xs font-bold text-[#7C756B] uppercase tracking-[.1em]">Oportunidade</span>
-        <span class="text-xs font-bold text-[#7C756B] uppercase tracking-[.1em]">Criticidade</span>
-      </div>
+      <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-4">
 
-      <!-- Row 1 -->
-      <div class="reveal frow">
-        <div class="frow-body" style="background:#FFFCF7">
-          <div><span class="tag bg-[#333] text-white mb-2 block w-fit">01</span><p class="text-[#333] font-semibold text-xs leading-relaxed">Abertura de tickets MX e CO via Slack</p></div>
-          <div><p>MX e CO abrem chamados via Slack por um fluxo em canal. Descentralização e falta de controle total.</p></div>
-          <div><p class="opp">Portal Único: Migrar os fluxos de suporte para o Casino Royale e centralizar o histórico.</p></div>
-          <div><span class="crit-crit">● Crítica</span><p class="text-[#7C756B] text-xs mt-1">Ganho automático com a implementação</p></div>
+        <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:-translate-y-1 hover:shadow-lg transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-white bg-[#333] rounded-full px-3 py-1">01</span>
+            <span class="text-xs font-semibold text-red-600 bg-red-50 rounded-full px-3 py-1">● Crítica</span>
+          </div>
+          <h5 class="font-bold text-[#333] text-sm mb-2">Abertura de tickets MX e CO via Slack</h5>
+          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">MX e CO abrem chamados pelo Slack porque o Zammad não atende eles. Sem histórico, sem controle — qualquer coisa importante some.</p>
+          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Portal único centralizando todos os países no Casino Royale.</div>
         </div>
-      </div>
-      <!-- Row 2 -->
-      <div class="reveal frow">
-        <div class="frow-body">
-          <div><span class="tag bg-[#333] text-white mb-2 block w-fit">02</span><p class="text-[#333] font-semibold text-xs leading-relaxed">Interface não flexível e intuitiva</p></div>
-          <div><p>Categoria incorreta bloqueia o campo; usuário deve cancelar e reiniciar do zero. Tarefa de 2 min vira 10 min.</p></div>
-          <div><p class="opp">Edição Flexível: Permitir trocar a informação selecionada sem perder os dados já preenchidos.</p></div>
-          <div><span class="crit-crit">● Crítica</span><p class="text-[#7C756B] text-xs mt-1">Perda de tempo por retrabalho</p></div>
+
+        <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:-translate-y-1 hover:shadow-lg transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-white bg-[#333] rounded-full px-3 py-1">02</span>
+            <span class="text-xs font-semibold text-red-600 bg-red-50 rounded-full px-3 py-1">● Crítica</span>
+          </div>
+          <h5 class="font-bold text-[#333] text-sm mb-2">Interface que não perdoa erro</h5>
+          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">Selecionou categoria errada? Trava tudo, cancela, recomeça do zero. Com 4 min de latência por carregamento, uma tarefa de 2 min vira 10 de estresse.</p>
+          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Edição inline — trocar a categoria sem perder o que já foi preenchido.</div>
         </div>
-      </div>
-      <!-- Row 3 -->
-      <div class="reveal frow">
-        <div class="frow-body" style="background:#FFFCF7">
-          <div><span class="tag bg-[#7C756B] text-white mb-2 block w-fit">03</span><p class="text-[#333] font-semibold text-xs leading-relaxed">Preenchimento Manual de Dados</p></div>
-          <div><p>O sistema exige preenchimento manual de data e hora. Esforço repetitivo em 100% dos tickets abertos.</p></div>
-          <div><p class="opp">Auto-preenchimento: Puxar data e hora automaticamente pelo sistema.</p></div>
-          <div><span class="crit-high">● Alta</span><p class="text-[#7C756B] text-xs mt-1">Esforço repetitivo e risco de erro por digitação</p></div>
+
+        <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:-translate-y-1 hover:shadow-lg transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-white bg-[#7C756B] rounded-full px-3 py-1">03</span>
+            <span class="text-xs font-semibold text-yellow-700 bg-yellow-50 rounded-full px-3 py-1">● Alta</span>
+          </div>
+          <h5 class="font-bold text-[#333] text-sm mb-2">Preenchimento manual de data e hora</h5>
+          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">100% dos tickets exigem preencher data e hora à mão. Todo mundo digita, todo mundo pode errar — e o sistema não avisa.</p>
+          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Auto-preenchimento pelo sistema. Campo some da vista do usuário.</div>
         </div>
-      </div>
-      <!-- Row 4 -->
-      <div class="reveal frow">
-        <div class="frow-body">
-          <div><span class="tag bg-[#7C756B] text-white mb-2 block w-fit">04</span><p class="text-[#333] font-semibold text-xs leading-relaxed">Fluxos Desatualizados</p></div>
-          <div><p>Ferramentas em categorias confusas ou ausentes. 50+ fluxos possíveis; tickets rejeitados por categoria inexistente.</p></div>
-          <div><p class="opp">Campos atualizados + governança recorrente para revisitar categorias. IA pode sugerir a categoria correta com base na descrição.</p></div>
-          <div><span class="crit-crit">● Crítica</span><p class="text-[#7C756B] text-xs mt-1">Carga cognitiva elevada e rejeições</p></div>
+
+        <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:-translate-y-1 hover:shadow-lg transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-white bg-[#7C756B] rounded-full px-3 py-1">04</span>
+            <span class="text-xs font-semibold text-red-600 bg-red-50 rounded-full px-3 py-1">● Crítica</span>
+          </div>
+          <h5 class="font-bold text-[#333] text-sm mb-2">Categorias desatualizadas e confusas</h5>
+          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">São mais de 50 fluxos possíveis com nomes que não fazem sentido. Ticket rejeitado por categoria inexistente é o dia a dia.</p>
+          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Taxonomia revisada + IA sugerindo categoria pela descrição do chamado.</div>
         </div>
-      </div>
-      <!-- Row 5 -->
-      <div class="reveal frow">
-        <div class="frow-body" style="background:#FFFCF7">
-          <div><span class="tag bg-[#333] text-white mb-2 block w-fit">05</span><p class="text-[#333] font-semibold text-xs leading-relaxed">Ticket Preso ao Dono</p></div>
-          <div><p>Apenas o criador consegue visualizar status e respostas. Trabalho paralisado se o dono se ausentar.</p></div>
-          <div><p class="opp">Visão de Time: Ticket pertence à squad/papel com processo de transfer/reassignment e escalation.</p></div>
-          <div><span class="crit-crit">● Crítica</span><p class="text-[#7C756B] text-xs mt-1">Single Point of Failure: se o coordenador sai, a operação para</p></div>
+
+        <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:-translate-y-1 hover:shadow-lg transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-white bg-[#333] rounded-full px-3 py-1">05</span>
+            <span class="text-xs font-semibold text-red-600 bg-red-50 rounded-full px-3 py-1">● Crítica</span>
+          </div>
+          <h5 class="font-bold text-[#333] text-sm mb-2">Ticket preso ao dono</h5>
+          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">Só quem criou o ticket consegue ver status e resposta. O coordenador sai do turno — a operação trava junto.</p>
+          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Visão por squad. Ticket pertence ao time, não à pessoa.</div>
         </div>
-      </div>
-      <!-- Row 6 -->
-      <div class="reveal frow">
-        <div class="frow-body">
-          <div><span class="tag bg-[#333] text-white mb-2 block w-fit">06</span><p class="text-[#333] font-semibold text-xs leading-relaxed">Inexistência de Fluxo Prioritário</p></div>
-          <div><p>Crises entram na fila comum e lenta; equipes usam Slack para urgências. Resolução pode demorar 3–4 dias.</p></div>
-          <div><p class="opp">Campo de prioridade: Novo campo em casos de crise para atendimento prioritário.</p></div>
-          <div><span class="crit-crit">● Crítica</span><p class="text-[#7C756B] text-xs mt-1">Risco ao SLA e perda de contrato</p></div>
+
+        <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:-translate-y-1 hover:shadow-lg transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-white bg-[#333] rounded-full px-3 py-1">06</span>
+            <span class="text-xs font-semibold text-red-600 bg-red-50 rounded-full px-3 py-1">● Crítica</span>
+          </div>
+          <h5 class="font-bold text-[#333] text-sm mb-2">Sem fila prioritária para crises</h5>
+          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">Crise entra na fila comum. O Slack virou o canal de urgência porque o sistema oficial não tem prioridade. Resolução pode demorar 3–4 dias.</p>
+          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Campo de prioridade para crises com SLA diferenciado.</div>
         </div>
-      </div>
-      <!-- Row 7 -->
-      <div class="reveal frow">
-        <div class="frow-body" style="background:#FFFCF7">
-          <div><span class="tag bg-[#7C756B] text-white mb-2 block w-fit">07</span><p class="text-[#333] font-semibold text-xs leading-relaxed">Acessos Individuais</p></div>
-          <div><p>Um ticket por ferramenta por agente. Turma de 20 pessoas gera 100 tickets manuais (5 por pessoa).</p></div>
-          <div><p class="opp">Acesso por Função: Um único ticket libera todas as ferramentas do cargo via escopo/perfil.</p></div>
-          <div><span class="crit-crit">● Crítica</span><p class="text-[#7C756B] text-xs mt-1">Perda de tempo e carga cognitiva elevada</p></div>
+
+        <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:-translate-y-1 hover:shadow-lg transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-white bg-[#7C756B] rounded-full px-3 py-1">07</span>
+            <span class="text-xs font-semibold text-red-600 bg-red-50 rounded-full px-3 py-1">● Crítica</span>
+          </div>
+          <h5 class="font-bold text-[#333] text-sm mb-2">Um acesso por agente, na mão</h5>
+          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">Nova turma de 20 agentes = 100 tickets manuais. Cada pessoa precisa de 5 liberações diferentes. Todo esse esforço cai no colo do coordenador.</p>
+          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Acesso por função/cargo. Um ticket libera tudo do perfil de uma vez.</div>
         </div>
-      </div>
-      <!-- Row 8 -->
-      <div class="reveal frow">
-        <div class="frow-body">
-          <div><span class="tag bg-[#7C756B] text-white mb-2 block w-fit">08</span><p class="text-[#333] font-semibold text-xs leading-relaxed">Restrição de Múltiplas Escolhas</p></div>
-          <div><p>Formulário permite selecionar apenas um procedimento testado. Atraso superior a 24h por sugestões redundantes. Aumento no MTTR.</p></div>
-          <div><p class="opp">Checklist múltiplo: Marcar todos os procedimentos já testados, ou opção Sim/Não por procedimento.</p></div>
-          <div><span class="crit-high">● Alta</span><p class="text-[#7C756B] text-xs mt-1">Oculta esforço real dos BPOs e atrasa a solução</p></div>
+
+        <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:-translate-y-1 hover:shadow-lg transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-white bg-[#7C756B] rounded-full px-3 py-1">08</span>
+            <span class="text-xs font-semibold text-yellow-700 bg-yellow-50 rounded-full px-3 py-1">● Alta</span>
+          </div>
+          <h5 class="font-bold text-[#333] text-sm mb-2">Só uma tratativa por vez</h5>
+          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">Radio button onde precisava ser checkbox. O suporte pede de novo o teste que o BPO já tentou — porque o sistema não deixou registrar tudo. +24h de atraso por isso.</p>
+          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Checklist múltiplo com todos os procedimentos já tentados visíveis.</div>
         </div>
-      </div>
-      <!-- Row 9 -->
-      <div class="reveal frow">
-        <div class="frow-body" style="background:#FFFCF7">
-          <div><span class="tag bg-[#7C756B] text-white mb-2 block w-fit">09</span><p class="text-[#333] font-semibold text-xs leading-relaxed">Déficit de Transparência no Status</p></div>
-          <div><p>Sem visibilidade do progresso nem de qual analista cuida do caso. Esperas superiores a uma semana sem feedback.</p></div>
-          <div><p class="opp">Transparência de status: Atualização de acordo com o que o suporte está fazendo em tempo real.</p></div>
-          <div><span class="crit-high">● Alta</span><p class="text-[#7C756B] text-xs mt-1">Gera insegurança e busca por canais paralelos</p></div>
+
+        <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:-translate-y-1 hover:shadow-lg transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-white bg-[#7C756B] rounded-full px-3 py-1">09</span>
+            <span class="text-xs font-semibold text-yellow-700 bg-yellow-50 rounded-full px-3 py-1">● Alta</span>
+          </div>
+          <h5 class="font-bold text-[#333] text-sm mb-2">Ninguém sabe o que está acontecendo</h5>
+          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">Abriu o ticket, sumiu no sistema. Sem visibilidade de quem está tratando, sem atualização de status. Espera de mais de uma semana sem nenhum retorno.</p>
+          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Status em tempo real — o coordenador vê exatamente onde o chamado está.</div>
         </div>
-      </div>
-      <!-- Row 10 -->
-      <div class="reveal frow">
-        <div class="frow-body">
-          <div><span class="tag bg-[#333] text-white mb-2 block w-fit">10</span><p class="text-[#333] font-semibold text-xs leading-relaxed">Instabilidade Técnica</p></div>
-          <div><p>Alta lentidão no carregamento de campos e deslogues automáticos frequentes. Até 4 min por clique; quedas a cada 5–10 min.</p></div>
-          <div><p class="opp">Alta Performance: Otimização técnica para acabar com a lentidão e as quedas do sistema.</p></div>
-          <div><span class="crit-crit">● Crítica</span><p class="text-[#7C756B] text-xs mt-1">Ganho automático com a implementação da feature</p></div>
+
+        <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:-translate-y-1 hover:shadow-lg transition-all">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-white bg-[#333] rounded-full px-3 py-1">10</span>
+            <span class="text-xs font-semibold text-red-600 bg-red-50 rounded-full px-3 py-1">● Crítica</span>
+          </div>
+          <h5 class="font-bold text-[#333] text-sm mb-2">Sistema lento e instável</h5>
+          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">Até 4 minutos por clique. Deslogar automático a cada 5–10 minutos. Isso não é inconveniente — é o principal motivo do TMA de 10 minutos.</p>
+          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Performance como requisito, não como melhoria futura.</div>
         </div>
+
       </div>
     </div>
 
@@ -525,73 +552,72 @@
         <div><span class="text-xs text-[#7C756B] uppercase tracking-widest block">Etapa 03</span><h3 class="text-xl font-bold text-[#333]">Prototipagem & Validação (To-Be)</h3></div>
       </div>
 
-      <!-- Full-section dark-fill (zeroheight style) -->
-      <div class="zh-section reveal" id="zh-wrap">
-        <div class="zh-dark-bg"></div>
+      <!-- Sticky scroll (zeroheight style) -->
+      <div class="zh-outer" id="zh-wrap">
+        <div class="zh-sticky">
 
-        <!-- LIGHT state -->
-        <div class="zh-light relative z-10">
-          <div class="p-10 lg:p-14">
+          <!-- Light panel -->
+          <div class="zh-light-panel">
             <p class="text-xs text-[#7C756B] uppercase tracking-[.2em] mb-3">Etapa 03</p>
-            <h4 class="text-2xl lg:text-3xl font-bold text-[#333] mb-4">Do Caos para a Clareza</h4>
-            <p class="text-[#7C756B] leading-relaxed max-w-2xl mb-8 text-sm">Com o discovery consolidado, o objetivo era traduzir os insights em solução visual concreta — mantendo a identidade do Nubank, mas resolvendo a bagunça do BPO de uma vez por todas.</p>
-            <!-- teaser cards (light) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-              <div class="bg-[#EFECE7] rounded-xl p-5">
+            <h4 class="text-2xl lg:text-3xl font-bold text-[#333] mb-4 leading-tight">Do Caos para a Clareza</h4>
+            <p class="text-[#7C756B] leading-relaxed max-w-2xl mb-10 text-sm">Com o discovery consolidado, o objetivo era traduzir os insights em solução visual concreta — mantendo a identidade do Nubank, mas resolvendo a bagunça do BPO de uma vez por todas.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10" style="max-width:640px;">
+              <div class="bg-white border border-[#DED2C4] rounded-xl p-5">
                 <div class="text-xs text-[#7C756B] uppercase tracking-widest mb-2">Método 01</div>
                 <h5 class="text-[#333] font-semibold text-sm">Prompt Estratégico + Figma Make</h5>
               </div>
-              <div class="bg-[#EFECE7] rounded-xl p-5">
+              <div class="bg-white border border-[#DED2C4] rounded-xl p-5">
                 <div class="text-xs text-[#7C756B] uppercase tracking-widest mb-2">Método 02</div>
                 <h5 class="text-[#333] font-semibold text-sm">3 Cenários de Visualização</h5>
               </div>
-              <div class="bg-[#EFECE7] rounded-xl p-5">
+              <div class="bg-white border border-[#DED2C4] rounded-xl p-5">
                 <div class="text-xs text-[#7C756B] uppercase tracking-widest mb-2">Método 03</div>
                 <h5 class="text-[#333] font-semibold text-sm">Foco em Heurísticas</h5>
               </div>
             </div>
-            <div class="flex items-center gap-2 text-xs text-[#7C756B] animate-bounce">
-              <svg width="14" height="14" fill="none" viewBox="0 0 14 14"><path d="M7 2v10M3 8l4 4 4-4" stroke="#7C756B" stroke-width="1.5" stroke-linecap="round"/></svg>
-              Role para ver a estratégia completa
-            </div>
+            <p class="text-xs text-[#7C756B] opacity-60">Role para ver a estratégia completa ↓</p>
           </div>
-        </div>
 
-        <!-- DARK state (fills over light) -->
-        <div class="zh-dark absolute inset-0 z-20 flex items-center" style="padding: 2.5rem 3.5rem;">
-          <div class="w-full">
-            <p class="text-xs text-white/40 uppercase tracking-[.2em] mb-3">Estratégia de Prototipagem</p>
-            <h4 class="text-2xl lg:text-3xl font-bold text-white mb-10 max-w-xl leading-tight">
-              Do diagnóstico à primeira tela funcional — em dias, não semanas.
-            </h4>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
-              <div class="border border-white/12 rounded-xl p-6 bg-white/[.03]">
-                <div class="text-[#DED2C4] text-xs uppercase tracking-widest mb-3">Método 01</div>
-                <h5 class="text-white font-semibold mb-3 text-sm">Prompt Estratégico + Figma Make</h5>
-                <p class="text-white/55 text-xs leading-relaxed">Prompts detalhados para traduzir exatamente o fluxo idealizado, garantindo consistência visual do Casino Royale desde o primeiro rascunho — sem pixel perdido.</p>
+          <!-- Dark clip panel (reveals via clip-path on scroll) -->
+          <div class="zh-clip-panel" id="zh-clip"></div>
+
+          <!-- Dark content panel -->
+          <div class="zh-dark-panel" id="zh-dark">
+            <div class="w-full" style="max-width:860px;">
+              <p class="text-xs text-white/40 uppercase tracking-[.2em] mb-3">Estratégia de Prototipagem</p>
+              <h4 class="text-2xl lg:text-3xl font-bold text-white mb-8 leading-tight" style="max-width:480px;">
+                Do diagnóstico à primeira tela funcional — em dias, não semanas.
+              </h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+                <div class="border border-white/12 rounded-xl p-5 bg-white/[.03]">
+                  <div class="text-[#DED2C4] text-xs uppercase tracking-widest mb-2">Método 01</div>
+                  <h5 class="text-white font-semibold mb-2 text-sm">Prompt Estratégico + Figma Make</h5>
+                  <p class="text-white/55 text-xs leading-relaxed">Prompts detalhados para traduzir o fluxo idealizado, respeitando a identidade do Nubank desde o primeiro rascunho.</p>
+                </div>
+                <div class="border border-white/12 rounded-xl p-5 bg-white/[.03]">
+                  <div class="text-[#DED2C4] text-xs uppercase tracking-widest mb-2">Método 02</div>
+                  <h5 class="text-white font-semibold mb-2 text-sm">3 Cenários de Visualização</h5>
+                  <p class="text-white/55 text-xs leading-relaxed">Cards, Selects e Steps. Objetivo: qual modelo abre ticket com menos cliques e menor carga cognitiva.</p>
+                </div>
+                <div class="border border-white/12 rounded-xl p-5 bg-white/[.03]">
+                  <div class="text-[#DED2C4] text-xs uppercase tracking-widest mb-2">Método 03</div>
+                  <h5 class="text-white font-semibold mb-2 text-sm">Foco em Heurísticas</h5>
+                  <p class="text-white/55 text-xs leading-relaxed">Usuário pode corrigir sem perder o trabalho. TMA 10→3 min como KPI principal de todo o redesenho.</p>
+                </div>
               </div>
-              <div class="border border-white/12 rounded-xl p-6 bg-white/[.03]">
-                <div class="text-[#DED2C4] text-xs uppercase tracking-widest mb-3">Método 02</div>
-                <h5 class="text-white font-semibold mb-3 text-sm">3 Cenários de Visualização</h5>
-                <p class="text-white/55 text-xs leading-relaxed">Cards (visual), Selects (tradicional) e Steps híbrido. O objetivo é validar qual modelo reduz mais carga cognitiva e abre ticket com mínimo de cliques possível.</p>
-              </div>
-              <div class="border border-white/12 rounded-xl p-6 bg-white/[.03]">
-                <div class="text-[#DED2C4] text-xs uppercase tracking-widest mb-3">Método 03</div>
-                <h5 class="text-white font-semibold mb-3 text-sm">Foco em Heurísticas</h5>
-                <p class="text-white/55 text-xs leading-relaxed">Flexibilidade heurística central: o usuário pode corrigir sem perder o trabalho. TMA 10→3 minutos como KPI principal de sucesso de todo o redesenho.</p>
-              </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div class="border border-white/12 rounded-xl p-5 bg-white/[.03]">
-                <h5 class="text-white font-semibold mb-2 text-sm">Alinhamento com Engenharia</h5>
-                <p class="text-white/55 text-xs leading-relaxed">Antes de qualquer protótipo, conversei com os devs do Casino para entender as restrições técnicas. Não adianta idealizar algo impossível — o alinhamento técnico vem primeiro.</p>
-              </div>
-              <div class="border border-white/12 rounded-xl p-5 bg-white/[.03]">
-                <h5 class="text-white font-semibold mb-2 text-sm">Revisão de Taxonomia</h5>
-                <p class="text-white/55 text-xs leading-relaxed">Mapeei cada campo do novo fluxo questionando: "esse campo é útil para o MI6?" O Zammad tinha fricção por excesso de opções — não podemos repetir o mesmo erro.</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="border border-white/12 rounded-xl p-5 bg-white/[.03]">
+                  <h5 class="text-white font-semibold mb-2 text-sm">Alinhamento com Engenharia</h5>
+                  <p class="text-white/55 text-xs leading-relaxed">Antes de qualquer protótipo, alinhei com os devs do Casino as restrições técnicas. Não adianta idealizar o impossível.</p>
+                </div>
+                <div class="border border-white/12 rounded-xl p-5 bg-white/[.03]">
+                  <h5 class="text-white font-semibold mb-2 text-sm">Revisão de Taxonomia</h5>
+                  <p class="text-white/55 text-xs leading-relaxed">Questionei cada campo: "isso é realmente necessário para o MI6?" O Zammad travava por excesso — não podia repetir o mesmo erro.</p>
+                </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -735,20 +761,34 @@
           <p class="text-[#7C756B] text-sm leading-relaxed">Identificar quais informações são realmente cruciais para o suporte, eliminando campos burocráticos como "Squad" e "ID de Job" em situações de crise.</p>
         </div>
       </div>
-      <div class="reveal bg-[#222] rounded-2xl p-8">
-        <h4 class="text-white font-bold mb-6">Próximos Passos</h4>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="flex gap-3">
-            <div class="w-7 h-7 rounded-full bg-white/10 text-white text-xs flex-shrink-0 flex items-center justify-center font-bold">1</div>
-            <div><h5 class="text-white text-sm font-semibold mb-1">Definição de Campos</h5><p class="text-white/55 text-xs leading-relaxed">Step 4 — eliminar campos burocráticos, manter apenas o essencial para o suporte resolver com eficiência.</p></div>
+      <div class="reveal">
+        <p class="text-xs text-[#7C756B] uppercase tracking-[.2em] mb-8">Próximos Passos</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 relative">
+          <!-- Step 1 -->
+          <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-tl-2xl rounded-bl-2xl p-8 relative">
+            <div style="font-size:4.5rem;font-weight:900;color:#DED2C4;line-height:1;margin-bottom:16px;user-select:none;">01</div>
+            <h5 class="font-bold text-[#333] mb-3">Definição de Campos</h5>
+            <p class="text-[#7C756B] text-sm leading-relaxed">Cortar campos burocráticos, manter só o que o suporte precisa para resolver. "Squad" e "ID de Job" em crise? Fora.</p>
           </div>
-          <div class="flex gap-3">
-            <div class="w-7 h-7 rounded-full bg-white/10 text-white text-xs flex-shrink-0 flex items-center justify-center font-bold">2</div>
-            <div><h5 class="text-white text-sm font-semibold mb-1">Validação com BPOs Reais</h5><p class="text-white/55 text-xs leading-relaxed">Levar o modelo de cards para coordenadores testarem. Medir se o TMA realmente cai de 10 para 3 minutos.</p></div>
+          <!-- Arrow 1 -->
+          <div class="hidden md:flex absolute z-10 bg-[#EFECE7] border border-[#DED2C4] w-8 h-8 rounded-full items-center justify-content-center justify-center" style="left:33.33%;top:50%;transform:translate(-50%,-50%);">
+            <svg width="12" height="12" fill="none" viewBox="0 0 12 12"><path d="M2 6h8M7 3l3 3-3 3" stroke="#7C756B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <div class="flex gap-3">
-            <div class="w-7 h-7 rounded-full bg-white/10 text-white text-xs flex-shrink-0 flex items-center justify-center font-bold">3</div>
-            <div><h5 class="text-white text-sm font-semibold mb-1">Refinamento Visual (UI)</h5><p class="text-white/55 text-xs leading-relaxed">Após validação da lógica, aplicar o Design System do Nubank para consistência e profissionalismo na entrega final.</p></div>
+          <!-- Step 2 -->
+          <div class="bg-[#EFECE7] border-t border-b border-[#DED2C4] p-8 relative">
+            <div style="font-size:4.5rem;font-weight:900;color:#DED2C4;line-height:1;margin-bottom:16px;user-select:none;">02</div>
+            <h5 class="font-bold text-[#333] mb-3">Validação com BPOs</h5>
+            <p class="text-[#7C756B] text-sm leading-relaxed">Levar o modelo de cards direto pra quem usa. Ver se o TMA cai de 10 pra 3 minutos — não no papel, na operação real.</p>
+          </div>
+          <!-- Arrow 2 -->
+          <div class="hidden md:flex absolute z-10 bg-[#EFECE7] border border-[#DED2C4] w-8 h-8 rounded-full items-center justify-center" style="left:66.66%;top:50%;transform:translate(-50%,-50%);">
+            <svg width="12" height="12" fill="none" viewBox="0 0 12 12"><path d="M2 6h8M7 3l3 3-3 3" stroke="#7C756B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <!-- Step 3 -->
+          <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-tr-2xl rounded-br-2xl p-8">
+            <div style="font-size:4.5rem;font-weight:900;color:#DED2C4;line-height:1;margin-bottom:16px;user-select:none;">03</div>
+            <h5 class="font-bold text-[#333] mb-3">Refinamento Visual</h5>
+            <p class="text-[#7C756B] text-sm leading-relaxed">Quando o fluxo estiver validado, aí sim aplica o Design System do Nubank. Beleza sem funcionar não adianta.</p>
           </div>
         </div>
       </div>
@@ -818,7 +858,7 @@
         </div>
         <div class="text-xs uppercase tracking-[.15em] text-[#7C756B] mb-1">Exploração de UI</div>
         <h3 class="text-2xl font-bold text-[#333] mb-2 tracking-tight">Pinterest Prototype</h3>
-        <p class="text-[#7C756B] leading-relaxed text-sm">Projeto pessoal de exploração de interface focado em prototipagem — meu primeiro mergulho sistemático no Figma e no raciocínio de UI.</p>
+        <p class="text-[#7C756B] leading-relaxed text-sm">Projeto pessoal de exploração de interface focado em prototipagem — meu primeiro mergulho no Figma e no raciocínio de UI.</p>
       </div>
 
       <div class="reveal group">
@@ -859,7 +899,7 @@
       <div class="lg:col-span-8 reveal space-y-5 text-[#7C756B] text-lg leading-relaxed">
         <p>Tenho 24 anos e formação técnica em Desenvolvimento de Software. Desde cedo me interessei por tecnologia e sempre tive uma grande paixão por design e comunicação visual.</p>
         <p>Antes de entrar no Nubank, comecei explorando o design de forma independente — criativos para Instagram, logos, identidades visuais simples, além de filtros de realidade aumentada usando Meta Spark e AR Effects.</p>
-        <p>Minha jornada no Nubank começou como Jovem Aprendiz, onde colaborei em diferentes iniciativas de comunicação visual: apresentações, materiais internos e identidades para projetos e eventos.</p>
+        <p>Entrei no Nubank como Jovem Aprendiz, onde colaborei em diferentes iniciativas de comunicação visual: apresentações, materiais internos e identidades para projetos e eventos.</p>
         <p>Com o tempo, me aproximei cada vez mais do universo de design de produto, contribuindo com soluções visuais e estruturais para ferramentas internas utilizadas por times de engenharia e operações.</p>
         <p>Atualmente estou aprofundando meus conhecimentos em Product Design — mentorias, projetos de aprendizado e prototipagem no Figma com foco em usabilidade e sistemas complexos.</p>
         <p class="text-[#333] font-medium">Hoje meu foco é projetar interfaces e experiências que simplifiquem fluxos complexos, especialmente em plataformas internas, ferramentas de conhecimento e soluções baseadas em IA.</p>
@@ -898,6 +938,27 @@
     <span class="text-white/30 text-sm">IC3 IT Engineering Assistant · Nubank</span>
   </div>
 </footer>
+
+<!-- ── BOTTOM CASE NAV ── -->
+<div id="case-nav">
+  <div class="cn-steps">
+    <div class="cn-step" onclick="document.getElementById('discovery').scrollIntoView({behavior:'smooth'})">
+      <div class="cn-dot"></div><span class="cn-label">Discovery</span>
+    </div>
+    <div class="cn-line"><div class="cn-line-fill"></div></div>
+    <div class="cn-step" onclick="document.getElementById('shadowing').scrollIntoView({behavior:'smooth'})">
+      <div class="cn-dot"></div><span class="cn-label">Shadowing</span>
+    </div>
+    <div class="cn-line"><div class="cn-line-fill"></div></div>
+    <div class="cn-step" onclick="document.getElementById('prototipagem').scrollIntoView({behavior:'smooth'})">
+      <div class="cn-dot"></div><span class="cn-label">Prototipagem</span>
+    </div>
+    <div class="cn-line"><div class="cn-line-fill"></div></div>
+    <div class="cn-step" onclick="document.getElementById('mvp').scrollIntoView({behavior:'smooth'})">
+      <div class="cn-dot"></div><span class="cn-label">MVP</span>
+    </div>
+  </div>
+</div>
 
 <script>
 /* ── mobile menu ── */
@@ -943,19 +1004,51 @@ rmSections.forEach(id => { const el = document.getElementById(id); if (el) rmObs
 // Immediately activate first node
 document.querySelector('.rm-node')?.classList.add('active');
 
-/* ── zeroheight dark-fill ── */
-const zhWrap = document.getElementById('zh-wrap');
+/* ── Bottom case nav ── */
+var mi6El = document.getElementById('case-mi6');
+var caseNavEl = document.getElementById('case-nav');
+var cnSections = ['discovery','shadowing','prototipagem','mvp'];
+function updateCaseNav() {
+  if (!mi6El || !caseNavEl) return;
+  var r = mi6El.getBoundingClientRect();
+  caseNavEl.classList.toggle('visible', r.top < window.innerHeight && r.bottom > 0);
+  var activeIdx = 0;
+  cnSections.forEach(function(id, i) {
+    var el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.55) activeIdx = i;
+  });
+  document.querySelectorAll('.cn-step').forEach(function(s, i) {
+    s.classList.toggle('cn-active', i === activeIdx);
+    s.classList.toggle('cn-done', i < activeIdx);
+  });
+  document.querySelectorAll('.cn-line').forEach(function(l, i) {
+    var fill = l.querySelector('.cn-line-fill');
+    if (fill) fill.style.width = i < activeIdx ? '100%' : (i === activeIdx ? '60%' : '0%');
+  });
+}
+window.addEventListener('scroll', updateCaseNav, { passive: true });
+updateCaseNav();
+
+/* ── Sticky zh scroll ── */
+var zhWrap = document.getElementById('zh-wrap');
 if (zhWrap) {
-  // Set height to encompass all inner content
-  const zhObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting && e.intersectionRatio > 0.45) {
-        zhWrap.classList.add('zh-filling');
-        zhObs.unobserve(zhWrap);
-      }
-    });
-  }, { threshold: 0.45 });
-  zhObs.observe(zhWrap);
+  var zhClip = document.getElementById('zh-clip');
+  var zhDark = document.getElementById('zh-dark');
+  var zhLight = zhWrap.querySelector('.zh-light-panel');
+  function animateZH() {
+    var rect = zhWrap.getBoundingClientRect();
+    var total = zhWrap.offsetHeight - window.innerHeight;
+    if (total <= 0) return;
+    var p = Math.max(0, Math.min(1, -rect.top / total));
+    if (zhClip) {
+      var top = Math.max(0, 100 - (p / 0.75) * 100);
+      zhClip.style.clipPath = 'inset(' + top.toFixed(1) + '% 0 0 0)';
+    }
+    if (zhDark) zhDark.style.opacity = p > 0.65 ? Math.min(1, (p - 0.65) / 0.2) : 0;
+    if (zhLight) zhLight.style.opacity = p > 0.4 ? Math.max(0, 1 - (p - 0.4) / 0.25) : 1;
+  }
+  window.addEventListener('scroll', animateZH, { passive: true });
+  animateZH();
 }
 </script>
 </body>
