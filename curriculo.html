@@ -340,6 +340,62 @@
       font-size: 7px;
     }
 
+    /* ── Project cards ── */
+    .proj-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .proj-card {
+      border: 1px solid var(--rule);
+      border-left: 2.5px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 12px 14px;
+      background: #faf8f5;
+    }
+    .proj-tag {
+      font-size: 6.8px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+    .proj-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+    .proj-desc {
+      font-size: 7.6px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.72;
+      margin-bottom: 8px;
+    }
+    .proj-desc strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .proj-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .proj-m {
+      font-size: 7px;
+      font-weight: 500;
+      color: var(--accent);
+      background: rgba(140,123,110,.08);
+      border: 1px solid rgba(140,123,110,.2);
+      border-radius: 3px;
+      padding: 2px 7px;
+      letter-spacing: .04em;
+    }
+
     /* ── Print ── */
     .print-tip {
       margin-top: 16px;
@@ -575,6 +631,48 @@
           <ul class="bullets">
             <li>Desenvolvimento com PHP, HTML5, JavaScript e MySQL — aplicação prática das competências do curso técnico.</li>
           </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Projetos de Destaque -->
+    <section class="sec">
+      <h2 class="sec-title">Principais Projetos &amp; Impactos · 2026</h2>
+
+      <div class="proj-grid">
+
+        <div class="proj-card">
+          <div class="proj-tag">Feature · Product Design</div>
+          <div class="proj-name">MI6 — Discovery &amp; Redesign Global</div>
+          <p class="proj-desc">Liderança do processo de unificação operacional das operações Brasil, México e Colômbia no ecossistema Casino Royale. Conduzi pesquisas qualitativas e shadowing internacional para identificar 10 fricções críticas, projetando uma interface flexível que reduziu o tempo de abertura de tickets de <strong>10 min → 3 min</strong>. Elaborei PRDs estratégicas com meta de <strong>−80% no Lead Time</strong> de acessos e migrei o modelo híbrido Slack/Zammad para um portal único com governança e visibilidade em tempo real.</p>
+          <div class="proj-metrics">
+            <span class="proj-m">10 fricções mapeadas</span>
+            <span class="proj-m">TMA 10 → 3 min</span>
+            <span class="proj-m">−80% Lead Time</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-tag">Branding · UX Research</div>
+          <div class="proj-name">Rebrand AskNu — Identidade &amp; Posicionamento</div>
+          <p class="proj-desc">Responsável pelo levantamento completo da arquitetura atual para o reposicionamento estratégico da marca. Realizei pesquisas com usuários para diagnóstico de percepção, defini objetivos para o novo logo e criei moodboards e concepts visuais. Desenvolvi propostas de logotipos e alinhei com times de branding e engenharia, garantindo que a nova identidade refletisse a evolução e maturidade do produto.</p>
+          <div class="proj-metrics">
+            <span class="proj-m">Pesquisa com usuários</span>
+            <span class="proj-m">Moodboards + concepts</span>
+            <span class="proj-m">Alinhamento eng. + branding</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-tag">AI-First · DesignOps</div>
+          <div class="proj-name">Design Assist — Arquitetura &amp; Automação AI</div>
+          <p class="proj-desc">Liderança na concepção de uma solução AI-First para automação de design e comunicação técnica. Defini prompts de IA detalhados e utilizei Zapier + IA para automatizar <strong>95% da geração de conteúdo</strong>, reduzindo o esforço manual do time em 40%. Padronização visual via templates Block Kit Builder no Slack, alcançando <strong>+1.000 visualizações por entrega</strong> e garantindo a identidade visual do ecossistema NuStep.</p>
+          <div class="proj-metrics">
+            <span class="proj-m">95% automação de conteúdo</span>
+            <span class="proj-m">−40% esforço manual</span>
+            <span class="proj-m">+1.000 views/entrega</span>
+          </div>
         </div>
 
       </div>
