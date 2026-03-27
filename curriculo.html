@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nayene Espindola — Product Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     /* ── Reset ── */
@@ -26,7 +26,7 @@
 
     /* ── Document ── */
     html, body {
-      font-family: 'DM Sans', system-ui, sans-serif;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
       background: #ddd8d0;
       min-height: 100vh;
       display: flex;
@@ -67,6 +67,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      width: 100%;
       gap: 0;
       border-bottom: 1px solid var(--rule);
     }
@@ -94,9 +96,9 @@
     .s:last-child { border-bottom: none; flex: 1; }
 
     .s-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 7px;
-      font-weight: 600;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 8px;
+      font-weight: 700;
       letter-spacing: .26em;
       text-transform: uppercase;
       color: var(--accent);
@@ -112,7 +114,7 @@
     }
     .ci svg { flex-shrink: 0; margin-top: 1px; }
     .ci-t {
-      font-size: 8px;
+      font-size: 9px;
       color: var(--ink-mid);
       line-height: 1.6;
     }
@@ -122,13 +124,13 @@
     .sk-list {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
     }
     .sk-item {
-      font-size: 8px;
+      font-size: 9px;
       color: var(--ink-mid);
       line-height: 1.4;
-      padding-left: 10px;
+      padding-left: 12px;
       position: relative;
     }
     .sk-item::before {
@@ -141,46 +143,59 @@
       background: var(--accent);
     }
 
-    /* ── Tool chips ── */
-    .chip-group {
-      display: flex;
-      flex-wrap: wrap;
+    /* ── Tool grid ── */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 5px;
     }
-    .chip {
+    .tool-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 8px 4px 7px;
+      background: rgba(140,123,110,.07);
+      border: 1px solid rgba(140,123,110,.18);
+      border-radius: 6px;
+      text-align: center;
+    }
+    .tool-icon {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: .02em;
+    }
+    .tool-name {
       font-size: 7px;
       font-weight: 500;
-      letter-spacing: .03em;
       color: var(--ink-mid);
-      background: rgba(140,123,110,.1);
-      border: 1px solid rgba(140,123,110,.2);
-      border-radius: 4px;
-      padding: 3px 7px;
-      line-height: 1;
+      line-height: 1.2;
     }
 
     /* ── Edu list ── */
-    .edu-item { margin-bottom: 10px; }
+    .edu-item { margin-bottom: 12px; }
     .edu-item:last-child { margin-bottom: 0; }
     .edu-year {
-      font-size: 7px; font-weight: 600;
+      font-size: 8px; font-weight: 600;
       letter-spacing: .12em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1px;
+      color: var(--accent); margin-bottom: 2px;
     }
     .edu-inst {
-      font-size: 8px; font-weight: 600;
+      font-size: 9px; font-weight: 600;
       color: var(--ink); line-height: 1.3;
     }
     .edu-course {
-      font-size: 7.5px; color: var(--ink-soft);
-      font-style: italic; margin-top: 1px;
+      font-size: 8px; color: var(--ink-soft);
+      font-style: italic; margin-top: 2px;
     }
 
     /* ── Cert list ── */
     .cert-item {
-      font-size: 7.5px;
+      font-size: 8px;
       color: var(--ink-soft);
-      line-height: 1.55;
+      line-height: 1.6;
       margin-bottom: 4px;
       padding-left: 10px;
       position: relative;
@@ -206,8 +221,8 @@
     }
     .cv-name {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-weight: 300;
-      font-size: 46px;
+      font-weight: 400;
+      font-size: 50px;
       color: var(--ink);
       line-height: .92;
       letter-spacing: -.01em;
@@ -215,7 +230,7 @@
     }
     .cv-name strong {
       display: block;
-      font-weight: 600;
+      font-weight: 700;
     }
     .cv-role-row {
       display: flex;
@@ -225,15 +240,15 @@
     }
     .cv-rule { width: 32px; height: 1px; background: var(--accent); flex-shrink: 0; }
     .cv-role {
-      font-size: 8px;
+      font-size: 9px;
       font-weight: 600;
       letter-spacing: .22em;
       text-transform: uppercase;
       color: var(--accent);
     }
     .cv-summary {
-      font-size: 8.2px;
-      font-weight: 300;
+      font-size: 9px;
+      font-weight: 400;
       color: var(--ink-soft);
       line-height: 1.8;
       margin-top: 14px;
@@ -247,8 +262,8 @@
     .sec:last-child { border-bottom: none; }
 
     .sec-title {
-      font-size: 7.5px;
-      font-weight: 600;
+      font-size: 8px;
+      font-weight: 700;
       letter-spacing: .24em;
       text-transform: uppercase;
       color: var(--accent);
@@ -274,8 +289,12 @@
       background: linear-gradient(to bottom, var(--accent-lt) 0%, var(--rule) 100%);
     }
 
-    .entry { position: relative; margin-bottom: 18px; }
-    .entry:last-child { margin-bottom: 0; }
+    .entry { position: relative; }
+    .entry + .entry {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--rule);
+    }
 
     .entry::before {
       content: '';
@@ -291,7 +310,7 @@
     }
 
     .entry-date {
-      font-size: 7px;
+      font-size: 8px;
       font-weight: 600;
       letter-spacing: .14em;
       text-transform: uppercase;
@@ -300,36 +319,36 @@
     }
     .entry-org {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 12px;
-      font-weight: 600;
+      font-size: 14px;
+      font-weight: 700;
       color: var(--ink);
       line-height: 1.2;
-      margin-bottom: 1px;
+      margin-bottom: 2px;
     }
     .entry-pos {
-      font-size: 7.8px;
+      font-size: 9px;
       font-weight: 400;
       font-style: italic;
       color: var(--ink-soft);
-      margin-bottom: 6px;
+      margin-bottom: 7px;
     }
 
     .entry-sub {
-      font-size: 7px;
+      font-size: 8px;
       font-weight: 600;
       letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--ink-mid);
-      margin: 6px 0 4px;
+      margin: 7px 0 5px;
     }
 
     .bullets { list-style: none; }
     .bullets li {
-      font-size: 7.8px;
-      font-weight: 300;
+      font-size: 9px;
+      font-weight: 400;
       color: var(--ink-mid);
       line-height: 1.7;
-      padding-left: 12px;
+      padding-left: 14px;
       margin-bottom: 2px;
       position: relative;
     }
@@ -337,74 +356,7 @@
       content: '—';
       position: absolute; left: 0;
       color: var(--accent-lt);
-      font-size: 7px;
-    }
-
-    /* ── Project cards ── */
-    .proj-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .proj-card {
-      border: 1px solid var(--rule);
-      border-left: 2px solid var(--accent);
-      border-radius: 0 4px 4px 0;
-      padding: 7px 10px;
-      background: #faf8f5;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      grid-template-rows: auto auto;
-      column-gap: 10px;
-      align-items: start;
-    }
-    .proj-tag {
-      font-size: 6.2px;
-      font-weight: 600;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 2px;
-      grid-column: 1;
-    }
-    .proj-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 10.5px;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.2;
-      grid-column: 1;
-    }
-    .proj-desc {
-      font-size: 7.2px;
-      font-weight: 300;
-      color: var(--ink-mid);
-      line-height: 1.65;
-      margin-top: 4px;
-      grid-column: 1 / 3;
-    }
-    .proj-desc strong {
-      font-weight: 600;
-      color: var(--ink);
-    }
-    .proj-metrics {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      align-items: flex-end;
-      grid-column: 2;
-      grid-row: 1 / 3;
-    }
-    .proj-m {
-      font-size: 6.5px;
-      font-weight: 600;
-      color: var(--accent);
-      background: rgba(140,123,110,.08);
-      border: 1px solid rgba(140,123,110,.18);
-      border-radius: 3px;
-      padding: 2px 6px;
-      letter-spacing: .03em;
-      white-space: nowrap;
+      font-size: 8px;
     }
 
     /* ── Print ── */
@@ -412,7 +364,7 @@
       margin-top: 16px;
       font-size: 11px;
       color: #999;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       text-align: center;
     }
     .print-tip strong { color: #666; }
@@ -471,7 +423,7 @@
           <rect x=".8" y=".8" width="10.4" height="10.4" rx="2" stroke="#8c7b6e" stroke-width="1.1"/>
           <path d="M4 5.8v3.5M4 3.4v.5M6.8 9.3V7.4a1.3 1.3 0 0 1 2.6 0v1.9M6.8 7.4v1.9" stroke="#8c7b6e" stroke-width="1.1" stroke-linecap="round"/>
         </svg>
-        <span class="ci-t"><a href="https://linkedin.com/in/nayene-espindola-88b132150/">linkedin.com/in/nayene-espindola</a></span>
+        <span class="ci-t"><a href="https://linkedin.com/in/nayene-espindola-88b132150/">linkedin.com/in/nayene-espindola-88b132150</a></span>
       </div>
     </div>
 
@@ -497,21 +449,43 @@
     <!-- Ferramentas -->
     <div class="s">
       <div class="s-label">Ferramentas</div>
-      <div class="chip-group">
-        <span class="chip">Figma</span>
-        <span class="chip">Figma Make</span>
-        <span class="chip">Claude Code</span>
-        <span class="chip">Cursor</span>
-        <span class="chip">Gemini</span>
-        <span class="chip">NotebookLM</span>
-        <span class="chip">Zapier AI</span>
-        <span class="chip">Jira</span>
-        <span class="chip">Confluence</span>
-        <span class="chip">Canva</span>
-        <span class="chip">Adobe Suite</span>
-        <span class="chip">VS Code</span>
-        <span class="chip">Looker</span>
-        <span class="chip">Okta · JAMF</span>
+      <div class="tool-grid">
+        <div class="tool-item">
+          <div class="tool-icon">Fig</div>
+          <span class="tool-name">Figma</span>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">AI</div>
+          <span class="tool-name">Claude</span>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">Miro</div>
+          <span class="tool-name">Miro</span>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">NLM</div>
+          <span class="tool-name">NotebookLM</span>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">Gem</div>
+          <span class="tool-name">Gemini Gems</span>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">Zap</div>
+          <span class="tool-name">Zapier</span>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">Atl</div>
+          <span class="tool-name">Atlassian</span>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">Cur</div>
+          <span class="tool-name">Cursor</span>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon">Cnv</div>
+          <span class="tool-name">Canva</span>
+        </div>
       </div>
     </div>
 
@@ -520,7 +494,7 @@
       <div class="s-label">Formação</div>
 
       <div class="edu-item">
-        <div class="edu-year">Em andamento</div>
+        <div class="edu-year">1 Semestre · Descontinuado</div>
         <div class="edu-inst">Fatec Barueri</div>
         <div class="edu-course">Tecnólogo em Design e Comunicação Visual</div>
       </div>
@@ -622,68 +596,6 @@
             <li>Setup autônomo de máquinas MacOS/Windows/Dell; gestão de filas no Jira com cumprimento de SLAs críticos.</li>
             <li>Criação dos primeiros infográficos de conectividade e guias visuais de rede utilizados nos HQs do Nubank.</li>
           </ul>
-        </div>
-
-        <!-- ITPower -->
-        <div class="entry">
-          <div class="entry-date">Dez 2019 — Fev 2020</div>
-          <div class="entry-org">ITPower Softwares e Serviços LTDA</div>
-          <div class="entry-pos">Auxiliar Administrativo</div>
-          <ul class="bullets">
-            <li>Mapeamento de processos, fluxogramas, levantamento de requisitos, prototipação e avaliação de qualidade de sistemas.</li>
-          </ul>
-        </div>
-
-        <!-- Coral -->
-        <div class="entry">
-          <div class="entry-date">Mai 2019 — Ago 2019</div>
-          <div class="entry-org">Transporte e Turismo Coral</div>
-          <div class="entry-pos">Estagiária — Administração de Sistemas</div>
-          <ul class="bullets">
-            <li>Desenvolvimento com PHP, HTML5, JavaScript e MySQL — aplicação prática das competências do curso técnico.</li>
-          </ul>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Projetos de Destaque -->
-    <section class="sec">
-      <h2 class="sec-title">Principais Projetos &amp; Impactos · 2026</h2>
-
-      <div class="proj-grid">
-
-        <div class="proj-card">
-          <div class="proj-tag">Feature · Product Design</div>
-          <div class="proj-name">MI6 — Discovery &amp; Redesign Global</div>
-          <p class="proj-desc">Unificação operacional de BR, MX e CO no Casino Royale. Shadowing internacional com BPOs para mapear 10 fricções críticas. Interface flexível reduziu TMA de <strong>10 → 3 min</strong>. PRDs com meta de <strong>−80% no Lead Time</strong> e migração do modelo híbrido para portal único com rastreabilidade em tempo real.</p>
-          <div class="proj-metrics">
-            <span class="proj-m">10 fricções mapeadas</span>
-            <span class="proj-m">TMA 10 → 3 min</span>
-            <span class="proj-m">−80% Lead Time</span>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-tag">Branding · UX Research</div>
-          <div class="proj-name">Rebrand AskNu — Identidade &amp; Posicionamento</div>
-          <p class="proj-desc">Levantamento da arquitetura atual para reposicionamento estratégico da marca. Pesquisa de percepção com usuários, moodboards e concepts visuais. Propostas de logotipos e alinhamento com times de branding e engenharia.</p>
-          <div class="proj-metrics">
-            <span class="proj-m">Pesquisa com usuários</span>
-            <span class="proj-m">Moodboards + concepts</span>
-            <span class="proj-m">Alinhamento eng. + branding</span>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-tag">AI-First · DesignOps</div>
-          <div class="proj-name">Design Assist — Arquitetura &amp; Automação AI</div>
-          <p class="proj-desc">Solução AI-First para automação de design e comunicação técnica. Zapier + IA automatizando <strong>95% da geração de conteúdo</strong>, reduzindo esforço manual em 40%. Templates Block Kit Builder com <strong>+1.000 views/entrega</strong> garantindo identidade visual do NuStep.</p>
-          <div class="proj-metrics">
-            <span class="proj-m">95% automação de conteúdo</span>
-            <span class="proj-m">−40% esforço manual</span>
-            <span class="proj-m">+1.000 views/entrega</span>
-          </div>
         </div>
 
       </div>
