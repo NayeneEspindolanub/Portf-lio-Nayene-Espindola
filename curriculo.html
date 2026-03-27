@@ -5,395 +5,413 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nayene Espindola — Product Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
+    /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ── Tokens ── */
     :root {
-      --dark:     #1c1917;
-      --dark-2:   #2a2520;
-      --ink:      #1c1917;
-      --ink-mid:  #4a443e;
-      --ink-soft: #7a706a;
-      --accent:   #c0b0a3;
-      --accent-d: #8c7b6e;
-      --rule:     #e4ddd6;
-      --cream:    #faf7f3;
-      --white:    #ffffff;
+      --ink:        #1c1917;
+      --ink-mid:    #4a443e;
+      --ink-soft:   #7a706a;
+      --accent:     #8c7b6e;
+      --accent-lt:  #c0b0a3;
+      --rule:       #e4ddd6;
+      --bg-side:    #f3efe9;
+      --bg-page:    #ffffff;
+      --space:      8px;
     }
 
+    /* ── Document ── */
     html, body {
       font-family: 'DM Sans', system-ui, sans-serif;
-      background: #ccc8c0;
+      background: #ddd8d0;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
       padding: 48px 24px;
+      color: var(--ink);
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
 
-    /* ── A4 shell ── */
+    /* ── A4 Card ── */
     .cv {
       width: 210mm;
-      background: var(--white);
-      box-shadow: 0 4px 8px rgba(0,0,0,.08), 0 16px 48px rgba(0,0,0,.18), 0 40px 100px rgba(0,0,0,.12);
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ════════════════════════════
-       HEADER — dark full-width
-    ════════════════════════════ */
-    .cv-head {
-      background: var(--dark);
+      min-height: 297mm;
+      background: var(--bg-page);
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0;
-      min-height: 68mm;
-      position: relative;
-      overflow: hidden;
+      grid-template-columns: 75mm 1fr;
+      box-shadow:
+        0 2px 4px rgba(0,0,0,.06),
+        0 8px 24px rgba(0,0,0,.10),
+        0 32px 80px rgba(0,0,0,.14);
     }
 
-    /* decorative SVG behind content */
-    .head-deco {
-      position: absolute;
-      left: -18px;
-      bottom: -24px;
-      opacity: .18;
-      pointer-events: none;
-    }
-
-    /* left: greeting + name */
-    .head-left {
-      padding: 32px 28px 28px 32px;
+    /* ══════════════════════════════
+       SIDEBAR
+    ══════════════════════════════ */
+    .side {
+      background: var(--bg-side);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      position: relative;
-      z-index: 1;
+      border-right: 1px solid var(--rule);
     }
-    .greeting {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      font-weight: 300;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-    .big-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 700;
-      font-size: 72px;
-      line-height: .88;
-      letter-spacing: -.01em;
-      text-transform: uppercase;
-      color: var(--white);
-    }
-    .big-name em {
-      font-style: italic;
-      font-weight: 300;
-      color: var(--accent);
-    }
-    .head-role {
-      margin-top: 14px;
-      font-size: 8px;
-      font-weight: 500;
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      color: var(--accent-d);
+
+    /* ── Photo block ── */
+    .side-photo {
+      padding: 40px 28px 32px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 0;
+      border-bottom: 1px solid var(--rule);
     }
-    .head-role::before {
-      content: '';
-      width: 24px; height: 1px;
-      background: var(--accent-d);
-      flex-shrink: 0;
-    }
-
-    /* right: photo + bio */
-    .head-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding: 24px 32px 28px 20px;
-      position: relative;
-      z-index: 1;
-      gap: 16px;
-      min-width: 200px;
-    }
-    .head-photo {
-      width: 90px;
-      height: 90px;
+    .avatar {
+      width: 104px;
+      height: 104px;
       border-radius: 50%;
       overflow: hidden;
-      border: 1.5px solid rgba(192,176,163,.35);
-      flex-shrink: 0;
-      align-self: flex-start;
+      outline: 1px solid var(--accent-lt);
+      outline-offset: 3px;
     }
-    .head-photo img {
+    .avatar img {
       width: 100%; height: 100%;
       object-fit: cover;
       object-position: center 8%;
-      filter: grayscale(100%) contrast(1.1) brightness(.9);
+      filter: grayscale(100%) contrast(1.08) brightness(.96);
       display: block;
     }
-    .head-bio {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 8px;
-      font-weight: 300;
-      line-height: 1.8;
-      color: rgba(250,247,243,.6);
-      text-align: right;
-      max-width: 200px;
-    }
 
-    /* ════════════════════════════
-       BODY — 2 columns
-    ════════════════════════════ */
-    .cv-body {
-      display: grid;
-      grid-template-columns: 72mm 1fr;
-      flex: 1;
-    }
-
-    /* ── Left column ── */
-    .col-left {
-      background: var(--cream);
-      border-right: 1px solid var(--rule);
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ── Right column ── */
-    .col-right {
-      background: var(--white);
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ── Shared section block ── */
-    .blk {
-      padding: 20px 24px;
-      border-bottom: 1px solid var(--rule);
-    }
-    .blk:last-child { border-bottom: none; flex: 1; }
-    .blk-r {
+    /* ── Side section ── */
+    .s {
       padding: 20px 28px;
       border-bottom: 1px solid var(--rule);
     }
-    .blk-r:last-child { border-bottom: none; flex: 1; }
+    .s:last-child { border-bottom: none; flex: 1; }
 
-    /* ── Section title (mixed weight, like reference) ── */
-    .sec-t {
+    .s-label {
       font-family: 'DM Sans', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 14px;
-      line-height: 1;
-    }
-    .sec-t em {
-      font-style: italic;
-      font-weight: 300;
-      color: var(--ink-mid);
-    }
-
-    /* ── Education list ── */
-    .edu-entry { margin-bottom: 11px; }
-    .edu-entry:last-child { margin-bottom: 0; }
-    .edu-name {
-      font-size: 8px;
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.4;
-      margin-bottom: 1px;
-    }
-    .edu-inst {
-      font-size: 7.5px;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--ink-mid);
-      margin-bottom: 1px;
-    }
-    .edu-year {
       font-size: 7px;
-      font-weight: 500;
-      letter-spacing: .1em;
+      font-weight: 600;
+      letter-spacing: .26em;
       text-transform: uppercase;
-      color: var(--accent-d);
+      color: var(--accent);
+      margin-bottom: 12px;
     }
 
-    /* ── Skills — no bars, clean list ── */
-    .sk-wrap {
+    /* ── Contact rows ── */
+    .ci {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      margin-bottom: 8px;
+    }
+    .ci svg { flex-shrink: 0; margin-top: 1px; }
+    .ci-t {
+      font-size: 8px;
+      color: var(--ink-mid);
+      line-height: 1.6;
+    }
+    .ci-t a { color: inherit; text-decoration: none; }
+
+    /* ── Skill list (no bars) ── */
+    .sk-list {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 5px;
     }
-    .sk-row {
-      font-size: 7.8px;
-      font-weight: 300;
+    .sk-item {
+      font-size: 8px;
       color: var(--ink-mid);
       line-height: 1.4;
       padding-left: 10px;
       position: relative;
     }
-    .sk-row::before {
+    .sk-item::before {
       content: '';
-      position: absolute; left: 0; top: 50%;
+      position: absolute;
+      left: 0; top: 50%;
       transform: translateY(-50%);
       width: 3px; height: 3px;
       border-radius: 50%;
-      background: var(--accent-d);
+      background: var(--accent);
     }
 
     /* ── Tool chips ── */
-    .tool-grid {
+    .chip-group {
       display: flex;
       flex-wrap: wrap;
       gap: 5px;
     }
-    .tool {
-      font-size: 7px;
-      font-weight: 700;
-      letter-spacing: .05em;
-      color: var(--white);
-      background: var(--dark);
-      border-radius: 4px;
-      padding: 5px 8px;
-      line-height: 1;
-    }
-    .tool.lt {
-      color: var(--ink);
-      background: transparent;
-      border: 1px solid var(--rule);
-    }
-
-    /* ── Experience entries ── */
-    .exp-entry { margin-bottom: 16px; }
-    .exp-entry:last-child { margin-bottom: 0; }
-    .exp-role {
-      font-size: 9.5px;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 1px;
-    }
-    .exp-company {
-      font-size: 8px;
-      font-weight: 400;
-      color: var(--ink-soft);
-      margin-bottom: 1px;
-    }
-    .exp-date {
+    .chip {
       font-size: 7px;
       font-weight: 500;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--accent-d);
-      margin-bottom: 5px;
-    }
-    .exp-desc {
-      font-size: 7.6px;
-      font-weight: 300;
+      letter-spacing: .03em;
       color: var(--ink-mid);
-      line-height: 1.72;
+      background: rgba(140,123,110,.1);
+      border: 1px solid rgba(140,123,110,.2);
+      border-radius: 4px;
+      padding: 3px 7px;
+      line-height: 1;
     }
-    .exp-desc + .exp-desc { margin-top: 3px; }
 
-    /* ── Project cards ── */
-    .proj-entry {
-      margin-bottom: 12px;
-      padding-left: 10px;
-      border-left: 2px solid var(--accent);
+    /* ── Edu list ── */
+    .edu-item { margin-bottom: 10px; }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-year {
+      font-size: 7px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1px;
     }
-    .proj-entry:last-child { margin-bottom: 0; }
-    .proj-tag {
+    .edu-inst {
+      font-size: 8px; font-weight: 600;
+      color: var(--ink); line-height: 1.3;
+    }
+    .edu-course {
+      font-size: 7.5px; color: var(--ink-soft);
+      font-style: italic; margin-top: 1px;
+    }
+
+    /* ── Cert list ── */
+    .cert-item {
+      font-size: 7.5px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin-bottom: 4px;
+      padding-left: 10px;
+      position: relative;
+    }
+    .cert-item::before {
+      content: '·';
+      position: absolute; left: 0;
+      color: var(--accent); font-weight: 700;
+    }
+
+    /* ══════════════════════════════
+       MAIN CONTENT
+    ══════════════════════════════ */
+    .main {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    .cv-head {
+      padding: 36px 30px 28px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .cv-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: 46px;
+      color: var(--ink);
+      line-height: .92;
+      letter-spacing: -.01em;
+      text-transform: uppercase;
+    }
+    .cv-name strong {
+      display: block;
+      font-weight: 600;
+    }
+    .cv-role-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .cv-rule { width: 32px; height: 1px; background: var(--accent); flex-shrink: 0; }
+    .cv-role {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .cv-summary {
+      font-size: 8.2px;
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      margin-top: 14px;
+    }
+
+    /* ── Sections ── */
+    .sec {
+      padding: 20px 30px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .sec:last-child { border-bottom: none; }
+
+    .sec-title {
+      font-size: 7.5px;
+      font-weight: 600;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .sec-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ── Timeline ── */
+    .tl { position: relative; padding-left: 20px; }
+    .tl::before {
+      content: '';
+      position: absolute;
+      left: 5px; top: 7px; bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent-lt) 0%, var(--rule) 100%);
+    }
+
+    .entry { position: relative; margin-bottom: 18px; }
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry::before {
+      content: '';
+      position: absolute;
+      left: -17px; top: 6px;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      border: 1.5px solid var(--accent);
+      background: var(--bg-page);
+    }
+    .entry.now::before {
+      background: var(--accent);
+    }
+
+    .entry-date {
       font-size: 7px;
       font-weight: 600;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--accent-d);
+      color: var(--accent);
       margin-bottom: 2px;
     }
-    .proj-name {
+    .entry-org {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       color: var(--ink);
-      margin-bottom: 4px;
       line-height: 1.2;
+      margin-bottom: 1px;
     }
-    .proj-text {
-      font-size: 7.4px;
+    .entry-pos {
+      font-size: 7.8px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink-soft);
+      margin-bottom: 6px;
+    }
+
+    .entry-sub {
+      font-size: 7px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      margin: 6px 0 4px;
+    }
+
+    .bullets { list-style: none; }
+    .bullets li {
+      font-size: 7.8px;
       font-weight: 300;
       color: var(--ink-mid);
       line-height: 1.7;
+      padding-left: 12px;
+      margin-bottom: 2px;
+      position: relative;
     }
-    .proj-text strong { font-weight: 600; color: var(--ink); }
-    .proj-pills {
-      display: flex; flex-wrap: wrap; gap: 4px;
-      margin-top: 5px;
-    }
-    .proj-pill {
-      font-size: 6.8px; font-weight: 500;
-      color: var(--accent-d);
-      background: rgba(140,123,110,.08);
-      border: 1px solid rgba(140,123,110,.2);
-      border-radius: 3px;
-      padding: 2px 6px;
+    .bullets li::before {
+      content: '—';
+      position: absolute; left: 0;
+      color: var(--accent-lt);
+      font-size: 7px;
     }
 
-    /* ════════════════════════════
-       FOOTER — dark
-    ════════════════════════════ */
-    .cv-foot {
-      background: var(--dark-2);
-      padding: 18px 32px;
+    /* ── Project cards ── */
+    .proj-grid {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
+      flex-direction: column;
+      gap: 6px;
     }
-    .foot-deco {
-      position: absolute;
-      right: -20px; bottom: -28px;
-      opacity: .12;
-      pointer-events: none;
+    .proj-card {
+      border: 1px solid var(--rule);
+      border-left: 2px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      padding: 7px 10px;
+      background: #faf8f5;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+      column-gap: 10px;
+      align-items: start;
     }
-    .foot-link {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-    }
-    .foot-link-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
+    .proj-tag {
+      font-size: 6.2px;
       font-weight: 600;
-      font-style: italic;
-      color: var(--white);
-    }
-    .foot-link-url {
-      font-size: 7.5px;
-      font-weight: 300;
+      letter-spacing: .16em;
+      text-transform: uppercase;
       color: var(--accent);
-      letter-spacing: .06em;
+      margin-bottom: 2px;
+      grid-column: 1;
     }
-    .foot-sep {
-      width: 1px; height: 24px;
-      background: rgba(192,176,163,.2);
+    .proj-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+      grid-column: 1;
+    }
+    .proj-desc {
+      font-size: 7.2px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.65;
+      margin-top: 4px;
+      grid-column: 1 / 3;
+    }
+    .proj-desc strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .proj-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      align-items: flex-end;
+      grid-column: 2;
+      grid-row: 1 / 3;
+    }
+    .proj-m {
+      font-size: 6.5px;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(140,123,110,.08);
+      border: 1px solid rgba(140,123,110,.18);
+      border-radius: 3px;
+      padding: 2px 6px;
+      letter-spacing: .03em;
+      white-space: nowrap;
     }
 
     /* ── Print ── */
     .print-tip {
       margin-top: 16px;
-      font-size: 11px; color: #999;
+      font-size: 11px;
+      color: #999;
       font-family: 'DM Sans', sans-serif;
       text-align: center;
     }
@@ -401,7 +419,7 @@
 
     @media print {
       html, body { background: #fff; padding: 0; }
-      .cv { width: 100%; box-shadow: none; }
+      .cv { width: 100%; min-height: auto; box-shadow: none; }
       .print-tip { display: none; }
       @page { size: A4; margin: 0; }
     }
@@ -409,239 +427,274 @@
 </head>
 <body>
 
-<div class="cv">
+<article class="cv">
 
-  <!-- ══════════ HEADER ══════════ -->
-  <header class="cv-head">
+  <!-- ══════════ SIDEBAR ══════════ -->
+  <aside class="side">
 
-    <!-- Decorative contour lines (left) -->
-    <svg class="head-deco" width="180" height="180" viewBox="0 0 180 180" fill="none">
-      <ellipse cx="90" cy="90" rx="82" ry="44" stroke="#c0b0a3" stroke-width="1.2" transform="rotate(-20 90 90)"/>
-      <ellipse cx="90" cy="90" rx="70" ry="36" stroke="#c0b0a3" stroke-width="1.1" transform="rotate(-20 90 90)"/>
-      <ellipse cx="90" cy="90" rx="58" ry="28" stroke="#c0b0a3" stroke-width="1" transform="rotate(-20 90 90)"/>
-      <ellipse cx="90" cy="90" rx="46" ry="20" stroke="#c0b0a3" stroke-width="1" transform="rotate(-20 90 90)"/>
-      <ellipse cx="90" cy="90" rx="34" ry="13" stroke="#c0b0a3" stroke-width="1" transform="rotate(-20 90 90)"/>
-      <ellipse cx="90" cy="90" rx="22" ry="7"  stroke="#c0b0a3" stroke-width="1" transform="rotate(-20 90 90)"/>
-      <ellipse cx="90" cy="90" rx="10" ry="3"  stroke="#c0b0a3" stroke-width="1" transform="rotate(-20 90 90)"/>
-    </svg>
-
-    <!-- Left: name -->
-    <div class="head-left">
-      <p class="greeting">Olá, eu sou a</p>
-      <h1 class="big-name">Nayene<br><em>Espindola</em></h1>
-      <div class="head-role">Product Designer · IT Engineering</div>
-    </div>
-
-    <!-- Right: photo + bio -->
-    <div class="head-right">
-      <div class="head-photo">
+    <!-- Photo -->
+    <div class="side-photo">
+      <div class="avatar">
         <img src="images/Nayene-header.jpeg" alt="Nayene Espindola"
-             onerror="this.parentElement.style.background='#3a3530';" />
+             onerror="this.parentElement.style.background='#c8bfb5';" />
       </div>
-      <p class="head-bio">
-        Product Designer com forte base técnica em TI, desenvolvida em 5 anos no Nubank. Combino análise estratégica com design para solucionar problemas de grande impacto, utilizando IA e automação para acelerar entregas e criar experiências incrivelmente intuitivas.
-      </p>
     </div>
 
-  </header>
+    <!-- Contato -->
+    <div class="s">
+      <div class="s-label">Contato</div>
 
-  <!-- ══════════ BODY ══════════ -->
-  <div class="cv-body">
-
-    <!-- LEFT COLUMN -->
-    <aside class="col-left">
-
-      <!-- Educação -->
-      <div class="blk">
-        <h2 class="sec-t">Educa<em>ção</em></h2>
-
-        <div class="edu-entry">
-          <div class="edu-name">Tecnólogo em Design e Comunicação Visual</div>
-          <div class="edu-inst">Fatec Barueri</div>
-          <div class="edu-year">Em andamento</div>
-        </div>
-        <div class="edu-entry">
-          <div class="edu-name">Técnico em Informática</div>
-          <div class="edu-inst">SENAI — Prof. Vicente Amato</div>
-          <div class="edu-year">Concluído · 2019</div>
-        </div>
-        <div class="edu-entry">
-          <div class="edu-name">Ensino Médio</div>
-          <div class="edu-inst">E.E. Claro Camargo Ribeiro</div>
-          <div class="edu-year">Concluído · 2018</div>
-        </div>
+      <div class="ci">
+        <svg width="10" height="10" fill="none" viewBox="0 0 12 12">
+          <path d="M6 1C3.79 1 2 2.79 2 5c0 3.25 4 7 4 7s4-3.75 4-7c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 3a1.5 1.5 0 0 1 0 3.5z" fill="#8c7b6e"/>
+        </svg>
+        <span class="ci-t">Rua Campinas, 71 — Amador Bueno<br>Itapevi · São Paulo</span>
       </div>
 
-      <!-- Competências -->
-      <div class="blk">
-        <h2 class="sec-t">Competên<em>cias</em></h2>
-        <div class="sk-wrap">
-          <div class="sk-row">UX Research &amp; Discovery</div>
-          <div class="sk-row">Design de Interface (UI)</div>
-          <div class="sk-row">Service Design &amp; PRD</div>
-          <div class="sk-row">Prototipação — Figma / Figma Make</div>
-          <div class="sk-row">Identidade Visual &amp; DesignOps</div>
-          <div class="sk-row">Automação com IA Generativa</div>
-          <div class="sk-row">Gestão de Projetos Ágeis · OKRs</div>
-          <div class="sk-row">Jira Service Management</div>
-          <div class="sk-row">HTML5 &amp; CSS</div>
-          <div class="sk-row">Pacote Adobe &amp; Canva</div>
-        </div>
+      <div class="ci">
+        <svg width="10" height="10" fill="none" viewBox="0 0 12 12">
+          <path d="M9.8 8.2c-.6 0-1.2-.1-1.75-.32-.28-.1-.6-.05-.81.22L6.1 9.28C4.44 8.36 3.02 6.93 2.1 5.27l1.18-1.1c.22-.21.3-.52.19-.8A5.45 5.45 0 0 1 3.2 1.62C3.2 1.28 2.92 1 2.58 1H1.02C.68 1 .4 1.28.4 1.62.4 7.28 5.1 12 10.76 12c.34 0 .62-.28.62-.62v-2.56c0-.34-.28-.62-.58-.62z" fill="#8c7b6e"/>
+        </svg>
+        <span class="ci-t">(11) 95450-3873</span>
       </div>
 
-      <!-- Ferramentas -->
-      <div class="blk">
-        <h2 class="sec-t">Ferramen<em>tas</em></h2>
-        <div class="tool-grid">
-          <span class="tool">Figma</span>
-          <span class="tool">Figma Make</span>
-          <span class="tool">Claude</span>
-          <span class="tool">Cursor</span>
-          <span class="tool">Gemini</span>
-          <span class="tool">Zapier AI</span>
-          <span class="tool">Jira</span>
-          <span class="tool">Canva</span>
-          <span class="tool lt">Adobe Suite</span>
-          <span class="tool lt">VS Code</span>
-          <span class="tool lt">Looker</span>
-          <span class="tool lt">Confluence</span>
-          <span class="tool lt">Okta · JAMF</span>
-          <span class="tool lt">NotebookLM</span>
-        </div>
+      <div class="ci">
+        <svg width="10" height="10" fill="none" viewBox="0 0 12 12">
+          <rect x=".8" y="2.5" width="10.4" height="7" rx="1.4" stroke="#8c7b6e" stroke-width="1.1"/>
+          <path d="M.8 4.3 6 7.5l5.2-3.2" stroke="#8c7b6e" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        <span class="ci-t">nayene.espindola@gmail.com</span>
       </div>
 
-      <!-- Certificações -->
-      <div class="blk">
-        <h2 class="sec-t">Certifica<em>ções</em></h2>
-        <div class="sk-wrap">
-          <div class="sk-row">Jira Software: Utilização e Configuração — Atlassian</div>
-          <div class="sk-row">Oficina de OKRs Mão na Massa</div>
-          <div class="sk-row">Curso de Design de Mídias &amp; Soft Skills</div>
-          <div class="sk-row">ITIL (16h) · COBIT (16h) — Fundação Bradesco</div>
-          <div class="sk-row">Segurança da Informação — Fundação Bradesco</div>
-          <div class="sk-row">Governança de TI · Estratégia de Negócios — Bradesco</div>
-          <div class="sk-row">Desvendando a Indústria 4.0 — SENAI</div>
-        </div>
+      <div class="ci">
+        <svg width="10" height="10" fill="none" viewBox="0 0 12 12">
+          <rect x=".8" y=".8" width="10.4" height="10.4" rx="2" stroke="#8c7b6e" stroke-width="1.1"/>
+          <path d="M4 5.8v3.5M4 3.4v.5M6.8 9.3V7.4a1.3 1.3 0 0 1 2.6 0v1.9M6.8 7.4v1.9" stroke="#8c7b6e" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        <span class="ci-t"><a href="https://linkedin.com/in/nayene-espindola-88b132150/">linkedin.com/in/nayene-espindola</a></span>
+      </div>
+    </div>
+
+    <!-- Competências -->
+    <div class="s">
+      <div class="s-label">Competências</div>
+      <div class="sk-list">
+        <div class="sk-item">UX Research &amp; Discovery</div>
+        <div class="sk-item">Design de Interface (UI)</div>
+        <div class="sk-item">Service Design &amp; PRD</div>
+        <div class="sk-item">Prototipação (Figma / Figma Make)</div>
+        <div class="sk-item">Identidade Visual &amp; DesignOps</div>
+        <div class="sk-item">Automação com IA Generativa</div>
+        <div class="sk-item">Gestão de Projetos Ágeis · OKRs</div>
+        <div class="sk-item">Jira Service Management</div>
+        <div class="sk-item">HTML5 &amp; CSS</div>
+        <div class="sk-item">Elaboração de artes para mídias sociais</div>
+        <div class="sk-item">Pacote Adobe &amp; Canva</div>
+        <div class="sk-item">Banco de Dados · SQL básico</div>
+      </div>
+    </div>
+
+    <!-- Ferramentas -->
+    <div class="s">
+      <div class="s-label">Ferramentas</div>
+      <div class="chip-group">
+        <span class="chip">Figma</span>
+        <span class="chip">Figma Make</span>
+        <span class="chip">Claude Code</span>
+        <span class="chip">Cursor</span>
+        <span class="chip">Gemini</span>
+        <span class="chip">NotebookLM</span>
+        <span class="chip">Zapier AI</span>
+        <span class="chip">Jira</span>
+        <span class="chip">Confluence</span>
+        <span class="chip">Canva</span>
+        <span class="chip">Adobe Suite</span>
+        <span class="chip">VS Code</span>
+        <span class="chip">Looker</span>
+        <span class="chip">Okta · JAMF</span>
+      </div>
+    </div>
+
+    <!-- Formação -->
+    <div class="s">
+      <div class="s-label">Formação</div>
+
+      <div class="edu-item">
+        <div class="edu-year">Em andamento</div>
+        <div class="edu-inst">Fatec Barueri</div>
+        <div class="edu-course">Tecnólogo em Design e Comunicação Visual</div>
       </div>
 
-    </aside>
-
-    <!-- RIGHT COLUMN -->
-    <main class="col-right">
-
-      <!-- Experiência -->
-      <div class="blk-r">
-        <h2 class="sec-t">Experiên<em>cia</em></h2>
-
-        <div class="exp-entry">
-          <div class="exp-role">IT Support Analyst &amp; Product Designer — Sênior</div>
-          <div class="exp-company">Nubank</div>
-          <div class="exp-date">Fev 2024 — Atual</div>
-          <p class="exp-desc">Liderança do Discovery e redesenho global do fluxo de suporte unificando BR, MX e CO no Casino Royale. Pesquisa qualitativa internacional com BPOs: 10 fricções críticas mapeadas, TMA 10 → 3 min. Elaboração de PRDs estratégicos e migração do modelo híbrido Slack/Zammad para portal único com rastreabilidade em tempo real.</p>
-          <p class="exp-desc">Implementação de ecossistema AI-First: síntese via Gemini/NotebookLM, arquitetura de +50 telas com Claude, MVPs com Figma Make e automação Zapier (43h → 1h por domínio).</p>
-        </div>
-
-        <div class="exp-entry">
-          <div class="exp-role">IT Support Analyst — Pleno</div>
-          <div class="exp-company">Nubank</div>
-          <div class="exp-date">Mar 2023 — Jan 2024</div>
-          <p class="exp-desc">Idealizou e liderou o squad ArtTech, Communication &amp; Events. Reformulação do portal ZTD, QR Codes na "Fábrica de Onboarding" e criação de materiais para eventos globais de engenharia.</p>
-        </div>
-
-        <div class="exp-entry">
-          <div class="exp-role">Analista de TI — Junior · Jovem Aprendiz</div>
-          <div class="exp-company">Nubank</div>
-          <div class="exp-date">Mar 2021 — Fev 2023</div>
-          <p class="exp-desc">Metodologia 5S no TechStop, gestão de filas Jira com SLAs críticos e criação dos primeiros infográficos de conectividade dos HQs do Nubank.</p>
-        </div>
-
-        <div class="exp-entry">
-          <div class="exp-role">Auxiliar Administrativo</div>
-          <div class="exp-company">ITPower Softwares e Serviços LTDA</div>
-          <div class="exp-date">Dez 2019 — Fev 2020</div>
-          <p class="exp-desc">Mapeamento de processos, fluxogramas, levantamento de requisitos, prototipação e avaliação de qualidade.</p>
-        </div>
-
-        <div class="exp-entry">
-          <div class="exp-role">Estagiária — Administração de Sistemas</div>
-          <div class="exp-company">Transporte e Turismo Coral</div>
-          <div class="exp-date">Mai 2019 — Ago 2019</div>
-          <p class="exp-desc">Desenvolvimento com PHP, HTML5, JavaScript e MySQL — aplicação prática do curso técnico.</p>
-        </div>
+      <div class="edu-item">
+        <div class="edu-year">Concluído · 2019</div>
+        <div class="edu-inst">SENAI — Prof. Vicente Amato</div>
+        <div class="edu-course">Técnico em Informática</div>
       </div>
 
-      <!-- Projetos 2026 -->
-      <div class="blk-r">
-        <h2 class="sec-t">Projetos <em>&amp; Impactos · 2026</em></h2>
+      <div class="edu-item">
+        <div class="edu-year">Concluído · 2018</div>
+        <div class="edu-inst">E.E. Claro Camargo Ribeiro</div>
+        <div class="edu-course">Ensino Médio</div>
+      </div>
+    </div>
 
-        <div class="proj-entry">
+    <!-- Certificações -->
+    <div class="s">
+      <div class="s-label">Certificações</div>
+      <div class="cert-item">Jira Software: Utilização e Configuração — Atlassian</div>
+      <div class="cert-item">Oficina de OKRs Mão na Massa</div>
+      <div class="cert-item">Curso de Design de Mídias &amp; Soft Skills</div>
+      <div class="cert-item">ITIL (16h) · COBIT (16h) — Fundação Bradesco</div>
+      <div class="cert-item">Segurança da Informação — Fundação Bradesco</div>
+      <div class="cert-item">Fundamentos de Governança de TI — Bradesco</div>
+      <div class="cert-item">Estratégia de Negócios — Fundação Bradesco</div>
+      <div class="cert-item">Desvendando a Indústria 4.0 (14h) — SENAI</div>
+      <div class="cert-item">Postura e Imagem Profissional (10h) — Bradesco</div>
+    </div>
+
+  </aside>
+
+  <!-- ══════════ MAIN ══════════ -->
+  <main class="main">
+
+    <!-- Header -->
+    <header class="cv-head">
+      <h1 class="cv-name">
+        Nayene<br><strong>Espindola</strong>
+      </h1>
+      <div class="cv-role-row">
+        <div class="cv-rule"></div>
+        <span class="cv-role">Product Designer · IT Engineering</span>
+      </div>
+      <p class="cv-summary">
+        Product Designer com forte base técnica em TI, desenvolvida em 5 anos de crescimento contínuo no Nubank. Combino análise e design estratégico para solucionar problemas complexos e de grande impacto. Entusiasta de IA e automação — ferramentas que utilizo para eliminar trabalho repetitivo e acelerar a entrega de resultados, transformando processos que levavam dias em poucas horas, com foco em criar experiências e interfaces incrivelmente intuitivas.
+      </p>
+    </header>
+
+    <!-- Experiência -->
+    <section class="sec">
+      <h2 class="sec-title">Experiência Profissional</h2>
+      <div class="tl">
+
+        <!-- Nubank Sênior -->
+        <div class="entry now">
+          <div class="entry-date">Fev 2024 — Atual</div>
+          <div class="entry-org">Nubank</div>
+          <div class="entry-pos">IT Support Analyst &amp; Product Designer — Sênior</div>
+
+          <div class="entry-sub">Product Design &amp; Discovery · Projeto MI6</div>
+          <ul class="bullets">
+            <li>Liderança do Discovery e redesenho do fluxo global de suporte para unificar BR, MX e CO no ecossistema Casino Royale.</li>
+            <li>Pesquisas qualitativas internacionais com BPOs: 10 fricções críticas identificadas; meta TMA de 10 min → 3 min.</li>
+            <li>Elaboração de PRDs e documentação estratégica para unificação operacional com meta de −80% no Lead Time de acessos.</li>
+            <li>Transição do modelo híbrido Slack/Zammad para portal único com rastreabilidade e status em tempo real para coordenadores BPO.</li>
+          </ul>
+
+          <div class="entry-sub">Estratégia AI-First &amp; DesignOps</div>
+          <ul class="bullets">
+            <li>Síntese de dados qualitativos via Gemini &amp; NotebookLM — insights acionáveis para PMs e Engenharia em tempo recorde.</li>
+            <li>Arquitetura de informação de +50 telas usando Claude: renomeação e categorização sistemática eliminando retrabalho manual.</li>
+            <li>MVPs funcionais via Figma Make &amp; Cursor com validação fail-fast antes do refinamento hi-fi.</li>
+            <li>Automação Zapier AI: criação de comunicados técnicos de 43h → 1h por domínio.</li>
+            <li>Block Kit Builder (Slack) com templates de governança: 1.000+ visualizações por entrega de comunicação técnica.</li>
+          </ul>
+        </div>
+
+        <!-- Nubank Pleno -->
+        <div class="entry">
+          <div class="entry-date">Mar 2023 — Jan 2024</div>
+          <div class="entry-org">Nubank</div>
+          <div class="entry-pos">IT Support Analyst — Pleno</div>
+          <ul class="bullets">
+            <li>Idealizou e liderou o squad ArtTech, Communication &amp; Events, integrando design visual à infraestrutura de TI.</li>
+            <li>Reformulação do portal de suporte visual ZTD e implementação de QR Codes na "Fábrica de Onboarding".</li>
+            <li>Criação de manuais, guias de autoatendimento e materiais para eventos globais de engenharia do Nubank.</li>
+          </ul>
+        </div>
+
+        <!-- Nubank Junior -->
+        <div class="entry">
+          <div class="entry-date">Mar 2021 — Fev 2023</div>
+          <div class="entry-org">Nubank</div>
+          <div class="entry-pos">Analista de TI — Junior · Jovem Aprendiz</div>
+          <ul class="bullets">
+            <li>Metodologia 5S no TechStop: padronização de inventário de ativos e aumento de produtividade no atendimento presencial.</li>
+            <li>Setup autônomo de máquinas MacOS/Windows/Dell; gestão de filas no Jira com cumprimento de SLAs críticos.</li>
+            <li>Criação dos primeiros infográficos de conectividade e guias visuais de rede utilizados nos HQs do Nubank.</li>
+          </ul>
+        </div>
+
+        <!-- ITPower -->
+        <div class="entry">
+          <div class="entry-date">Dez 2019 — Fev 2020</div>
+          <div class="entry-org">ITPower Softwares e Serviços LTDA</div>
+          <div class="entry-pos">Auxiliar Administrativo</div>
+          <ul class="bullets">
+            <li>Mapeamento de processos, fluxogramas, levantamento de requisitos, prototipação e avaliação de qualidade de sistemas.</li>
+          </ul>
+        </div>
+
+        <!-- Coral -->
+        <div class="entry">
+          <div class="entry-date">Mai 2019 — Ago 2019</div>
+          <div class="entry-org">Transporte e Turismo Coral</div>
+          <div class="entry-pos">Estagiária — Administração de Sistemas</div>
+          <ul class="bullets">
+            <li>Desenvolvimento com PHP, HTML5, JavaScript e MySQL — aplicação prática das competências do curso técnico.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Projetos de Destaque -->
+    <section class="sec">
+      <h2 class="sec-title">Principais Projetos &amp; Impactos · 2026</h2>
+
+      <div class="proj-grid">
+
+        <div class="proj-card">
           <div class="proj-tag">Feature · Product Design</div>
           <div class="proj-name">MI6 — Discovery &amp; Redesign Global</div>
-          <p class="proj-text">Unificação operacional de BR, MX e CO no Casino Royale. 10 fricções críticas mapeadas via shadowing internacional. Interface flexível reduziu TMA de <strong>10 → 3 min</strong>. PRDs com meta de <strong>−80% no Lead Time</strong> de acessos e migração para portal único com governança em tempo real.</p>
-          <div class="proj-pills">
-            <span class="proj-pill">10 fricções mapeadas</span>
-            <span class="proj-pill">TMA 10 → 3 min</span>
-            <span class="proj-pill">−80% Lead Time</span>
+          <p class="proj-desc">Unificação operacional de BR, MX e CO no Casino Royale. Shadowing internacional com BPOs para mapear 10 fricções críticas. Interface flexível reduziu TMA de <strong>10 → 3 min</strong>. PRDs com meta de <strong>−80% no Lead Time</strong> e migração do modelo híbrido para portal único com rastreabilidade em tempo real.</p>
+          <div class="proj-metrics">
+            <span class="proj-m">10 fricções mapeadas</span>
+            <span class="proj-m">TMA 10 → 3 min</span>
+            <span class="proj-m">−80% Lead Time</span>
           </div>
         </div>
 
-        <div class="proj-entry">
+        <div class="proj-card">
           <div class="proj-tag">Branding · UX Research</div>
           <div class="proj-name">Rebrand AskNu — Identidade &amp; Posicionamento</div>
-          <p class="proj-text">Levantamento completo da arquitetura atual para reposicionamento estratégico da marca. Pesquisa de percepção com usuários, moodboards, concepts visuais e propostas de logotipos. Alinhamento com times de branding e engenharia.</p>
-          <div class="proj-pills">
-            <span class="proj-pill">Pesquisa com usuários</span>
-            <span class="proj-pill">Moodboards + concepts</span>
-            <span class="proj-pill">Branding + Eng.</span>
+          <p class="proj-desc">Levantamento da arquitetura atual para reposicionamento estratégico da marca. Pesquisa de percepção com usuários, moodboards e concepts visuais. Propostas de logotipos e alinhamento com times de branding e engenharia.</p>
+          <div class="proj-metrics">
+            <span class="proj-m">Pesquisa com usuários</span>
+            <span class="proj-m">Moodboards + concepts</span>
+            <span class="proj-m">Alinhamento eng. + branding</span>
           </div>
         </div>
 
-        <div class="proj-entry">
+        <div class="proj-card">
           <div class="proj-tag">AI-First · DesignOps</div>
           <div class="proj-name">Design Assist — Arquitetura &amp; Automação AI</div>
-          <p class="proj-text">Solução AI-First para automação de design e comunicação técnica. Zapier + IA automatizando <strong>95% da geração de conteúdo</strong>, reduzindo esforço manual em 40%. Templates Block Kit Builder com <strong>+1.000 views/entrega</strong>.</p>
-          <div class="proj-pills">
-            <span class="proj-pill">95% automação</span>
-            <span class="proj-pill">−40% esforço manual</span>
-            <span class="proj-pill">+1.000 views/entrega</span>
+          <p class="proj-desc">Solução AI-First para automação de design e comunicação técnica. Zapier + IA automatizando <strong>95% da geração de conteúdo</strong>, reduzindo esforço manual em 40%. Templates Block Kit Builder com <strong>+1.000 views/entrega</strong> garantindo identidade visual do NuStep.</p>
+          <div class="proj-metrics">
+            <span class="proj-m">95% automação de conteúdo</span>
+            <span class="proj-m">−40% esforço manual</span>
+            <span class="proj-m">+1.000 views/entrega</span>
           </div>
         </div>
 
       </div>
+    </section>
 
-    </main>
-  </div>
+  </main>
 
-  <!-- ══════════ FOOTER ══════════ -->
-  <footer class="cv-foot">
-    <svg class="foot-deco" width="160" height="120" viewBox="0 0 180 180" fill="none">
-      <ellipse cx="90" cy="90" rx="82" ry="44" stroke="#c0b0a3" stroke-width="1.2" transform="rotate(-20 90 90)"/>
-      <ellipse cx="90" cy="90" rx="68" ry="35" stroke="#c0b0a3" stroke-width="1" transform="rotate(-20 90 90)"/>
-      <ellipse cx="90" cy="90" rx="54" ry="26" stroke="#c0b0a3" stroke-width="1" transform="rotate(-20 90 90)"/>
-      <ellipse cx="90" cy="90" rx="40" ry="18" stroke="#c0b0a3" stroke-width="1" transform="rotate(-20 90 90)"/>
-      <ellipse cx="90" cy="90" rx="26" ry="10" stroke="#c0b0a3" stroke-width="1" transform="rotate(-20 90 90)"/>
-    </svg>
-
-    <div class="foot-link">
-      <span class="foot-link-label">Portfólio</span>
-      <span class="foot-link-url">nayeneespindolanub.github.io/Portf-lio-Nayene-Espindola</span>
-    </div>
-    <div class="foot-sep"></div>
-    <div class="foot-link">
-      <span class="foot-link-label">LinkedIn</span>
-      <span class="foot-link-url">linkedin.com/in/nayene-espindola-88b132150</span>
-    </div>
-    <div class="foot-sep"></div>
-    <div class="foot-link">
-      <span class="foot-link-label">E-mail</span>
-      <span class="foot-link-url">nayene.espindola@gmail.com</span>
-    </div>
-  </footer>
-
-</div>
+</article>
 
 <p class="print-tip">
-  Exportar como PDF: <strong>Cmd + P</strong> → Destino: <strong>Salvar como PDF</strong> → Margens: <strong>Nenhuma</strong> → Layout: <strong>Retrato</strong>
+  Exportar como PDF: <strong>Ctrl + P</strong> → Destino: <strong>Salvar como PDF</strong> → Layout: <strong>Retrato</strong> → Margens: <strong>Nenhuma</strong>
 </p>
 
 </body>
