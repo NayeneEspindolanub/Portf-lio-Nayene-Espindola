@@ -3,461 +3,554 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nayene Espindola — Currículo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <title>Nayene Espindola — Product Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
   <style>
+    /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #e8e4de;
+    /* ── Tokens ── */
+    :root {
+      --ink:        #1c1917;
+      --ink-mid:    #4a443e;
+      --ink-soft:   #7a706a;
+      --accent:     #8c7b6e;
+      --accent-lt:  #c0b0a3;
+      --rule:       #e4ddd6;
+      --bg-side:    #f3efe9;
+      --bg-page:    #ffffff;
+      --space:      8px;
+    }
+
+    /* ── Document ── */
+    html, body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: #ddd8d0;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
-      padding: 40px 20px;
-      color: #2c2c2c;
+      padding: 48px 24px;
+      color: var(--ink);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
 
-    /* ── A4 page ── */
-    .page {
+    /* ── A4 Card ── */
+    .cv {
       width: 210mm;
       min-height: 297mm;
-      background: #ffffff;
-      box-shadow: 0 12px 60px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08);
+      background: var(--bg-page);
       display: grid;
-      grid-template-columns: 70mm 1fr;
+      grid-template-columns: 75mm 1fr;
+      box-shadow:
+        0 2px 4px rgba(0,0,0,.06),
+        0 8px 24px rgba(0,0,0,.10),
+        0 32px 80px rgba(0,0,0,.14);
     }
 
-    /* ═══ LEFT SIDEBAR ═══ */
-    .sidebar {
-      background: #f5f1ec;
+    /* ══════════════════════════════
+       SIDEBAR
+    ══════════════════════════════ */
+    .side {
+      background: var(--bg-side);
       display: flex;
       flex-direction: column;
-      border-right: 1px solid #e2dbd3;
+      border-right: 1px solid var(--rule);
     }
 
-    /* — Photo block — */
-    .photo-block {
-      padding: 30px 22px 26px;
+    /* ── Photo block ── */
+    .side-photo {
+      padding: 40px 28px 32px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      border-bottom: 1px solid #e2dbd3;
+      gap: 0;
+      border-bottom: 1px solid var(--rule);
     }
-    .photo-ring {
-      width: 96px;
-      height: 96px;
+    .avatar {
+      width: 104px;
+      height: 104px;
       border-radius: 50%;
       overflow: hidden;
-      border: 2.5px solid #b8a99a;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      outline: 1px solid var(--accent-lt);
+      outline-offset: 3px;
     }
-    .photo-ring img {
-      width: 100%;
-      height: 100%;
+    .avatar img {
+      width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center 10%;
-      filter: grayscale(100%) contrast(1.05);
+      object-position: center 8%;
+      filter: grayscale(100%) contrast(1.08) brightness(.96);
       display: block;
     }
 
-    /* — Sidebar section — */
-    .s-block {
-      padding: 16px 22px;
-      border-bottom: 1px solid #e2dbd3;
+    /* ── Side section ── */
+    .s {
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--rule);
     }
-    .s-block:last-child { border-bottom: none; }
+    .s:last-child { border-bottom: none; flex: 1; }
 
-    .s-title {
-      font-size: 7.5px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
+    .s-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 7px;
+      font-weight: 600;
+      letter-spacing: .26em;
       text-transform: uppercase;
-      color: #9b8876;
-      margin-bottom: 11px;
+      color: var(--accent);
+      margin-bottom: 12px;
     }
 
-    /* — Contact — */
-    .c-row {
+    /* ── Contact rows ── */
+    .ci {
       display: flex;
       align-items: flex-start;
-      gap: 7px;
-      margin-bottom: 7px;
+      gap: 9px;
+      margin-bottom: 8px;
     }
-    .c-icon { flex-shrink: 0; margin-top: 1px; }
-    .c-text {
-      font-size: 7.5px;
-      color: #5a5550;
-      line-height: 1.55;
+    .ci svg { flex-shrink: 0; margin-top: 1px; }
+    .ci-t {
+      font-size: 8px;
+      color: var(--ink-mid);
+      line-height: 1.6;
     }
-    .c-text a { color: #5a5550; text-decoration: none; }
+    .ci-t a { color: inherit; text-decoration: none; }
 
-    /* — Skill bars — */
-    .sk-row {
+    /* ── Skill list (no bars) ── */
+    .sk-list {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 7px;
-      gap: 6px;
+      flex-direction: column;
+      gap: 5px;
     }
-    .sk-label { font-size: 7.5px; color: #4a4540; flex: 1; }
-    .sk-dots { display: flex; gap: 3px; flex-shrink: 0; }
-    .sk-dot {
-      width: 7px; height: 7px;
+    .sk-item {
+      font-size: 8px;
+      color: var(--ink-mid);
+      line-height: 1.4;
+      padding-left: 10px;
+      position: relative;
+    }
+    .sk-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 3px; height: 3px;
       border-radius: 50%;
-      background: #ddd7cf;
-    }
-    .sk-dot.on { background: #9b8876; }
-
-    /* — Tag pills — */
-    .tag-wrap { display: flex; flex-wrap: wrap; gap: 4px; }
-    .tag-pill {
-      font-size: 6.8px;
-      background: #ece7e0;
-      color: #665c52;
-      border-radius: 3px;
-      padding: 2px 6px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+      background: var(--accent);
     }
 
-    /* — Cert list — */
-    .cert-row {
+    /* ── Tool chips ── */
+    .chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .chip {
+      font-size: 7px;
+      font-weight: 500;
+      letter-spacing: .03em;
+      color: var(--ink-mid);
+      background: rgba(140,123,110,.1);
+      border: 1px solid rgba(140,123,110,.2);
+      border-radius: 4px;
+      padding: 3px 7px;
+      line-height: 1;
+    }
+
+    /* ── Edu list ── */
+    .edu-item { margin-bottom: 10px; }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-year {
+      font-size: 7px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1px;
+    }
+    .edu-inst {
+      font-size: 8px; font-weight: 600;
+      color: var(--ink); line-height: 1.3;
+    }
+    .edu-course {
+      font-size: 7.5px; color: var(--ink-soft);
+      font-style: italic; margin-top: 1px;
+    }
+
+    /* ── Cert list ── */
+    .cert-item {
       font-size: 7.5px;
-      color: #666058;
+      color: var(--ink-soft);
       line-height: 1.55;
       margin-bottom: 4px;
       padding-left: 10px;
       position: relative;
     }
-    .cert-row::before {
+    .cert-item::before {
       content: '·';
       position: absolute; left: 0;
-      color: #9b8876; font-weight: 700;
+      color: var(--accent); font-weight: 700;
     }
 
-    /* ═══ RIGHT CONTENT ═══ */
-    .content { display: flex; flex-direction: column; }
+    /* ══════════════════════════════
+       MAIN CONTENT
+    ══════════════════════════════ */
+    .main {
+      display: flex;
+      flex-direction: column;
+    }
 
-    /* — Header — */
-    .cv-header {
-      padding: 30px 26px 22px;
-      border-bottom: 1px solid #e8e2db;
+    /* ── Header ── */
+    .cv-head {
+      padding: 36px 30px 28px;
+      border-bottom: 1px solid var(--rule);
     }
     .cv-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 30px;
-      font-weight: 700;
-      color: #1a1a1a;
-      line-height: 1;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: 46px;
+      color: var(--ink);
+      line-height: .92;
+      letter-spacing: -.01em;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
     }
-    .cv-name span { display: block; }
-    .cv-divider {
+    .cv-name strong {
+      display: block;
+      font-weight: 600;
+    }
+    .cv-role-row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin: 8px 0;
+      gap: 12px;
+      margin-top: 12px;
     }
-    .cv-divider-line { width: 28px; height: 1.5px; background: #9b8876; }
+    .cv-rule { width: 32px; height: 1px; background: var(--accent); flex-shrink: 0; }
     .cv-role {
       font-size: 8px;
-      font-weight: 700;
-      letter-spacing: 0.24em;
+      font-weight: 600;
+      letter-spacing: .22em;
       text-transform: uppercase;
-      color: #9b8876;
+      color: var(--accent);
     }
     .cv-summary {
-      font-size: 7.8px;
-      color: #636058;
-      line-height: 1.75;
-      margin-top: 10px;
+      font-size: 8.2px;
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      margin-top: 14px;
     }
 
-    /* — Main section — */
-    .m-section { padding: 18px 26px; border-bottom: 1px solid #ede8e1; }
-    .m-section:last-child { border-bottom: none; }
+    /* ── Sections ── */
+    .sec {
+      padding: 20px 30px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .sec:last-child { border-bottom: none; }
 
-    .m-title {
-      font-size: 8px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
+    .sec-title {
+      font-size: 7.5px;
+      font-weight: 600;
+      letter-spacing: .24em;
       text-transform: uppercase;
-      color: #9b8876;
-      margin-bottom: 14px;
+      color: var(--accent);
       display: flex;
       align-items: center;
       gap: 10px;
+      margin-bottom: 16px;
     }
-    .m-title::after { content: ''; flex: 1; height: 1px; background: #e4ddd6; }
+    .sec-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
 
-    /* — Timeline — */
-    .tl { position: relative; padding-left: 18px; }
+    /* ── Timeline ── */
+    .tl { position: relative; padding-left: 20px; }
     .tl::before {
       content: '';
       position: absolute;
-      left: 4px; top: 6px; bottom: 4px;
+      left: 5px; top: 7px; bottom: 8px;
       width: 1px;
-      background: linear-gradient(to bottom, #c8beb4, #e4ddd6);
+      background: linear-gradient(to bottom, var(--accent-lt) 0%, var(--rule) 100%);
     }
-    .tl-entry { position: relative; margin-bottom: 16px; }
-    .tl-entry:last-child { margin-bottom: 0; }
-    .tl-entry::before {
+
+    .entry { position: relative; margin-bottom: 18px; }
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry::before {
       content: '';
       position: absolute;
-      left: -16px; top: 5px;
-      width: 8px; height: 8px;
+      left: -17px; top: 6px;
+      width: 9px; height: 9px;
       border-radius: 50%;
-      border: 1.5px solid #9b8876;
-      background: #f5f1ec;
+      border: 1.5px solid var(--accent);
+      background: var(--bg-page);
     }
-    .tl-entry.current::before { background: #9b8876; }
+    .entry.now::before {
+      background: var(--accent);
+    }
 
-    .tl-date {
+    .entry-date {
       font-size: 7px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
+      font-weight: 600;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      color: #9b8876;
-      margin-bottom: 1px;
-    }
-    .tl-org {
-      font-size: 9px;
-      font-weight: 700;
-      color: #1e1e1e;
-      margin-bottom: 1px;
-    }
-    .tl-pos {
-      font-size: 7.8px;
-      font-style: italic;
-      color: #6a6158;
-      margin-bottom: 5px;
-    }
-    .tl-sub {
-      font-size: 7.2px;
-      font-weight: 700;
-      color: #4a4540;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin: 5px 0 3px;
-    }
-    .tl-ul { list-style: none; padding: 0; }
-    .tl-ul li {
-      font-size: 7.4px;
-      color: #636058;
-      line-height: 1.65;
+      color: var(--accent);
       margin-bottom: 2px;
-      padding-left: 11px;
+    }
+    .entry-org {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 1px;
+    }
+    .entry-pos {
+      font-size: 7.8px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink-soft);
+      margin-bottom: 6px;
+    }
+
+    .entry-sub {
+      font-size: 7px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      margin: 6px 0 4px;
+    }
+
+    .bullets { list-style: none; }
+    .bullets li {
+      font-size: 7.8px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.7;
+      padding-left: 12px;
+      margin-bottom: 2px;
       position: relative;
     }
-    .tl-ul li::before {
+    .bullets li::before {
       content: '—';
       position: absolute; left: 0;
-      color: #b8a898; font-size: 7px;
+      color: var(--accent-lt);
+      font-size: 7px;
     }
 
     /* ── Print ── */
+    .print-tip {
+      margin-top: 16px;
+      font-size: 11px;
+      color: #999;
+      font-family: 'DM Sans', sans-serif;
+      text-align: center;
+    }
+    .print-tip strong { color: #666; }
+
     @media print {
-      body { background: #fff; padding: 0; }
-      .page { width: 100%; min-height: auto; box-shadow: none; }
-      .print-hint { display: none; }
+      html, body { background: #fff; padding: 0; }
+      .cv { width: 100%; min-height: auto; box-shadow: none; }
+      .print-tip { display: none; }
       @page { size: A4; margin: 0; }
     }
   </style>
 </head>
 <body>
 
-<div class="page">
+<article class="cv">
 
-  <!-- ═══ SIDEBAR ═══ -->
-  <aside class="sidebar">
+  <!-- ══════════ SIDEBAR ══════════ -->
+  <aside class="side">
 
-    <div class="photo-block">
-      <div class="photo-ring">
+    <!-- Photo -->
+    <div class="side-photo">
+      <div class="avatar">
         <img src="images/Nayene-header.jpeg" alt="Nayene Espindola"
-             onerror="this.parentElement.style.background='#d5cec6';" />
+             onerror="this.parentElement.style.background='#c8bfb5';" />
       </div>
     </div>
 
     <!-- Contato -->
-    <div class="s-block">
-      <div class="s-title">Contato</div>
+    <div class="s">
+      <div class="s-label">Contato</div>
 
-      <div class="c-row">
-        <svg class="c-icon" width="11" height="11" fill="none" viewBox="0 0 12 12">
-          <path d="M6 1C3.8 1 2 2.8 2 5c0 3 4 7 4 7s4-4 4-7c0-2.2-1.8-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 3a1.5 1.5 0 0 1 0 3.5z" fill="#9b8876"/>
+      <div class="ci">
+        <svg width="10" height="10" fill="none" viewBox="0 0 12 12">
+          <path d="M6 1C3.79 1 2 2.79 2 5c0 3.25 4 7 4 7s4-3.75 4-7c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 3a1.5 1.5 0 0 1 0 3.5z" fill="#8c7b6e"/>
         </svg>
-        <span class="c-text">Rua Campinas, 71 — Amador Bueno<br>Itapevi · São Paulo</span>
+        <span class="ci-t">Rua Campinas, 71 — Amador Bueno<br>Itapevi · São Paulo</span>
       </div>
 
-      <div class="c-row">
-        <svg class="c-icon" width="11" height="11" fill="none" viewBox="0 0 12 12">
-          <path d="M9.5 8c-.6 0-1.2-.1-1.7-.3-.3-.1-.6 0-.8.2L5.9 9.1C4.3 8.2 3 6.9 2.1 5.3l1.2-1.1c.2-.2.3-.5.2-.8C3.3 2.9 3.2 2.3 3.2 1.7c0-.4-.4-.7-.8-.7H1C.6 1 .2 1.4.2 1.8.2 6.9 5.3 12 10.4 12c.4 0 .8-.4.8-.8v-2.4c0-.4-.3-.8-.7-.8z" fill="#9b8876"/>
+      <div class="ci">
+        <svg width="10" height="10" fill="none" viewBox="0 0 12 12">
+          <path d="M9.8 8.2c-.6 0-1.2-.1-1.75-.32-.28-.1-.6-.05-.81.22L6.1 9.28C4.44 8.36 3.02 6.93 2.1 5.27l1.18-1.1c.22-.21.3-.52.19-.8A5.45 5.45 0 0 1 3.2 1.62C3.2 1.28 2.92 1 2.58 1H1.02C.68 1 .4 1.28.4 1.62.4 7.28 5.1 12 10.76 12c.34 0 .62-.28.62-.62v-2.56c0-.34-.28-.62-.58-.62z" fill="#8c7b6e"/>
         </svg>
-        <span class="c-text">(11) 95450-3873</span>
+        <span class="ci-t">(11) 95450-3873</span>
       </div>
 
-      <div class="c-row">
-        <svg class="c-icon" width="11" height="11" fill="none" viewBox="0 0 12 12">
-          <rect x="1" y="2.5" width="10" height="7" rx="1.5" stroke="#9b8876" stroke-width="1.1"/>
-          <path d="M1 4l5 3.5L11 4" stroke="#9b8876" stroke-width="1.1" stroke-linecap="round"/>
+      <div class="ci">
+        <svg width="10" height="10" fill="none" viewBox="0 0 12 12">
+          <rect x=".8" y="2.5" width="10.4" height="7" rx="1.4" stroke="#8c7b6e" stroke-width="1.1"/>
+          <path d="M.8 4.3 6 7.5l5.2-3.2" stroke="#8c7b6e" stroke-width="1.1" stroke-linecap="round"/>
         </svg>
-        <span class="c-text">nayene.espindola@gmail.com</span>
+        <span class="ci-t">nayene.espindola@gmail.com</span>
       </div>
 
-      <div class="c-row">
-        <svg class="c-icon" width="11" height="11" fill="none" viewBox="0 0 12 12">
-          <rect x="1" y="1" width="10" height="10" rx="2" stroke="#9b8876" stroke-width="1.1"/>
-          <path d="M4 5.5v3.5M4 3.5v.4M6.5 9V7.2A1.2 1.2 0 0 1 9 7.2V9M6.5 7.2V9" stroke="#9b8876" stroke-width="1.1" stroke-linecap="round"/>
+      <div class="ci">
+        <svg width="10" height="10" fill="none" viewBox="0 0 12 12">
+          <rect x=".8" y=".8" width="10.4" height="10.4" rx="2" stroke="#8c7b6e" stroke-width="1.1"/>
+          <path d="M4 5.8v3.5M4 3.4v.5M6.8 9.3V7.4a1.3 1.3 0 0 1 2.6 0v1.9M6.8 7.4v1.9" stroke="#8c7b6e" stroke-width="1.1" stroke-linecap="round"/>
         </svg>
-        <span class="c-text"><a href="https://linkedin.com/in/nayene-espindola-88b132150/">linkedin.com/in/nayene-espindola</a></span>
+        <span class="ci-t"><a href="https://linkedin.com/in/nayene-espindola-88b132150/">linkedin.com/in/nayene-espindola</a></span>
       </div>
     </div>
 
     <!-- Competências -->
-    <div class="s-block">
-      <div class="s-title">Competências</div>
-      <div class="sk-row"><span class="sk-label">UX Research & Discovery</span>
-        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div></div></div>
-      <div class="sk-row"><span class="sk-label">UI Design (Figma)</span>
-        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot"></div></div></div>
-      <div class="sk-row"><span class="sk-label">Service Design</span>
-        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot"></div></div></div>
-      <div class="sk-row"><span class="sk-label">Prototipação & MVP</span>
-        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot"></div></div></div>
-      <div class="sk-row"><span class="sk-label">Automação IA (Zapier)</span>
-        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot"></div></div></div>
-      <div class="sk-row"><span class="sk-label">Jira / Confluence</span>
-        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div></div></div>
-      <div class="sk-row"><span class="sk-label">HTML5 / CSS</span>
-        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot"></div><div class="sk-dot"></div></div></div>
-      <div class="sk-row"><span class="sk-label">Gestão de Projetos Ágeis</span>
-        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot"></div></div></div>
-    </div>
-
-    <!-- Ferramentas -->
-    <div class="s-block">
-      <div class="s-title">Ferramentas</div>
-      <div class="tag-wrap">
-        <span class="tag-pill">Figma</span>
-        <span class="tag-pill">Figma Make</span>
-        <span class="tag-pill">Claude Code</span>
-        <span class="tag-pill">Cursor</span>
-        <span class="tag-pill">Gemini</span>
-        <span class="tag-pill">Zapier AI</span>
-        <span class="tag-pill">Jira</span>
-        <span class="tag-pill">Canva</span>
-        <span class="tag-pill">Adobe Suite</span>
-        <span class="tag-pill">VS Code</span>
-        <span class="tag-pill">Looker</span>
-        <span class="tag-pill">Okta · JAMF</span>
-        <span class="tag-pill">NotebookLM</span>
-        <span class="tag-pill">Block Kit Builder</span>
+    <div class="s">
+      <div class="s-label">Competências</div>
+      <div class="sk-list">
+        <div class="sk-item">UX Research &amp; Discovery</div>
+        <div class="sk-item">Design de Interface (UI)</div>
+        <div class="sk-item">Service Design &amp; PRD</div>
+        <div class="sk-item">Prototipação (Figma / Figma Make)</div>
+        <div class="sk-item">Identidade Visual &amp; DesignOps</div>
+        <div class="sk-item">Automação com IA Generativa</div>
+        <div class="sk-item">Gestão de Projetos Ágeis · OKRs</div>
+        <div class="sk-item">Jira Service Management</div>
+        <div class="sk-item">HTML5 &amp; CSS</div>
+        <div class="sk-item">Elaboração de artes para mídias sociais</div>
+        <div class="sk-item">Pacote Adobe &amp; Canva</div>
+        <div class="sk-item">Banco de Dados · SQL básico</div>
       </div>
     </div>
 
-    <!-- Metodologias -->
-    <div class="s-block">
-      <div class="s-title">Metodologias</div>
-      <div class="tag-wrap">
-        <span class="tag-pill">Double Diamond</span>
-        <span class="tag-pill">Design Thinking</span>
-        <span class="tag-pill">OKRs</span>
-        <span class="tag-pill">Gestão Ágil</span>
-        <span class="tag-pill">Metodologia 5S</span>
-        <span class="tag-pill">ITIL</span>
-        <span class="tag-pill">COBIT</span>
-        <span class="tag-pill">Microlearning</span>
+    <!-- Ferramentas -->
+    <div class="s">
+      <div class="s-label">Ferramentas</div>
+      <div class="chip-group">
+        <span class="chip">Figma</span>
+        <span class="chip">Figma Make</span>
+        <span class="chip">Claude Code</span>
+        <span class="chip">Cursor</span>
+        <span class="chip">Gemini</span>
+        <span class="chip">NotebookLM</span>
+        <span class="chip">Zapier AI</span>
+        <span class="chip">Jira</span>
+        <span class="chip">Confluence</span>
+        <span class="chip">Canva</span>
+        <span class="chip">Adobe Suite</span>
+        <span class="chip">VS Code</span>
+        <span class="chip">Looker</span>
+        <span class="chip">Okta · JAMF</span>
+      </div>
+    </div>
+
+    <!-- Formação -->
+    <div class="s">
+      <div class="s-label">Formação</div>
+
+      <div class="edu-item">
+        <div class="edu-year">Em andamento</div>
+        <div class="edu-inst">Fatec Barueri</div>
+        <div class="edu-course">Tecnólogo em Design e Comunicação Visual</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-year">Concluído · 2019</div>
+        <div class="edu-inst">SENAI — Prof. Vicente Amato</div>
+        <div class="edu-course">Técnico em Informática</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-year">Concluído · 2018</div>
+        <div class="edu-inst">E.E. Claro Camargo Ribeiro</div>
+        <div class="edu-course">Ensino Médio</div>
       </div>
     </div>
 
     <!-- Certificações -->
-    <div class="s-block">
-      <div class="s-title">Certificações Relevantes</div>
-      <div class="cert-row">Jira Software: Utilização e Configuração – Atlassian</div>
-      <div class="cert-row">Oficina de OKRs Mão na Massa</div>
-      <div class="cert-row">Curso de Design de Mídias & Soft Skills</div>
-      <div class="cert-row">ITIL (16h) – Fundação Bradesco</div>
-      <div class="cert-row">COBIT (16h) – Fundação Bradesco</div>
-      <div class="cert-row">Segurança da Informação – Fundação Bradesco</div>
-      <div class="cert-row">Fundamentos de Governança de TI – Bradesco</div>
-      <div class="cert-row">Estratégia de Negócios – Fundação Bradesco</div>
-      <div class="cert-row">Desvendando a Indústria 4.0 (14h) – SENAI</div>
-      <div class="cert-row">Postura e Imagem Profissional (10h) – Bradesco</div>
-      <div class="cert-row">Tecnologia da Informação e Comunicação – SENAI</div>
-      <div class="cert-row">Segurança do Trabalho (14h) – SENAI</div>
-      <div class="cert-row">Educação Ambiental (14h) – SENAI</div>
+    <div class="s">
+      <div class="s-label">Certificações</div>
+      <div class="cert-item">Jira Software: Utilização e Configuração — Atlassian</div>
+      <div class="cert-item">Oficina de OKRs Mão na Massa</div>
+      <div class="cert-item">Curso de Design de Mídias &amp; Soft Skills</div>
+      <div class="cert-item">ITIL (16h) · COBIT (16h) — Fundação Bradesco</div>
+      <div class="cert-item">Segurança da Informação — Fundação Bradesco</div>
+      <div class="cert-item">Fundamentos de Governança de TI — Bradesco</div>
+      <div class="cert-item">Estratégia de Negócios — Fundação Bradesco</div>
+      <div class="cert-item">Desvendando a Indústria 4.0 (14h) — SENAI</div>
+      <div class="cert-item">Postura e Imagem Profissional (10h) — Bradesco</div>
     </div>
 
   </aside>
 
-  <!-- ═══ MAIN CONTENT ═══ -->
-  <main class="content">
+  <!-- ══════════ MAIN ══════════ -->
+  <main class="main">
 
     <!-- Header -->
-    <div class="cv-header">
-      <div class="cv-name">
-        <span>Nayene</span>
-        <span>Espindola</span>
-      </div>
-      <div class="cv-divider">
-        <div class="cv-divider-line"></div>
+    <header class="cv-head">
+      <h1 class="cv-name">
+        Nayene<br><strong>Espindola</strong>
+      </h1>
+      <div class="cv-role-row">
+        <div class="cv-rule"></div>
         <span class="cv-role">Product Designer · IT Engineering</span>
       </div>
       <p class="cv-summary">
-        Product Designer com forte base técnica em TI, desenvolvida em 5 anos de crescimento contínuo no Nubank. Combino análise e design estratégico para solucionar problemas complexos e de grande impacto. Entusiasta de IA e automação — ferramentas que utilizo para eliminar trabalho repetitivo e acelerar entregas, transformando processos que antes levavam dias em poucas horas, com foco em criar experiências e interfaces incrivelmente intuitivas para o usuário.
+        Product Designer com forte base técnica em TI, desenvolvida em 5 anos de crescimento contínuo no Nubank. Combino análise e design estratégico para solucionar problemas complexos e de grande impacto. Entusiasta de IA e automação — ferramentas que utilizo para eliminar trabalho repetitivo e acelerar a entrega de resultados, transformando processos que levavam dias em poucas horas, com foco em criar experiências e interfaces incrivelmente intuitivas.
       </p>
-    </div>
+    </header>
 
     <!-- Experiência -->
-    <div class="m-section">
-      <div class="m-title">Experiência Profissional</div>
+    <section class="sec">
+      <h2 class="sec-title">Experiência Profissional</h2>
       <div class="tl">
 
         <!-- Nubank Sênior -->
-        <div class="tl-entry current">
-          <div class="tl-date">Fev 2024 — Atual</div>
-          <div class="tl-org">Nubank</div>
-          <div class="tl-pos">IT Support Analyst & Product Designer — Sênior</div>
+        <div class="entry now">
+          <div class="entry-date">Fev 2024 — Atual</div>
+          <div class="entry-org">Nubank</div>
+          <div class="entry-pos">IT Support Analyst &amp; Product Designer — Sênior</div>
 
-          <div class="tl-sub">Product Design & Discovery · Projeto MI6</div>
-          <ul class="tl-ul">
-            <li>Liderança do Discovery e redesenho do fluxo global de suporte unificando BR, MX e CO no Casino Royale.</li>
-            <li>Pesquisas qualitativas internacionais: 10 fricções críticas mapeadas; meta TMA 10 min → 3 min.</li>
-            <li>Elaboração de PRDs e documentação estruturada para unificação operacional com meta de −80% no Lead Time de acessos.</li>
-            <li>Transição de modelo híbrido Slack/Zammad para portal único com rastreabilidade e status em tempo real para BPOs.</li>
+          <div class="entry-sub">Product Design &amp; Discovery · Projeto MI6</div>
+          <ul class="bullets">
+            <li>Liderança do Discovery e redesenho do fluxo global de suporte para unificar BR, MX e CO no ecossistema Casino Royale.</li>
+            <li>Pesquisas qualitativas internacionais com BPOs: 10 fricções críticas identificadas; meta TMA de 10 min → 3 min.</li>
+            <li>Elaboração de PRDs e documentação estratégica para unificação operacional com meta de −80% no Lead Time de acessos.</li>
+            <li>Transição do modelo híbrido Slack/Zammad para portal único com rastreabilidade e status em tempo real para coordenadores BPO.</li>
           </ul>
 
-          <div class="tl-sub">Estratégia AI-First & DesignOps</div>
-          <ul class="tl-ul">
-            <li>Síntese de dados com Gemini & NotebookLM: volumes massivos de shadowing convertidos em insights acionáveis para PMs.</li>
-            <li>Arquitetura de informação de +50 telas via Claude: renomeação e categorização sistemática sem retrabalho manual.</li>
-            <li>MVPs funcionais via Figma Make & Cursor com validação fail-fast antes do hi-fi; suporte em redação técnica para engenharia.</li>
-            <li>Automação Zapier AI: criação de comunicados de 43h → 1h por domínio, orquestrando roadmap de comunicação.</li>
-            <li>Block Kit Builder (Slack) com templates de governança: 1.000+ visualizações por entrega técnica.</li>
+          <div class="entry-sub">Estratégia AI-First &amp; DesignOps</div>
+          <ul class="bullets">
+            <li>Síntese de dados qualitativos via Gemini &amp; NotebookLM — insights acionáveis para PMs e Engenharia em tempo recorde.</li>
+            <li>Arquitetura de informação de +50 telas usando Claude: renomeação e categorização sistemática eliminando retrabalho manual.</li>
+            <li>MVPs funcionais via Figma Make &amp; Cursor com validação fail-fast antes do refinamento hi-fi.</li>
+            <li>Automação Zapier AI: criação de comunicados técnicos de 43h → 1h por domínio.</li>
+            <li>Block Kit Builder (Slack) com templates de governança: 1.000+ visualizações por entrega de comunicação técnica.</li>
           </ul>
         </div>
 
         <!-- Nubank Pleno -->
-        <div class="tl-entry">
-          <div class="tl-date">Mar 2023 — Jan 2024</div>
-          <div class="tl-org">Nubank</div>
-          <div class="tl-pos">IT Support Analyst — Pleno</div>
-          <ul class="tl-ul">
-            <li>Idealizou e liderou o squad ArtTech, Communication & Events — integrando design visual à infraestrutura de TI.</li>
+        <div class="entry">
+          <div class="entry-date">Mar 2023 — Jan 2024</div>
+          <div class="entry-org">Nubank</div>
+          <div class="entry-pos">IT Support Analyst — Pleno</div>
+          <ul class="bullets">
+            <li>Idealizou e liderou o squad ArtTech, Communication &amp; Events, integrando design visual à infraestrutura de TI.</li>
             <li>Reformulação do portal de suporte visual ZTD e implementação de QR Codes na "Fábrica de Onboarding".</li>
             <li>Criação de manuais, guias de autoatendimento e materiais para eventos globais de engenharia do Nubank.</li>
           </ul>
         </div>
 
         <!-- Nubank Junior -->
-        <div class="tl-entry">
-          <div class="tl-date">Mar 2021 — Fev 2023</div>
-          <div class="tl-org">Nubank</div>
-          <div class="tl-pos">Analista de TI — Junior · Jovem Aprendiz</div>
-          <ul class="tl-ul">
+        <div class="entry">
+          <div class="entry-date">Mar 2021 — Fev 2023</div>
+          <div class="entry-org">Nubank</div>
+          <div class="entry-pos">Analista de TI — Junior · Jovem Aprendiz</div>
+          <ul class="bullets">
             <li>Metodologia 5S no TechStop: padronização de inventário de ativos e aumento de produtividade no atendimento presencial.</li>
             <li>Setup autônomo de máquinas MacOS/Windows/Dell; gestão de filas no Jira com cumprimento de SLAs críticos.</li>
             <li>Criação dos primeiros infográficos de conectividade e guias visuais de rede utilizados nos HQs do Nubank.</li>
@@ -465,59 +558,34 @@
         </div>
 
         <!-- ITPower -->
-        <div class="tl-entry">
-          <div class="tl-date">Dez 2019 — Fev 2020</div>
-          <div class="tl-org">ITPower Softwares e Serviços LTDA</div>
-          <div class="tl-pos">Auxiliar Administrativo</div>
-          <ul class="tl-ul">
-            <li>Mapeamento de processos, fluxogramas, levantamento de requisitos, prototipação, testes e avaliação de qualidade de sistemas.</li>
+        <div class="entry">
+          <div class="entry-date">Dez 2019 — Fev 2020</div>
+          <div class="entry-org">ITPower Softwares e Serviços LTDA</div>
+          <div class="entry-pos">Auxiliar Administrativo</div>
+          <ul class="bullets">
+            <li>Mapeamento de processos, fluxogramas, levantamento de requisitos, prototipação e avaliação de qualidade de sistemas.</li>
           </ul>
         </div>
 
         <!-- Coral -->
-        <div class="tl-entry">
-          <div class="tl-date">Mai 2019 — Ago 2019</div>
-          <div class="tl-org">Transporte e Turismo Coral</div>
-          <div class="tl-pos">Estagiária — Administração de Sistemas</div>
-          <ul class="tl-ul">
+        <div class="entry">
+          <div class="entry-date">Mai 2019 — Ago 2019</div>
+          <div class="entry-org">Transporte e Turismo Coral</div>
+          <div class="entry-pos">Estagiária — Administração de Sistemas</div>
+          <ul class="bullets">
             <li>Desenvolvimento com PHP, HTML5, JavaScript e MySQL — aplicação prática das competências do curso técnico.</li>
           </ul>
         </div>
 
       </div>
-    </div>
-
-    <!-- Formação -->
-    <div class="m-section">
-      <div class="m-title">Formação Acadêmica</div>
-      <div class="tl">
-
-        <div class="tl-entry">
-          <div class="tl-date">Em andamento</div>
-          <div class="tl-org">Fatec Barueri</div>
-          <div class="tl-pos">Tecnólogo em Design e Comunicação Visual — 1º semestre concluído</div>
-        </div>
-
-        <div class="tl-entry">
-          <div class="tl-date">Concluído em 2019</div>
-          <div class="tl-org">SENAI — Prof. Vicente Amato</div>
-          <div class="tl-pos">Técnico em Informática</div>
-        </div>
-
-        <div class="tl-entry">
-          <div class="tl-date">Concluído em 2018</div>
-          <div class="tl-org">E.E. Claro Camargo Ribeiro</div>
-          <div class="tl-pos">Ensino Médio</div>
-        </div>
-
-      </div>
-    </div>
+    </section>
 
   </main>
-</div>
 
-<p class="print-hint" style="margin-top:14px;font-size:11px;color:#888;font-family:'Inter',sans-serif;text-align:center;">
-  Para exportar como PDF: <strong style="color:#666;">Ctrl + P</strong> → Destino: <strong style="color:#666;">Salvar como PDF</strong> → Layout: <strong style="color:#666;">Retrato</strong> → Margens: <strong style="color:#666;">Nenhuma</strong>
+</article>
+
+<p class="print-tip">
+  Exportar como PDF: <strong>Ctrl + P</strong> → Destino: <strong>Salvar como PDF</strong> → Layout: <strong>Retrato</strong> → Margens: <strong>Nenhuma</strong>
 </p>
 
 </body>
