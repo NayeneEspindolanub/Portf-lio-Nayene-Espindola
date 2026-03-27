@@ -21,7 +21,6 @@
       --rule:       #e4ddd6;
       --bg-side:    #f3efe9;
       --bg-page:    #ffffff;
-      --space:      8px;
     }
 
     /* ── Document ── */
@@ -73,8 +72,8 @@
       border-bottom: 1px solid var(--rule);
     }
     .avatar {
-      width: 104px;
-      height: 104px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       overflow: hidden;
       outline: 1px solid var(--accent-lt);
@@ -83,14 +82,16 @@
     .avatar img {
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center 8%;
+      object-position: center 20%;
+      transform: scale(1.45);
+      transform-origin: center 20%;
       filter: grayscale(100%) contrast(1.08) brightness(.96);
       display: block;
     }
 
     /* ── Side section ── */
     .s {
-      padding: 20px 28px;
+      padding: 18px 28px;
       border-bottom: 1px solid var(--rule);
     }
     .s:last-child { border-bottom: none; flex: 1; }
@@ -102,7 +103,7 @@
       letter-spacing: .26em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 12px;
+      margin-bottom: 11px;
     }
 
     /* ── Contact rows ── */
@@ -120,7 +121,7 @@
     }
     .ci-t a { color: inherit; text-decoration: none; }
 
-    /* ── Skill list (no bars) ── */
+    /* ── Skill list ── */
     .sk-list {
       display: flex;
       flex-direction: column;
@@ -154,18 +155,16 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
-      padding: 8px 4px 7px;
+      gap: 5px;
+      padding: 9px 4px 8px;
       background: rgba(140,123,110,.07);
       border: 1px solid rgba(140,123,110,.18);
       border-radius: 6px;
       text-align: center;
     }
-    .tool-icon {
-      font-size: 9px;
-      font-weight: 700;
+    .tool-svg {
       color: var(--accent);
-      letter-spacing: .02em;
+      flex-shrink: 0;
     }
     .tool-name {
       font-size: 7px;
@@ -221,30 +220,21 @@
     }
     .cv-name {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-weight: 400;
+      font-weight: 700;
       font-size: 50px;
       color: var(--ink);
       line-height: .92;
       letter-spacing: -.01em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
-    .cv-name strong {
-      display: block;
-      font-weight: 700;
-    }
-    .cv-role-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 12px;
-    }
-    .cv-rule { width: 32px; height: 1px; background: var(--accent); flex-shrink: 0; }
     .cv-role {
       font-size: 9px;
       font-weight: 600;
       letter-spacing: .22em;
       text-transform: uppercase;
       color: var(--accent);
+      margin-top: 12px;
     }
     .cv-summary {
       font-size: 9px;
@@ -305,9 +295,7 @@
       border: 1.5px solid var(--accent);
       background: var(--bg-page);
     }
-    .entry.now::before {
-      background: var(--accent);
-    }
+    .entry.now::before { background: var(--accent); }
 
     .entry-date {
       font-size: 8px;
@@ -332,7 +320,6 @@
       color: var(--ink-soft);
       margin-bottom: 7px;
     }
-
     .entry-sub {
       font-size: 8px;
       font-weight: 600;
@@ -407,7 +394,7 @@
         <svg width="10" height="10" fill="none" viewBox="0 0 12 12">
           <path d="M9.8 8.2c-.6 0-1.2-.1-1.75-.32-.28-.1-.6-.05-.81.22L6.1 9.28C4.44 8.36 3.02 6.93 2.1 5.27l1.18-1.1c.22-.21.3-.52.19-.8A5.45 5.45 0 0 1 3.2 1.62C3.2 1.28 2.92 1 2.58 1H1.02C.68 1 .4 1.28.4 1.62.4 7.28 5.1 12 10.76 12c.34 0 .62-.28.62-.62v-2.56c0-.34-.28-.62-.58-.62z" fill="#8c7b6e"/>
         </svg>
-        <span class="ci-t">(11) 95450-3873</span>
+        <span class="ci-t">(11) 91483-9020</span>
       </div>
 
       <div class="ci">
@@ -450,48 +437,106 @@
     <div class="s">
       <div class="s-label">Ferramentas</div>
       <div class="tool-grid">
+
+        <!-- Figma -->
         <div class="tool-item">
-          <div class="tool-icon">Fig</div>
+          <svg class="tool-svg" viewBox="0 0 12 18" width="13" height="20" fill="currentColor">
+            <rect x="0" y="0" width="6" height="6" rx="3"/>
+            <rect x="6.4" y="0" width="5.6" height="6" rx="2.8" opacity=".75"/>
+            <rect x="0" y="6.4" width="6" height="6" rx="3" opacity=".6"/>
+            <circle cx="9.2" cy="9.4" r="2.8" opacity=".85"/>
+            <rect x="0" y="12.8" width="6" height="5.2" rx="2.6" opacity=".45"/>
+          </svg>
           <span class="tool-name">Figma</span>
         </div>
+
+        <!-- Claude -->
         <div class="tool-item">
-          <div class="tool-icon">AI</div>
+          <svg class="tool-svg" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+            <path d="M8 0.5L9.5 7L16 8L9.5 9L8 15.5L6.5 9L0 8L6.5 7Z"/>
+          </svg>
           <span class="tool-name">Claude</span>
         </div>
+
+        <!-- Miro -->
         <div class="tool-item">
-          <div class="tool-icon">Miro</div>
+          <svg class="tool-svg" viewBox="0 0 16 16" width="16" height="16" fill="none">
+            <rect x="1" y="1" width="14" height="14" rx="2.5" fill="currentColor" opacity=".1" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M3.5 11.5V5L7 9.5 10.5 5v6.5M10.5 5l2.5 3.5-0.1-3.5v6.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
           <span class="tool-name">Miro</span>
         </div>
+
+        <!-- NotebookLM -->
         <div class="tool-item">
-          <div class="tool-icon">NLM</div>
+          <svg class="tool-svg" viewBox="0 0 14 18" width="13" height="17" fill="none">
+            <rect x="2.5" y="0.5" width="11" height="17" rx="2" stroke="currentColor" stroke-width="1.3"/>
+            <rect x="0.5" y="3.5" width="2.8" height="1.5" rx=".75" fill="currentColor"/>
+            <rect x="0.5" y="7.5" width="2.8" height="1.5" rx=".75" fill="currentColor"/>
+            <rect x="0.5" y="11.5" width="2.8" height="1.5" rx=".75" fill="currentColor"/>
+            <line x1="5" y1="5.5" x2="11" y2="5.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+            <line x1="5" y1="8.5" x2="11" y2="8.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+            <line x1="5" y1="11.5" x2="9.5" y2="11.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+            <line x1="5" y1="14" x2="10" y2="14" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
           <span class="tool-name">NotebookLM</span>
         </div>
+
+        <!-- Gemini -->
         <div class="tool-item">
-          <div class="tool-icon">Gem</div>
+          <svg class="tool-svg" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+            <path d="M8 1.5C8 1.5 9.2 6.8 12.5 8C9.2 9.2 8 14.5 8 14.5C8 14.5 6.8 9.2 3.5 8C6.8 6.8 8 1.5 8 1.5Z"/>
+            <path d="M1.5 8C1.5 8 6.8 6.8 8 3.5C9.2 6.8 14.5 8 14.5 8C14.5 8 9.2 9.2 8 12.5C6.8 9.2 1.5 8 1.5 8Z" opacity=".65"/>
+          </svg>
           <span class="tool-name">Gemini Gems</span>
         </div>
+
+        <!-- Zapier -->
         <div class="tool-item">
-          <div class="tool-icon">Zap</div>
+          <svg class="tool-svg" viewBox="0 0 16 16" width="16" height="16" fill="none">
+            <path d="M2.5 3.5h11L5 12.5h8.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
           <span class="tool-name">Zapier</span>
         </div>
+
+        <!-- Atlassian -->
         <div class="tool-item">
-          <div class="tool-icon">Atl</div>
+          <svg class="tool-svg" viewBox="0 0 16 18" width="15" height="17" fill="currentColor">
+            <path d="M7.4 9C6.6 8 6.5 6.8 7.1 6L2.8 14.2c-.4.8.2 1.8 1.1 1.8h4.6C7.6 13.8 7.7 11.7 7.4 9z" opacity=".8"/>
+            <path d="M8 1.5C5.6 6.5 5.1 9.1 7.4 9L11.5 14C12.4 12 12.4 9.5 11 6L8 1.5z"/>
+          </svg>
           <span class="tool-name">Atlassian</span>
         </div>
+
+        <!-- Cursor -->
         <div class="tool-item">
-          <div class="tool-icon">Cur</div>
+          <svg class="tool-svg" viewBox="0 0 14 18" width="13" height="17" fill="currentColor">
+            <path d="M2 1.5L13 8.5L8 10.5L11.2 17L9.2 17.8L6 11L2 14V1.5Z"/>
+          </svg>
           <span class="tool-name">Cursor</span>
         </div>
+
+        <!-- Canva -->
         <div class="tool-item">
-          <div class="tool-icon">Cnv</div>
+          <svg class="tool-svg" viewBox="0 0 16 16" width="16" height="16" fill="none">
+            <path d="M13.5 5.5A6 6 0 1 0 13.5 10.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="13.5" cy="8" r="1.8" fill="currentColor"/>
+          </svg>
           <span class="tool-name">Canva</span>
         </div>
+
       </div>
     </div>
 
     <!-- Formação -->
     <div class="s">
       <div class="s-label">Formação</div>
+
+      <div class="edu-item">
+        <div class="edu-year">Jan 2026 — Atual</div>
+        <div class="edu-inst">Inglês — Nível Básico</div>
+        <div class="edu-course">Em curso</div>
+      </div>
 
       <div class="edu-item">
         <div class="edu-year">1 Semestre · Descontinuado</div>
@@ -533,13 +578,8 @@
 
     <!-- Header -->
     <header class="cv-head">
-      <h1 class="cv-name">
-        Nayene<br><strong>Espindola</strong>
-      </h1>
-      <div class="cv-role-row">
-        <div class="cv-rule"></div>
-        <span class="cv-role">Product Designer · IT Engineering</span>
-      </div>
+      <h1 class="cv-name">Nayene Espindola</h1>
+      <div class="cv-role">Product Designer &amp; UX Research</div>
       <p class="cv-summary">
         Product Designer com forte base técnica em TI, desenvolvida em 5 anos de crescimento contínuo no Nubank. Combino análise e design estratégico para solucionar problemas complexos e de grande impacto. Entusiasta de IA e automação — ferramentas que utilizo para eliminar trabalho repetitivo e acelerar a entrega de resultados, transformando processos que levavam dias em poucas horas, com foco em criar experiências e interfaces incrivelmente intuitivas.
       </p>
@@ -595,6 +635,26 @@
             <li>Metodologia 5S no TechStop: padronização de inventário de ativos e aumento de produtividade no atendimento presencial.</li>
             <li>Setup autônomo de máquinas MacOS/Windows/Dell; gestão de filas no Jira com cumprimento de SLAs críticos.</li>
             <li>Criação dos primeiros infográficos de conectividade e guias visuais de rede utilizados nos HQs do Nubank.</li>
+          </ul>
+        </div>
+
+        <!-- ITPower -->
+        <div class="entry">
+          <div class="entry-date">Dez 2019 — Fev 2020</div>
+          <div class="entry-org">ITPower Softwares e Serviços LTDA</div>
+          <div class="entry-pos">Auxiliar Administrativo</div>
+          <ul class="bullets">
+            <li>Mapeamento de processos, fluxogramas, levantamento de requisitos, prototipação e avaliação de qualidade de sistemas.</li>
+          </ul>
+        </div>
+
+        <!-- Coral -->
+        <div class="entry">
+          <div class="entry-date">Mai 2019 — Ago 2019</div>
+          <div class="entry-org">Transporte e Turismo Coral</div>
+          <div class="entry-pos">Estagiária — Administração de Sistemas</div>
+          <ul class="bullets">
+            <li>Desenvolvimento com PHP, HTML5, JavaScript e MySQL — aplicação prática das competências do curso técnico.</li>
           </ul>
         </div>
 
