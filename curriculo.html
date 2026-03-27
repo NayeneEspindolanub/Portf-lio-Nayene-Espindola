@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nayene Espindola — Currículo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #e8e4de;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: #2c2c2c;
+    }
+
+    /* ── A4 page ── */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: #ffffff;
+      box-shadow: 0 12px 60px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08);
+      display: grid;
+      grid-template-columns: 70mm 1fr;
+    }
+
+    /* ═══ LEFT SIDEBAR ═══ */
+    .sidebar {
+      background: #f5f1ec;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #e2dbd3;
+    }
+
+    /* — Photo block — */
+    .photo-block {
+      padding: 30px 22px 26px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-bottom: 1px solid #e2dbd3;
+    }
+    .photo-ring {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2.5px solid #b8a99a;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+    .photo-ring img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 10%;
+      filter: grayscale(100%) contrast(1.05);
+      display: block;
+    }
+
+    /* — Sidebar section — */
+    .s-block {
+      padding: 16px 22px;
+      border-bottom: 1px solid #e2dbd3;
+    }
+    .s-block:last-child { border-bottom: none; }
+
+    .s-title {
+      font-size: 7.5px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #9b8876;
+      margin-bottom: 11px;
+    }
+
+    /* — Contact — */
+    .c-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      margin-bottom: 7px;
+    }
+    .c-icon { flex-shrink: 0; margin-top: 1px; }
+    .c-text {
+      font-size: 7.5px;
+      color: #5a5550;
+      line-height: 1.55;
+    }
+    .c-text a { color: #5a5550; text-decoration: none; }
+
+    /* — Skill bars — */
+    .sk-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 7px;
+      gap: 6px;
+    }
+    .sk-label { font-size: 7.5px; color: #4a4540; flex: 1; }
+    .sk-dots { display: flex; gap: 3px; flex-shrink: 0; }
+    .sk-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #ddd7cf;
+    }
+    .sk-dot.on { background: #9b8876; }
+
+    /* — Tag pills — */
+    .tag-wrap { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tag-pill {
+      font-size: 6.8px;
+      background: #ece7e0;
+      color: #665c52;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* — Cert list — */
+    .cert-row {
+      font-size: 7.5px;
+      color: #666058;
+      line-height: 1.55;
+      margin-bottom: 4px;
+      padding-left: 10px;
+      position: relative;
+    }
+    .cert-row::before {
+      content: '·';
+      position: absolute; left: 0;
+      color: #9b8876; font-weight: 700;
+    }
+
+    /* ═══ RIGHT CONTENT ═══ */
+    .content { display: flex; flex-direction: column; }
+
+    /* — Header — */
+    .cv-header {
+      padding: 30px 26px 22px;
+      border-bottom: 1px solid #e8e2db;
+    }
+    .cv-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .cv-name span { display: block; }
+    .cv-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 8px 0;
+    }
+    .cv-divider-line { width: 28px; height: 1.5px; background: #9b8876; }
+    .cv-role {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #9b8876;
+    }
+    .cv-summary {
+      font-size: 7.8px;
+      color: #636058;
+      line-height: 1.75;
+      margin-top: 10px;
+    }
+
+    /* — Main section — */
+    .m-section { padding: 18px 26px; border-bottom: 1px solid #ede8e1; }
+    .m-section:last-child { border-bottom: none; }
+
+    .m-title {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #9b8876;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .m-title::after { content: ''; flex: 1; height: 1px; background: #e4ddd6; }
+
+    /* — Timeline — */
+    .tl { position: relative; padding-left: 18px; }
+    .tl::before {
+      content: '';
+      position: absolute;
+      left: 4px; top: 6px; bottom: 4px;
+      width: 1px;
+      background: linear-gradient(to bottom, #c8beb4, #e4ddd6);
+    }
+    .tl-entry { position: relative; margin-bottom: 16px; }
+    .tl-entry:last-child { margin-bottom: 0; }
+    .tl-entry::before {
+      content: '';
+      position: absolute;
+      left: -16px; top: 5px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      border: 1.5px solid #9b8876;
+      background: #f5f1ec;
+    }
+    .tl-entry.current::before { background: #9b8876; }
+
+    .tl-date {
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9b8876;
+      margin-bottom: 1px;
+    }
+    .tl-org {
+      font-size: 9px;
+      font-weight: 700;
+      color: #1e1e1e;
+      margin-bottom: 1px;
+    }
+    .tl-pos {
+      font-size: 7.8px;
+      font-style: italic;
+      color: #6a6158;
+      margin-bottom: 5px;
+    }
+    .tl-sub {
+      font-size: 7.2px;
+      font-weight: 700;
+      color: #4a4540;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 5px 0 3px;
+    }
+    .tl-ul { list-style: none; padding: 0; }
+    .tl-ul li {
+      font-size: 7.4px;
+      color: #636058;
+      line-height: 1.65;
+      margin-bottom: 2px;
+      padding-left: 11px;
+      position: relative;
+    }
+    .tl-ul li::before {
+      content: '—';
+      position: absolute; left: 0;
+      color: #b8a898; font-size: 7px;
+    }
+
+    /* ── Print ── */
+    @media print {
+      body { background: #fff; padding: 0; }
+      .page { width: 100%; min-height: auto; box-shadow: none; }
+      .print-hint { display: none; }
+      @page { size: A4; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar">
+
+    <div class="photo-block">
+      <div class="photo-ring">
+        <img src="images/Nayene-header.jpeg" alt="Nayene Espindola"
+             onerror="this.parentElement.style.background='#d5cec6';" />
+      </div>
+    </div>
+
+    <!-- Contato -->
+    <div class="s-block">
+      <div class="s-title">Contato</div>
+
+      <div class="c-row">
+        <svg class="c-icon" width="11" height="11" fill="none" viewBox="0 0 12 12">
+          <path d="M6 1C3.8 1 2 2.8 2 5c0 3 4 7 4 7s4-4 4-7c0-2.2-1.8-4-4-4zm0 5.5A1.5 1.5 0 1 1 6 3a1.5 1.5 0 0 1 0 3.5z" fill="#9b8876"/>
+        </svg>
+        <span class="c-text">Rua Campinas, 71 — Amador Bueno<br>Itapevi · São Paulo</span>
+      </div>
+
+      <div class="c-row">
+        <svg class="c-icon" width="11" height="11" fill="none" viewBox="0 0 12 12">
+          <path d="M9.5 8c-.6 0-1.2-.1-1.7-.3-.3-.1-.6 0-.8.2L5.9 9.1C4.3 8.2 3 6.9 2.1 5.3l1.2-1.1c.2-.2.3-.5.2-.8C3.3 2.9 3.2 2.3 3.2 1.7c0-.4-.4-.7-.8-.7H1C.6 1 .2 1.4.2 1.8.2 6.9 5.3 12 10.4 12c.4 0 .8-.4.8-.8v-2.4c0-.4-.3-.8-.7-.8z" fill="#9b8876"/>
+        </svg>
+        <span class="c-text">(11) 95450-3873</span>
+      </div>
+
+      <div class="c-row">
+        <svg class="c-icon" width="11" height="11" fill="none" viewBox="0 0 12 12">
+          <rect x="1" y="2.5" width="10" height="7" rx="1.5" stroke="#9b8876" stroke-width="1.1"/>
+          <path d="M1 4l5 3.5L11 4" stroke="#9b8876" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        <span class="c-text">nayene.espindola@gmail.com</span>
+      </div>
+
+      <div class="c-row">
+        <svg class="c-icon" width="11" height="11" fill="none" viewBox="0 0 12 12">
+          <rect x="1" y="1" width="10" height="10" rx="2" stroke="#9b8876" stroke-width="1.1"/>
+          <path d="M4 5.5v3.5M4 3.5v.4M6.5 9V7.2A1.2 1.2 0 0 1 9 7.2V9M6.5 7.2V9" stroke="#9b8876" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
+        <span class="c-text"><a href="https://linkedin.com/in/nayene-espindola-88b132150/">linkedin.com/in/nayene-espindola</a></span>
+      </div>
+    </div>
+
+    <!-- Competências -->
+    <div class="s-block">
+      <div class="s-title">Competências</div>
+      <div class="sk-row"><span class="sk-label">UX Research & Discovery</span>
+        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div></div></div>
+      <div class="sk-row"><span class="sk-label">UI Design (Figma)</span>
+        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot"></div></div></div>
+      <div class="sk-row"><span class="sk-label">Service Design</span>
+        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot"></div></div></div>
+      <div class="sk-row"><span class="sk-label">Prototipação & MVP</span>
+        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot"></div></div></div>
+      <div class="sk-row"><span class="sk-label">Automação IA (Zapier)</span>
+        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot"></div></div></div>
+      <div class="sk-row"><span class="sk-label">Jira / Confluence</span>
+        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div></div></div>
+      <div class="sk-row"><span class="sk-label">HTML5 / CSS</span>
+        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot"></div><div class="sk-dot"></div></div></div>
+      <div class="sk-row"><span class="sk-label">Gestão de Projetos Ágeis</span>
+        <div class="sk-dots"><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot on"></div><div class="sk-dot"></div></div></div>
+    </div>
+
+    <!-- Ferramentas -->
+    <div class="s-block">
+      <div class="s-title">Ferramentas</div>
+      <div class="tag-wrap">
+        <span class="tag-pill">Figma</span>
+        <span class="tag-pill">Figma Make</span>
+        <span class="tag-pill">Claude Code</span>
+        <span class="tag-pill">Cursor</span>
+        <span class="tag-pill">Gemini</span>
+        <span class="tag-pill">Zapier AI</span>
+        <span class="tag-pill">Jira</span>
+        <span class="tag-pill">Canva</span>
+        <span class="tag-pill">Adobe Suite</span>
+        <span class="tag-pill">VS Code</span>
+        <span class="tag-pill">Looker</span>
+        <span class="tag-pill">Okta · JAMF</span>
+        <span class="tag-pill">NotebookLM</span>
+        <span class="tag-pill">Block Kit Builder</span>
+      </div>
+    </div>
+
+    <!-- Metodologias -->
+    <div class="s-block">
+      <div class="s-title">Metodologias</div>
+      <div class="tag-wrap">
+        <span class="tag-pill">Double Diamond</span>
+        <span class="tag-pill">Design Thinking</span>
+        <span class="tag-pill">OKRs</span>
+        <span class="tag-pill">Gestão Ágil</span>
+        <span class="tag-pill">Metodologia 5S</span>
+        <span class="tag-pill">ITIL</span>
+        <span class="tag-pill">COBIT</span>
+        <span class="tag-pill">Microlearning</span>
+      </div>
+    </div>
+
+    <!-- Certificações -->
+    <div class="s-block">
+      <div class="s-title">Certificações Relevantes</div>
+      <div class="cert-row">Jira Software: Utilização e Configuração – Atlassian</div>
+      <div class="cert-row">Oficina de OKRs Mão na Massa</div>
+      <div class="cert-row">Curso de Design de Mídias & Soft Skills</div>
+      <div class="cert-row">ITIL (16h) – Fundação Bradesco</div>
+      <div class="cert-row">COBIT (16h) – Fundação Bradesco</div>
+      <div class="cert-row">Segurança da Informação – Fundação Bradesco</div>
+      <div class="cert-row">Fundamentos de Governança de TI – Bradesco</div>
+      <div class="cert-row">Estratégia de Negócios – Fundação Bradesco</div>
+      <div class="cert-row">Desvendando a Indústria 4.0 (14h) – SENAI</div>
+      <div class="cert-row">Postura e Imagem Profissional (10h) – Bradesco</div>
+      <div class="cert-row">Tecnologia da Informação e Comunicação – SENAI</div>
+      <div class="cert-row">Segurança do Trabalho (14h) – SENAI</div>
+      <div class="cert-row">Educação Ambiental (14h) – SENAI</div>
+    </div>
+
+  </aside>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="content">
+
+    <!-- Header -->
+    <div class="cv-header">
+      <div class="cv-name">
+        <span>Nayene</span>
+        <span>Espindola</span>
+      </div>
+      <div class="cv-divider">
+        <div class="cv-divider-line"></div>
+        <span class="cv-role">Product Designer · IT Engineering</span>
+      </div>
+      <p class="cv-summary">
+        Product Designer com forte base técnica em TI, desenvolvida em 5 anos de crescimento contínuo no Nubank. Combino análise e design estratégico para solucionar problemas complexos e de grande impacto. Entusiasta de IA e automação — ferramentas que utilizo para eliminar trabalho repetitivo e acelerar entregas, transformando processos que antes levavam dias em poucas horas, com foco em criar experiências e interfaces incrivelmente intuitivas para o usuário.
+      </p>
+    </div>
+
+    <!-- Experiência -->
+    <div class="m-section">
+      <div class="m-title">Experiência Profissional</div>
+      <div class="tl">
+
+        <!-- Nubank Sênior -->
+        <div class="tl-entry current">
+          <div class="tl-date">Fev 2024 — Atual</div>
+          <div class="tl-org">Nubank</div>
+          <div class="tl-pos">IT Support Analyst & Product Designer — Sênior</div>
+
+          <div class="tl-sub">Product Design & Discovery · Projeto MI6</div>
+          <ul class="tl-ul">
+            <li>Liderança do Discovery e redesenho do fluxo global de suporte unificando BR, MX e CO no Casino Royale.</li>
+            <li>Pesquisas qualitativas internacionais: 10 fricções críticas mapeadas; meta TMA 10 min → 3 min.</li>
+            <li>Elaboração de PRDs e documentação estruturada para unificação operacional com meta de −80% no Lead Time de acessos.</li>
+            <li>Transição de modelo híbrido Slack/Zammad para portal único com rastreabilidade e status em tempo real para BPOs.</li>
+          </ul>
+
+          <div class="tl-sub">Estratégia AI-First & DesignOps</div>
+          <ul class="tl-ul">
+            <li>Síntese de dados com Gemini & NotebookLM: volumes massivos de shadowing convertidos em insights acionáveis para PMs.</li>
+            <li>Arquitetura de informação de +50 telas via Claude: renomeação e categorização sistemática sem retrabalho manual.</li>
+            <li>MVPs funcionais via Figma Make & Cursor com validação fail-fast antes do hi-fi; suporte em redação técnica para engenharia.</li>
+            <li>Automação Zapier AI: criação de comunicados de 43h → 1h por domínio, orquestrando roadmap de comunicação.</li>
+            <li>Block Kit Builder (Slack) com templates de governança: 1.000+ visualizações por entrega técnica.</li>
+          </ul>
+        </div>
+
+        <!-- Nubank Pleno -->
+        <div class="tl-entry">
+          <div class="tl-date">Mar 2023 — Jan 2024</div>
+          <div class="tl-org">Nubank</div>
+          <div class="tl-pos">IT Support Analyst — Pleno</div>
+          <ul class="tl-ul">
+            <li>Idealizou e liderou o squad ArtTech, Communication & Events — integrando design visual à infraestrutura de TI.</li>
+            <li>Reformulação do portal de suporte visual ZTD e implementação de QR Codes na "Fábrica de Onboarding".</li>
+            <li>Criação de manuais, guias de autoatendimento e materiais para eventos globais de engenharia do Nubank.</li>
+          </ul>
+        </div>
+
+        <!-- Nubank Junior -->
+        <div class="tl-entry">
+          <div class="tl-date">Mar 2021 — Fev 2023</div>
+          <div class="tl-org">Nubank</div>
+          <div class="tl-pos">Analista de TI — Junior · Jovem Aprendiz</div>
+          <ul class="tl-ul">
+            <li>Metodologia 5S no TechStop: padronização de inventário de ativos e aumento de produtividade no atendimento presencial.</li>
+            <li>Setup autônomo de máquinas MacOS/Windows/Dell; gestão de filas no Jira com cumprimento de SLAs críticos.</li>
+            <li>Criação dos primeiros infográficos de conectividade e guias visuais de rede utilizados nos HQs do Nubank.</li>
+          </ul>
+        </div>
+
+        <!-- ITPower -->
+        <div class="tl-entry">
+          <div class="tl-date">Dez 2019 — Fev 2020</div>
+          <div class="tl-org">ITPower Softwares e Serviços LTDA</div>
+          <div class="tl-pos">Auxiliar Administrativo</div>
+          <ul class="tl-ul">
+            <li>Mapeamento de processos, fluxogramas, levantamento de requisitos, prototipação, testes e avaliação de qualidade de sistemas.</li>
+          </ul>
+        </div>
+
+        <!-- Coral -->
+        <div class="tl-entry">
+          <div class="tl-date">Mai 2019 — Ago 2019</div>
+          <div class="tl-org">Transporte e Turismo Coral</div>
+          <div class="tl-pos">Estagiária — Administração de Sistemas</div>
+          <ul class="tl-ul">
+            <li>Desenvolvimento com PHP, HTML5, JavaScript e MySQL — aplicação prática das competências do curso técnico.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Formação -->
+    <div class="m-section">
+      <div class="m-title">Formação Acadêmica</div>
+      <div class="tl">
+
+        <div class="tl-entry">
+          <div class="tl-date">Em andamento</div>
+          <div class="tl-org">Fatec Barueri</div>
+          <div class="tl-pos">Tecnólogo em Design e Comunicação Visual — 1º semestre concluído</div>
+        </div>
+
+        <div class="tl-entry">
+          <div class="tl-date">Concluído em 2019</div>
+          <div class="tl-org">SENAI — Prof. Vicente Amato</div>
+          <div class="tl-pos">Técnico em Informática</div>
+        </div>
+
+        <div class="tl-entry">
+          <div class="tl-date">Concluído em 2018</div>
+          <div class="tl-org">E.E. Claro Camargo Ribeiro</div>
+          <div class="tl-pos">Ensino Médio</div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<p class="print-hint" style="margin-top:14px;font-size:11px;color:#888;font-family:'Inter',sans-serif;text-align:center;">
+  Para exportar como PDF: <strong style="color:#666;">Ctrl + P</strong> → Destino: <strong style="color:#666;">Salvar como PDF</strong> → Layout: <strong style="color:#666;">Retrato</strong> → Margens: <strong style="color:#666;">Nenhuma</strong>
+</p>
+
+</body>
+</html>
