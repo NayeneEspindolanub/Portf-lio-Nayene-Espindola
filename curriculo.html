@@ -40,7 +40,8 @@
     /* ── A4 Card ── */
     .cv {
       width: 210mm;
-      min-height: 297mm;
+      height: 297mm;
+      overflow: hidden;
       background: var(--bg-page);
       display: grid;
       grid-template-columns: 75mm 1fr;
@@ -62,15 +63,15 @@
 
     /* ── Photo block ── */
     .side-photo {
-      padding: 36px 28px 28px;
+      padding: 52px 28px 22px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid var(--rule);
     }
     .avatar {
-      width: 104px;
-      height: 104px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       overflow: hidden;
       outline: 1px solid var(--accent-lt);
@@ -86,7 +87,7 @@
 
     /* ── Side section ── */
     .s {
-      padding: 16px 24px;
+      padding: 14px 24px;
       border-bottom: 1px solid var(--rule);
     }
     .s:last-child { border-bottom: none; flex: 1; }
@@ -97,7 +98,7 @@
       letter-spacing: .26em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 10px;
+      margin-bottom: 9px;
     }
 
     /* ── Contact rows ── */
@@ -105,14 +106,14 @@
       display: flex;
       align-items: flex-start;
       gap: 8px;
-      margin-bottom: 7px;
+      margin-bottom: 6px;
     }
     .ci:last-child { margin-bottom: 0; }
     .ci svg { flex-shrink: 0; margin-top: 1px; }
     .ci-t {
       font-size: 8px;
       color: var(--ink-mid);
-      line-height: 1.55;
+      line-height: 1.6;
     }
     .ci-t a { color: inherit; text-decoration: none; }
 
@@ -120,15 +121,15 @@
     .tool-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 5px;
+      gap: 4px;
     }
     .tool-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
-      padding: 8px 3px 7px;
+      gap: 3px;
+      padding: 6px 3px 5px;
       background: rgba(140,123,110,.07);
       border: 1px solid rgba(140,123,110,.18);
       border-radius: 5px;
@@ -155,7 +156,6 @@
       display: block;
     }
     .lang-note {
-      font-style: italic;
       color: var(--ink-soft);
       font-size: 7.5px;
     }
@@ -181,7 +181,7 @@
     .cert-item {
       font-size: 7.5px;
       color: var(--ink-soft);
-      line-height: 1.55;
+      line-height: 1.6;
       margin-bottom: 3px;
       padding-left: 10px;
       position: relative;
@@ -200,7 +200,7 @@
 
     /* ── Header ── */
     .cv-head {
-      padding: 32px 28px 24px;
+      padding: 52px 28px 22px;
       border-bottom: 1px solid var(--rule);
     }
     .cv-name {
@@ -225,13 +225,13 @@
       font-size: 8px;
       font-weight: 400;
       color: var(--ink-soft);
-      line-height: 1.75;
-      margin-top: 12px;
+      line-height: 1.72;
+      margin-top: 10px;
     }
 
     /* ── Sections ── */
     .sec {
-      padding: 18px 28px;
+      padding: 15px 28px;
       border-bottom: 1px solid var(--rule);
     }
     .sec:last-child { border-bottom: none; }
@@ -245,7 +245,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 14px;
+      margin-bottom: 13px;
     }
     .sec-title::after {
       content: '';
@@ -266,8 +266,8 @@
 
     .entry { position: relative; }
     .entry + .entry {
-      margin-top: 14px;
-      padding-top: 14px;
+      margin-top: 11px;
+      padding-top: 11px;
       border-top: 1px solid var(--rule);
     }
 
@@ -303,7 +303,7 @@
       font-weight: 400;
       font-style: italic;
       color: var(--ink-soft);
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .entry-sub {
       font-size: 7px;
@@ -311,7 +311,7 @@
       letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--ink-mid);
-      margin: 6px 0 4px;
+      margin: 5px 0 3px;
     }
 
     .bullets { list-style: none; }
@@ -319,9 +319,9 @@
       font-size: 8px;
       font-weight: 400;
       color: var(--ink-mid);
-      line-height: 1.65;
+      line-height: 1.62;
       padding-left: 12px;
-      margin-bottom: 2px;
+      margin-bottom: 1px;
       position: relative;
     }
     .bullets li::before {
@@ -335,13 +335,13 @@
     .comp-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 4px 12px;
+      gap: 5px 14px;
     }
     .comp-item {
       font-size: 8px;
       font-weight: 400;
       color: var(--ink-mid);
-      line-height: 1.5;
+      line-height: 1.56;
       padding-left: 11px;
       position: relative;
     }
@@ -365,7 +365,7 @@
 
     @media print {
       html, body { background: #fff; padding: 0; }
-      .cv { width: 100%; min-height: auto; box-shadow: none; }
+      .cv { width: 100%; height: 297mm; overflow: hidden; box-shadow: none; }
       .print-tip { display: none; }
       @page { size: A4; margin: 0; }
     }
@@ -503,7 +503,7 @@
       <div class="s-label">Idiomas</div>
       <div class="lang-item">
         <span class="lang-name">Inglês</span>
-        <span class="lang-note">Cursando aulas particulares de conversação · desde jan/2026</span>
+        <span class="lang-note">Cursando aulas particulares de conversação</span>
       </div>
     </div>
 
