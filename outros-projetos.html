@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Outros Projetos, Nayene Espindola</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    :root {
+      --lotion: #FFFCF7; --alabaster: #EFECE7; --dust: #DED2C4;
+      --silver: #7C756B; --charcoal: #333333;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--lotion); color: var(--charcoal); overflow-x: hidden; }
+    .reveal        { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-left        { opacity: 0; transform: translateX(-32px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal-left.active { opacity: 1; transform: translateX(0); }
+    .reveal-scale        { opacity: 0; transform: scale(.95); transition: opacity .8s ease, transform .8s ease; }
+    .reveal-scale.active { opacity: 1; transform: scale(1); }
+    .d1 { transition-delay: .09s !important; }
+    .d2 { transition-delay: .18s !important; }
+    .d3 { transition-delay: .27s !important; }
+    .fnav {
+      position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
+      z-index: 100; width: calc(100% - 40px); max-width: 880px;
+      background: rgba(255,252,247,.93); backdrop-filter: blur(16px);
+      border: 1px solid var(--dust); border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.07); transition: box-shadow .3s;
+    }
+    .fnav.scrolled { box-shadow: 0 8px 40px rgba(0,0,0,.13); }
+    .tag {
+      display: inline-block; padding: 3px 11px; border-radius: 100px;
+      font-size: .67rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    }
+    .img-ph {
+      background: linear-gradient(135deg, var(--alabaster), var(--dust));
+      display: flex; align-items: center; justify-content: center;
+      color: var(--silver); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
+    }
+    img { display: block; }
+    img[src=""] { display: none; }
+    .card-lift { transition: transform .3s ease, box-shadow .3s ease; }
+    .card-lift:hover { transform: translateY(-5px); box-shadow: 0 14px 44px rgba(0,0,0,.1); }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--alabaster); }
+    ::-webkit-scrollbar-thumb { background: var(--dust); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══ FLOATING NAV ═══ -->
+<nav class="fnav" id="fnav">
+  <div class="flex items-center justify-between px-5 py-2.5">
+    <a href="index.html" class="font-bold text-[#333] select-none text-sm" style="text-decoration:none;">Nayene Espindola</a>
+    <div class="hidden md:flex items-center gap-0.5">
+      <a href="index.html#sobre"     class="px-3 py-1.5 text-sm text-[#7C756B] hover:text-[#333] hover:bg-[#EFECE7] rounded-lg transition-all">Sobre</a>
+      <a href="case-mi6.html"        class="px-3 py-1.5 text-sm text-[#7C756B] hover:text-[#333] hover:bg-[#EFECE7] rounded-lg transition-all">Case MI6</a>
+      <a href="asknu.html"           class="px-3 py-1.5 text-sm text-[#7C756B] hover:text-[#333] hover:bg-[#EFECE7] rounded-lg transition-all">AskNu</a>
+      <a href="outros-projetos.html" class="px-3 py-1.5 text-sm text-[#333] bg-[#EFECE7] rounded-lg transition-all font-semibold">Projetos</a>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="hidden sm:flex items-center gap-1.5 text-xs text-[#7C756B]">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#7C756B] inline-block"></span>IC3 · Nubank
+      </span>
+      <button onclick="toggleMenu()" class="md:hidden p-2 border border-[#DED2C4] rounded-lg">
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+          <line x1="2" y1="4" x2="14" y2="4" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="2" y1="8" x2="14" y2="8" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="2" y1="12" x2="14" y2="12" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div id="mob-menu" class="hidden md:hidden border-t border-[#DED2C4] px-4 py-3 grid gap-1">
+    <a href="index.html#sobre"     onclick="toggleMenu()" class="px-3 py-2 text-sm text-[#7C756B] hover:bg-[#EFECE7] rounded-lg">Sobre</a>
+    <a href="case-mi6.html"        onclick="toggleMenu()" class="px-3 py-2 text-sm text-[#7C756B] hover:bg-[#EFECE7] rounded-lg">Case MI6</a>
+    <a href="asknu.html"           onclick="toggleMenu()" class="px-3 py-2 text-sm text-[#7C756B] hover:bg-[#EFECE7] rounded-lg">AskNu</a>
+    <a href="outros-projetos.html" onclick="toggleMenu()" class="px-3 py-2 text-sm text-[#333] bg-[#EFECE7] rounded-lg font-semibold">Projetos</a>
+  </div>
+</nav>
+
+<!-- Back link -->
+<div class="max-w-[1360px] mx-auto px-6 lg:px-16 pt-28 pb-4">
+  <a href="index.html" class="inline-flex items-center gap-2 text-sm text-[#7C756B] hover:text-[#333] transition-colors font-medium">← Voltar</a>
+</div>
+
+<!-- ═══ OUTROS PROJETOS ═══ -->
+<section id="outros-projetos" class="py-24 bg-[#EFECE7]">
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16">
+    <div class="reveal mb-3"><span class="text-xs text-[#7C756B] tracking-[.22em] uppercase">Portfólio Adicional</span></div>
+    <h2 class="reveal text-5xl lg:text-6xl font-bold text-[#333] tracking-tight mb-16">Outros Projetos</h2>
+
+    <!-- Projetos no Nubank -->
+    <div class="mb-16">
+      <div class="flex items-center gap-3 mb-8 reveal">
+        <div class="w-px h-5 bg-[#DED2C4]"></div>
+        <span class="text-xs text-[#7C756B] tracking-[.2em] uppercase font-semibold">Projetos no Nubank</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <div class="reveal group cursor-pointer" onclick="window.open('https://drive.google.com/drive/folders/1yGCTSz03WgNbZQIyBbYKu8m2LNlK1okv?usp=sharing','_blank')">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden mb-5 shadow-sm group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-400">
+            <img src="images/project-ctp-conference.png" alt="CTP Conference" class="w-full h-full object-cover"
+                 onerror="this.parentElement.innerHTML='<div class=\'img-ph w-full h-full\'>project-ctp-conference.png</div>';" />
+          </div>
+          <div class="text-xs uppercase tracking-[.15em] text-[#7C756B] mb-1">Identidade Visual de Eventos</div>
+          <h3 class="text-2xl font-bold text-[#333] mb-2 tracking-tight">CTP Conference</h3>
+          <p class="text-[#7C756B] leading-relaxed text-sm">Design de comunicação para eventos incluindo identidade visual, reações personalizadas para Slack, assets visuais e desenvolvimento de swags para participantes.</p>
+        </div>
+
+        <div class="reveal d1 group cursor-pointer" onclick="window.open('https://drive.google.com/file/d/1gax1dRlAyA-KNoFLREanKmQYbtE9fwuR/view?usp=drive_link','_blank')">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden mb-5 shadow-sm group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-400">
+            <img src="images/project-ai-video.png" alt="Design em Vídeo com IA" class="w-full h-full object-cover"
+                 onerror="this.parentElement.innerHTML='<div class=\'img-ph w-full h-full\'>project-ai-video.png</div>';" />
+          </div>
+          <div class="text-xs uppercase tracking-[.15em] text-[#7C756B] mb-1">Exploração Criativa · IA</div>
+          <h3 class="text-2xl font-bold text-[#333] mb-2 tracking-tight">Design em Vídeo com IA</h3>
+          <p class="text-[#7C756B] leading-relaxed text-sm">Vídeos com ferramentas de IA como estudos pessoais, além de vídeo animado no Canva para o AskNu, exibido nos elevadores do Nubank até hoje.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Projetos Pessoais -->
+    <div>
+      <div class="flex items-center gap-3 mb-8 reveal">
+        <div class="w-px h-5 bg-[#DED2C4]"></div>
+        <span class="text-xs text-[#7C756B] tracking-[.2em] uppercase font-semibold">Pessoais</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <div class="reveal group cursor-pointer" onclick="window.open('https://www.figma.com/proto/kTX05dxhJeaQodMGn1IQmV/My-First-Project','_blank')">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden mb-5 shadow-sm group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-400">
+            <img src="images/project-pinterest.png" alt="Pinterest Prototype" class="w-full h-full object-cover"
+                 onerror="this.parentElement.innerHTML='<div class=\'img-ph w-full h-full\'>project-pinterest.png</div>';" />
+          </div>
+          <div class="text-xs uppercase tracking-[.15em] text-[#7C756B] mb-1">Exploração de UI</div>
+          <h3 class="text-xl font-bold text-[#333] mb-2 tracking-tight">Pinterest Prototype</h3>
+          <p class="text-[#7C756B] leading-relaxed text-sm">Projeto pessoal de exploração de interface focado em prototipagem, meu primeiro mergulho no Figma e no raciocínio de UI.</p>
+        </div>
+
+        <div class="reveal d1 group">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden mb-5 shadow-sm group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-400">
+            <img src="images/project-ar-filters.png" alt="AR Filters" class="w-full h-full object-cover"
+                 onerror="this.parentElement.innerHTML='<div class=\'img-ph w-full h-full\'>project-ar-filters.png</div>';" />
+          </div>
+          <div class="text-xs uppercase tracking-[.15em] text-[#7C756B] mb-1">Meta Spark · Realidade Aumentada</div>
+          <h3 class="text-xl font-bold text-[#333] mb-2 tracking-tight">AR Filters</h3>
+          <p class="text-[#7C756B] leading-relaxed text-sm">Criação de filtros de realidade aumentada para Instagram usando Meta Spark. Exploração criativa onde design e tecnologia se encontravam. Plataforma descontinuada pela Meta.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ CONTATO ═══ -->
+<section id="contato" class="py-24 bg-[#EFECE7]">
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16">
+    <div class="max-w-3xl mx-auto text-center reveal">
+      <h2 class="text-5xl lg:text-7xl font-bold text-[#333] mb-7 leading-tight tracking-tight">Vamos construir algo juntos?</h2>
+      <p class="text-xl text-[#7C756B] leading-relaxed mb-14 max-w-xl mx-auto">Estou sempre aberta para conversar sobre minha experiência em Product Design ou explorar colaborações em criação de identidade visual.</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://www.linkedin.com/in/nayene-espindola-88b132150/" target="_blank"
+           class="inline-flex items-center gap-3 bg-[#7C756B] text-white px-8 py-5 rounded-2xl font-semibold hover:bg-[#333] transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 group">
+          <svg width="18" height="18" fill="none" viewBox="0 0 18 18"><rect x="1" y="1" width="16" height="16" rx="3" stroke="white" stroke-width="1.5"/><path d="M5.5 7.5v5M5.5 5v.01M8.5 12.5V10a1.5 1.5 0 013 0v2.5M8.5 10v2.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>LinkedIn</span>
+          <svg width="12" height="12" fill="none" viewBox="0 0 12 12" class="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"><path d="M1 11L11 1M11 1H4M11 1v7" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+        <a href="https://nubank.enterprise.slack.com/team/U01RH28RPPF" target="_blank"
+           class="inline-flex items-center gap-3 bg-[#7C756B] text-white px-8 py-5 rounded-2xl font-semibold hover:bg-[#333] transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 group">
+          <svg width="18" height="18" fill="none" viewBox="0 0 18 18"><path d="M6.5 4a1.5 1.5 0 0 0-3 0v5a1.5 1.5 0 0 0 3 0" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M4 11.5a1.5 1.5 0 0 0 0 3h5a1.5 1.5 0 0 0 0-3" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M11.5 14a1.5 1.5 0 0 0 3 0V9a1.5 1.5 0 0 0-3 0" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M14 6.5a1.5 1.5 0 0 0 0-3H9a1.5 1.5 0 0 0 0 3" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Slack @nay</span>
+          <svg width="12" height="12" fill="none" viewBox="0 0 12 12" class="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"><path d="M1 11L11 1M11 1H4M11 1v7" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="py-6 bg-[#222]">
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-3">
+    <span class="text-white/30 text-sm">Nayene Espindola · Product Designer</span>
+    <span class="text-white/30 text-sm">IC3 IT Engineering Assistant · Nubank</span>
+  </div>
+</footer>
+
+<script>
+/* ── mobile menu ── */
+function toggleMenu() { document.getElementById('mob-menu').classList.toggle('hidden'); }
+
+/* ── nav scroll ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('fnav').classList.toggle('scrolled', scrollY > 40);
+});
+
+/* ── reveal on scroll ── */
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); revObs.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach(el => revObs.observe(el));
+</script>
+</body>
+</html>

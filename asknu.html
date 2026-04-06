@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AskNu → NuSpot · Nayene Espindola</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    :root {
+      --lotion: #FFFCF7; --alabaster: #EFECE7; --dust: #DED2C4;
+      --silver: #7C756B; --charcoal: #333333;
+      --purple: #820AD1; --purple-light: #A05DFF;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--lotion); color: var(--charcoal); overflow-x: hidden; }
+    .reveal        { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-left        { opacity: 0; transform: translateX(-32px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal-left.active { opacity: 1; transform: translateX(0); }
+    .reveal-scale        { opacity: 0; transform: scale(.95); transition: opacity .8s ease, transform .8s ease; }
+    .reveal-scale.active { opacity: 1; transform: scale(1); }
+    .d1 { transition-delay: .09s !important; }
+    .d2 { transition-delay: .18s !important; }
+    .d3 { transition-delay: .27s !important; }
+    .fnav {
+      position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
+      z-index: 100; width: calc(100% - 40px); max-width: 880px;
+      background: rgba(255,252,247,.93); backdrop-filter: blur(16px);
+      border: 1px solid var(--dust); border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.07); transition: box-shadow .3s;
+    }
+    .fnav.scrolled { box-shadow: 0 8px 40px rgba(0,0,0,.13); }
+    .tag {
+      display: inline-block; padding: 3px 11px; border-radius: 100px;
+      font-size: .67rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    }
+    .img-ph {
+      background: linear-gradient(135deg, var(--alabaster), var(--dust));
+      display: flex; align-items: center; justify-content: center;
+      color: var(--silver); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
+    }
+    img { display: block; }
+    img[src=""] { display: none; }
+    .card-lift { transition: transform .3s ease, box-shadow .3s ease; }
+    .card-lift:hover { transform: translateY(-5px); box-shadow: 0 14px 44px rgba(0,0,0,.1); }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--alabaster); }
+    ::-webkit-scrollbar-thumb { background: var(--dust); border-radius: 3px; }
+
+    /* Spotlight card */
+    .spotlight-card { position: relative; overflow: hidden; --mouse-x: 50%; --mouse-y: 50%; --spot-color: rgba(222,210,196,0.55); }
+    .spotlight-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spot-color), transparent 72%); opacity: 0; transition: opacity 0.45s ease; pointer-events: none; z-index: 1; }
+    .spotlight-card:hover::before { opacity: 1; }
+    .spotlight-card > * { position: relative; z-index: 2; }
+
+    .spotlight-card-dark { position: relative; overflow: hidden; --mouse-x: 50%; --mouse-y: 50%; --spot-color: rgba(130,10,209,0.18); }
+    .spotlight-card-dark::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spot-color), transparent 72%); opacity: 0; transition: opacity 0.45s ease; pointer-events: none; z-index: 1; }
+    .spotlight-card-dark:hover::before { opacity: 1; }
+    .spotlight-card-dark > * { position: relative; z-index: 2; }
+
+    /* NuSpot specific */
+    .nuspot-glow {
+      box-shadow: 0 0 60px rgba(130, 10, 209, 0.3), 0 0 120px rgba(130, 10, 209, 0.1);
+    }
+    .color-swatch {
+      height: 80px; border-radius: 12px; margin-bottom: 12px;
+    }
+    .step-number {
+      position: absolute; right: 24px; bottom: -20px;
+      font-size: 8rem; font-weight: 900; line-height: 1;
+      user-select: none; opacity: 0.06;
+    }
+    .hero-grid-line {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(160,93,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(160,93,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .purple-tag {
+      display: inline-block; padding: 4px 12px; border-radius: 100px;
+      font-size: .67rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      background: rgba(130,10,209,.18); color: #A05DFF; border: 1px solid rgba(160,93,255,.25);
+    }
+    .process-step-dark { background: #111; }
+    .process-step-light { background: var(--alabaster); }
+  </style>
+</head>
+<body>
+
+<!-- ═══ FLOATING NAV ═══ -->
+<nav class="fnav" id="fnav">
+  <div class="flex items-center justify-between px-5 py-2.5">
+    <a href="index.html" class="font-bold text-[#333] select-none text-sm" style="text-decoration:none;">Nayene Espindola</a>
+    <div class="hidden md:flex items-center gap-0.5">
+      <a href="index.html#sobre"     class="px-3 py-1.5 text-sm text-[#7C756B] hover:text-[#333] hover:bg-[#EFECE7] rounded-lg transition-all">Sobre</a>
+      <a href="case-mi6.html"        class="px-3 py-1.5 text-sm text-[#7C756B] hover:text-[#333] hover:bg-[#EFECE7] rounded-lg transition-all">Case MI6</a>
+      <a href="asknu.html"           class="px-3 py-1.5 text-sm text-[#333] bg-[#EFECE7] rounded-lg transition-all font-semibold">AskNu</a>
+      <a href="outros-projetos.html" class="px-3 py-1.5 text-sm text-[#7C756B] hover:text-[#333] hover:bg-[#EFECE7] rounded-lg transition-all">Projetos</a>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="hidden sm:flex items-center gap-1.5 text-xs text-[#7C756B]">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#7C756B] inline-block"></span>IC3 · Nubank
+      </span>
+      <button onclick="toggleMenu()" class="md:hidden p-2 border border-[#DED2C4] rounded-lg">
+        <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+          <line x1="2" y1="4" x2="14" y2="4" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="2" y1="8" x2="14" y2="8" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="2" y1="12" x2="14" y2="12" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div id="mob-menu" class="hidden md:hidden border-t border-[#DED2C4] px-4 py-3 grid gap-1">
+    <a href="index.html#sobre"     onclick="toggleMenu()" class="px-3 py-2 text-sm text-[#7C756B] hover:bg-[#EFECE7] rounded-lg">Sobre</a>
+    <a href="case-mi6.html"        onclick="toggleMenu()" class="px-3 py-2 text-sm text-[#7C756B] hover:bg-[#EFECE7] rounded-lg">Case MI6</a>
+    <a href="asknu.html"           onclick="toggleMenu()" class="px-3 py-2 text-sm text-[#333] bg-[#EFECE7] rounded-lg font-semibold">AskNu</a>
+    <a href="outros-projetos.html" onclick="toggleMenu()" class="px-3 py-2 text-sm text-[#7C756B] hover:bg-[#EFECE7] rounded-lg">Projetos</a>
+  </div>
+</nav>
+
+<!-- Back link -->
+<div class="max-w-[1360px] mx-auto px-6 lg:px-16 pt-28 pb-4">
+  <a href="index.html" class="inline-flex items-center gap-2 text-sm text-[#7C756B] hover:text-[#333] transition-colors font-medium">← Voltar</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section style="background: linear-gradient(135deg, #0d0d0d 0%, #1a0a2e 50%, #0d0d0d 100%); position: relative; overflow: hidden;">
+  <div class="hero-grid-line"></div>
+  <!-- Ambient glow blobs -->
+  <div style="position:absolute;top:-120px;left:-80px;width:480px;height:480px;background:radial-gradient(circle, rgba(130,10,209,0.15) 0%, transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-100px;right:-60px;width:360px;height:360px;background:radial-gradient(circle, rgba(160,93,255,0.1) 0%, transparent 70%);pointer-events:none;"></div>
+
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16 py-24 lg:py-32">
+    <div class="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-20 items-center">
+
+      <!-- Left -->
+      <div>
+        <div class="reveal mb-5">
+          <span class="text-xs tracking-[.22em] uppercase" style="color:#7C756B;">Identidade Visual · Nubank</span>
+        </div>
+        <div class="reveal d1 mb-2">
+          <h1 class="font-black tracking-tight leading-none" style="font-size:clamp(3.5rem,8vw,7rem);color:#fff;">AskNu</h1>
+        </div>
+        <div class="reveal d2 mb-8">
+          <p class="font-bold tracking-tight" style="font-size:clamp(1.5rem,3.5vw,2.8rem);color:#A05DFF;">Rebrand para NuSpot</p>
+        </div>
+        <div class="reveal d3 flex flex-wrap gap-2 mb-8">
+          <span class="purple-tag">Branding</span>
+          <span class="purple-tag">Motion</span>
+          <span class="purple-tag">Design System</span>
+          <span class="purple-tag">Identity</span>
+        </div>
+      </div>
+
+      <!-- Right — Logo transition -->
+      <div class="reveal-scale d2 flex flex-col gap-4 justify-center lg:justify-end" style="width:100%;max-width:420px;margin-left:auto;">
+
+        <!-- AskNu — antes -->
+        <div class="spotlight-card-dark rounded-2xl px-8 py-6 flex flex-col items-center gap-3" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,.1);">
+          <span class="text-xs font-semibold uppercase tracking-[.14em]" style="color:rgba(255,255,255,.3);">Antes · 2023</span>
+          <img src="images/asknu-logo.png" alt="AskNu logo original" style="width:100%;max-width:200px;height:auto;opacity:.85;mix-blend-mode:screen;" />
+        </div>
+
+        <!-- Arrow -->
+        <div class="flex justify-center">
+          <svg width="20" height="28" fill="none" viewBox="0 0 20 28"><path d="M10 0v22M3 15l7 7 7-7" stroke="rgba(160,93,255,.5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- NuSpot — depois -->
+        <div class="nuspot-glow spotlight-card-dark rounded-2xl px-8 py-6 flex flex-col items-center gap-3" style="background:rgba(130,10,209,.12);border:1px solid rgba(160,93,255,.3);">
+          <span class="text-xs font-semibold uppercase tracking-[.14em]" style="color:#A05DFF;">Agora · 2025</span>
+          <img src="images/nuspot-logo-horizontal.svg" alt="NuSpot logo" style="width:100%;max-width:240px;height:auto;" />
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ASKNU — ORIGINAL PROJECT ═══ -->
+<section class="py-24" style="background:#FFFCF7;">
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+      <!-- Left -->
+      <div>
+        <div class="reveal mb-5">
+          <span class="text-xs tracking-[.22em] uppercase" style="color:#7C756B;">2023 · Identidade Visual</span>
+        </div>
+        <h2 class="reveal d1 font-black tracking-tight leading-none mb-4" style="font-size:clamp(2.8rem,6vw,5rem);color:#333;">AskNu</h2>
+        <p class="reveal d2 font-semibold mb-6" style="font-size:1.15rem;color:#820AD1;">Identidade Visual de Feature de IA</p>
+        <p class="reveal d3 leading-relaxed mb-8" style="color:#7C756B;font-size:.98rem;max-width:480px;">
+          Design de identidade visual para o assistente interno de IA do Nubank. O projeto envolveu naming, paleta, tipografia, criativos de comunicacao interna, templates para Slack e producao de um video animado exibido nos elevadores do escritorio.
+        </p>
+        <div class="reveal">
+          <a href="https://drive.google.com/file/d/1cAl3cNBgvMIF4XugImR56o16DQ-9aguL/view?usp=sharing" target="_blank"
+             class="inline-flex items-center gap-3 font-semibold group transition-all px-6 py-3.5 rounded-2xl"
+             style="background:#333;color:#fff;border:1px solid transparent;">
+            <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" stroke="#fff" stroke-width="1.4"/><path d="M6.5 5.5L11 8L6.5 10.5V5.5Z" fill="#fff"/></svg>
+            <span>Ver Video de Onboarding AskNu</span>
+            <svg width="11" height="11" fill="none" viewBox="0 0 12 12" class="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"><path d="M1 11L11 1M11 1H4M11 1v7" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right — tags / quick facts -->
+      <div class="reveal-scale d1 grid grid-cols-2 gap-4 pt-2">
+        <div class="spotlight-card bg-white rounded-2xl p-6" style="border:1px solid rgba(0,0,0,.06);">
+          <p class="text-xs font-semibold uppercase tracking-[.1em] mb-2" style="color:#820AD1;">Empresa</p>
+          <p class="font-semibold text-sm" style="color:#333;">Nubank</p>
+          <p class="text-xs mt-1" style="color:#7C756B;">IT Engineering</p>
+        </div>
+        <div class="spotlight-card bg-white rounded-2xl p-6" style="border:1px solid rgba(0,0,0,.06);">
+          <p class="text-xs font-semibold uppercase tracking-[.1em] mb-2" style="color:#820AD1;">Ano</p>
+          <p class="font-semibold text-sm" style="color:#333;">2023</p>
+          <p class="text-xs mt-1" style="color:#7C756B;">Lancamento da feature</p>
+        </div>
+        <div class="spotlight-card bg-white rounded-2xl p-6 col-span-2" style="border:1px solid rgba(0,0,0,.06);">
+          <p class="text-xs font-semibold uppercase tracking-[.1em] mb-2" style="color:#820AD1;">Escopo</p>
+          <div class="flex flex-wrap gap-2 mt-1">
+            <span class="tag" style="background:#EFECE7;color:#333;">Branding</span>
+            <span class="tag" style="background:#EFECE7;color:#333;">Motion</span>
+            <span class="tag" style="background:#EFECE7;color:#333;">Comunicacao Interna</span>
+            <span class="tag" style="background:#EFECE7;color:#333;">Automacao</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTEXT CARDS ═══ -->
+<section style="background:#EFECE7;" class="py-20">
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <div class="reveal spotlight-card card-lift bg-white rounded-2xl p-7" style="border:1px solid rgba(0,0,0,.06);">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-4" style="background:rgba(130,10,209,.1);">
+          <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="#820AD1" stroke-width="1.5"/><circle cx="8" cy="8" r="2.5" fill="#820AD1"/></svg>
+        </div>
+        <h4 class="text-xs font-semibold uppercase tracking-[.1em] mb-3" style="color:#333;">Contexto</h4>
+        <p class="leading-relaxed text-sm" style="color:#7C756B;">IT Engineering lançava o AskNu e precisava de identidade para facilitar compreensão, confiança e adoção entre nubankers.</p>
+      </div>
+
+      <div class="reveal d1 spotlight-card card-lift bg-white rounded-2xl p-7" style="border:1px solid rgba(0,0,0,.06);">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-4" style="background:rgba(130,10,209,.1);">
+          <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="2" y="2" width="5" height="5" rx="1" stroke="#820AD1" stroke-width="1.5"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="#820AD1" stroke-width="1.5"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="#820AD1" stroke-width="1.5"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="#820AD1" stroke-width="1.5"/></svg>
+        </div>
+        <h4 class="text-xs font-semibold uppercase tracking-[.1em] mb-3" style="color:#333;">Papel</h4>
+        <p class="leading-relaxed text-sm" style="color:#7C756B;">Identidade da Feature, Criativos de Comunicação Interna, Templates Slack, Automação com Zapier AI.</p>
+      </div>
+
+      <div class="reveal d2 spotlight-card card-lift bg-white rounded-2xl p-7" style="border:1px solid rgba(0,0,0,.06);">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-4" style="background:rgba(130,10,209,.1);">
+          <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M8 2L10 6.5H15L11 9.5L13 14L8 11L3 14L5 9.5L1 6.5H6L8 2Z" stroke="#820AD1" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <h4 class="text-xs font-semibold uppercase tracking-[.1em] mb-3" style="color:#333;">Impacto</h4>
+        <p class="leading-relaxed text-sm" style="color:#7C756B;">Alta taxa de reconhecimento da ferramenta, feedback positivo sobre a linguagem de design acessível e vídeo animado exibido nos elevadores do Nubank até hoje.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AUTOMATION HIGHLIGHT ═══ -->
+<section class="py-6" style="background:#EFECE7;">
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16">
+    <div class="reveal spotlight-card-dark rounded-3xl p-10 lg:p-14" style="background:linear-gradient(135deg,#111 0%,#1a0a2e 100%);border:1px solid rgba(160,93,255,.15);">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(130,10,209,.3);border:1px solid rgba(160,93,255,.3);">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L11 7H16.5L12 10.5L14 16L9 12.5L4 16L6 10.5L1.5 7H7L9 2Z" fill="#A05DFF"/></svg>
+            </div>
+            <span class="text-xs font-semibold uppercase tracking-[.14em]" style="color:#A05DFF;">Automação com Zapier AI</span>
+          </div>
+          <p class="font-bold leading-tight mb-4" style="color:#fff;font-size:clamp(1.4rem,2.5vw,2rem);">
+            De <span style="color:#A05DFF;">43h</span> para <span style="color:#A05DFF;">1h</span><br/>por domínio
+          </p>
+          <p class="leading-relaxed" style="color:rgba(255,255,255,.55);font-size:.93rem;">
+            Eliminando gargalos de coleta de informações e acelerando a execução do roadmap de comunicação.
+          </p>
+        </div>
+        <div class="flex lg:justify-end">
+          <a href="https://drive.google.com/file/d/1cAl3cNBgvMIF4XugImR56o16DQ-9aguL/view?usp=sharing" target="_blank"
+             class="inline-flex items-center gap-3 font-semibold group transition-all px-7 py-4 rounded-2xl"
+             style="background:rgba(130,10,209,.25);border:1px solid rgba(160,93,255,.3);color:#A05DFF;">
+            <svg width="18" height="18" fill="none" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7" stroke="#A05DFF" stroke-width="1.5"/><path d="M7 6.5L12 9L7 11.5V6.5Z" fill="#A05DFF"/></svg>
+            <span>Ver Vídeo de Onboarding AskNu</span>
+            <svg width="12" height="12" fill="none" viewBox="0 0 12 12" class="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"><path d="M1 11L11 1M11 1H4M11 1v7" stroke="#A05DFF" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REBRANDING DIVIDER ═══ -->
+<section class="py-24" style="background:#FFFCF7;">
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16">
+    <div class="max-w-3xl">
+      <div class="reveal mb-4">
+        <span class="text-xs tracking-[.22em] uppercase" style="color:#7C756B;">2025 · Reposicionamento</span>
+      </div>
+      <h2 class="reveal d1 font-black tracking-tight leading-tight mb-6" style="font-size:clamp(2.4rem,5vw,4rem);color:#333;">
+        O Processo de<br/>Rebranding
+      </h2>
+      <p class="reveal d2 leading-relaxed max-w-xl" style="color:#7C756B;font-size:1.05rem;">
+        Em 2025, com a maturidade da plataforma, o AskNu passou por um reposicionamento completo, se tornando NuSpot.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STEP 01 — IMERSÃO ESTRATÉGICA ═══ -->
+<section class="py-20" style="background:#111;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(160,93,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(160,93,255,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;"></div>
+  <div style="position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(130,10,209,0.08) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16" style="position:relative;">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start" style="position:relative;">
+
+      <div class="lg:col-span-5">
+        <div class="reveal mb-3">
+          <span class="text-xs font-semibold uppercase tracking-[.18em]" style="color:#A05DFF;">Etapa 01</span>
+        </div>
+        <h3 class="reveal d1 font-bold leading-tight mb-6" style="font-size:clamp(1.8rem,3vw,2.6rem);color:#fff;">
+          Imersão<br/>Estratégica
+        </h3>
+        <p class="reveal d2 leading-relaxed mb-8" style="color:rgba(255,255,255,.55);font-size:.93rem;">
+          A equipe revisitou o DNA do AskNu, missão, visão, valores e posicionamento, e mapeou as principais tensões de marca em um framework de perguntas estratégicas. Um mapa mental extenso conectou conceitos como "suporte end-to-end", "orquestração por IA", "centralização" e "experiência Nubanker-centric", construindo o vocabulário semântico que guiaria todas as decisões criativas subsequentes.
+        </p>
+        <div class="reveal d3 flex flex-wrap gap-2">
+          <span class="purple-tag">DNA da Marca</span>
+          <span class="purple-tag">Tensões Estratégicas</span>
+          <span class="purple-tag">Vocabulário Semântico</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 flex items-center justify-end" style="position:relative;">
+        <div class="reveal-scale d1 w-full">
+          <div class="spotlight-card-dark rounded-3xl p-10" style="background:rgba(255,255,255,.03);border:1px solid rgba(160,93,255,.15);position:relative;">
+            <span class="step-number" style="color:#fff;">01</span>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="rounded-2xl p-5" style="background:rgba(130,10,209,.12);border:1px solid rgba(160,93,255,.15);">
+                <p class="text-xs font-semibold uppercase tracking-[.1em] mb-2" style="color:#A05DFF;">Missão</p>
+                <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.65);">Centralizar o suporte end-to-end do Nubanker em uma única plataforma inteligente.</p>
+              </div>
+              <div class="rounded-2xl p-5" style="background:rgba(130,10,209,.12);border:1px solid rgba(160,93,255,.15);">
+                <p class="text-xs font-semibold uppercase tracking-[.1em] mb-2" style="color:#A05DFF;">Visão</p>
+                <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.65);">Ser o motor de execução da experiência interna do Nubank.</p>
+              </div>
+              <div class="rounded-2xl p-5" style="background:rgba(130,10,209,.12);border:1px solid rgba(160,93,255,.15);">
+                <p class="text-xs font-semibold uppercase tracking-[.1em] mb-2" style="color:#A05DFF;">Tensão</p>
+                <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.65);">AskNu conotava apenas perguntas, limitando o escopo percebido.</p>
+              </div>
+              <div class="rounded-2xl p-5" style="background:rgba(130,10,209,.12);border:1px solid rgba(160,93,255,.15);">
+                <p class="text-xs font-semibold uppercase tracking-[.1em] mb-2" style="color:#A05DFF;">Oportunidade</p>
+                <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.65);">Reposicionar para ação e centralidade: o "spot" onde as coisas acontecem.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STEP 02 — IDEAÇÃO E REFERÊNCIAS ═══ -->
+<section class="py-20" style="background:#EFECE7;position:relative;overflow:hidden;">
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+      <div class="lg:col-span-7 order-2 lg:order-1">
+        <div class="reveal-scale">
+          <div class="spotlight-card rounded-3xl p-8" style="background:#fff;border:1px solid rgba(0,0,0,.07);position:relative;">
+            <span class="step-number" style="color:#333;">02</span>
+            <p class="text-xs font-semibold uppercase tracking-[.1em] mb-5" style="color:#7C756B;">4 Eixos Conceituais</p>
+            <div class="grid grid-cols-2 gap-4 mb-7">
+              <div class="rounded-2xl p-5" style="background:#FFFCF7;border:1px solid rgba(0,0,0,.06);">
+                <p class="text-xs font-bold uppercase tracking-[.08em] mb-2" style="color:#333;">Ajuda &amp; Progresso</p>
+                <p class="text-xs leading-relaxed" style="color:#7C756B;">bepath · TravelRight · Checkly · GoalAchiever</p>
+              </div>
+              <div class="rounded-2xl p-5" style="background:#FFFCF7;border:1px solid rgba(0,0,0,.06);">
+                <p class="text-xs font-bold uppercase tracking-[.08em] mb-2" style="color:#333;">Estética &amp; Minimalismo</p>
+                <p class="text-xs leading-relaxed" style="color:#7C756B;">Direction · Twinkle · Dyna · Doblematishkeit</p>
+              </div>
+              <div class="rounded-2xl p-5" style="background:#FFFCF7;border:1px solid rgba(0,0,0,.06);">
+                <p class="text-xs font-bold uppercase tracking-[.08em] mb-2" style="color:#333;">Formas &amp; Sentimento</p>
+                <p class="text-xs leading-relaxed" style="color:#7C756B;">Explorações orgânicas e expressivas</p>
+              </div>
+              <div class="rounded-2xl p-5" style="background:#FFFCF7;border:1px solid rgba(0,0,0,.06);">
+                <p class="text-xs font-bold uppercase tracking-[.08em] mb-2" style="color:#333;">IA &amp; Segurança</p>
+                <p class="text-xs leading-relaxed" style="color:#7C756B;">Geometrias precisas, confiança e tecnologia</p>
+              </div>
+            </div>
+            <p class="text-xs font-semibold uppercase tracking-[.1em] mb-3" style="color:#7C756B;">6 Conceitos Visuais</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag" style="background:#EFECE7;color:#333;">Structured and Clean</span>
+              <span class="tag" style="background:#EFECE7;color:#333;">High Contrast Clarity</span>
+              <span class="tag" style="background:#EFECE7;color:#333;">Solid and Bold Accents</span>
+              <span class="tag" style="background:#EFECE7;color:#333;">Soft Layering</span>
+              <span class="tag" style="background:#EFECE7;color:#333;">Minimalist Framing</span>
+              <span class="tag" style="background:#EFECE7;color:#333;">Accessible Typography</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 order-1 lg:order-2">
+        <div class="reveal mb-3">
+          <span class="text-xs font-semibold uppercase tracking-[.18em]" style="color:#820AD1;">Etapa 02</span>
+        </div>
+        <h3 class="reveal d1 font-bold leading-tight mb-6" style="font-size:clamp(1.8rem,3vw,2.6rem);color:#333;">
+          Ideação e<br/>Referências Visuais
+        </h3>
+        <p class="reveal d2 leading-relaxed" style="color:#7C756B;font-size:.93rem;">
+          Quatro eixos conceituais guiaram a construção do moodboard estratégico, cada um explorando uma tensão diferente entre acessibilidade e sofisticação, clareza e profundidade, tecnologia e humanidade. Os seis conceitos visuais sintetizaram as diretrizes estéticas que orientariam as propostas de identidade.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STEP 03 — EXPLORAÇÃO E PROTOTIPAGEM ═══ -->
+<section class="py-20" style="background:#1a0a2e;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(160,93,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(160,93,255,0.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;"></div>
+  <div style="position:absolute;left:-120px;top:50%;transform:translateY(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(130,10,209,0.18) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16" style="position:relative;">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+      <div class="lg:col-span-5">
+        <div class="reveal mb-3">
+          <span class="text-xs font-semibold uppercase tracking-[.18em]" style="color:#A05DFF;">Etapa 03</span>
+        </div>
+        <h3 class="reveal d1 font-bold leading-tight mb-6" style="font-size:clamp(1.8rem,3vw,2.6rem);color:#fff;">
+          Exploração e<br/>Prototipagem
+        </h3>
+        <p class="reveal d2 leading-relaxed mb-8" style="color:rgba(255,255,255,.55);font-size:.93rem;">
+          Foram desenvolvidas seis propostas distintas de logotipo, cada uma explorando diferentes linguagens visuais, de formas geométricas precisas a ícones orgânicos, passando por tratamentos tipográficos variados do wordmark "nuspot". As propostas foram avaliadas contra os atributos estratégicos definidos na imersão, com atenção especial à escalabilidade, versatilidade em diferentes fundos e coerência com o ecossistema Nubank.
+        </p>
+        <div class="reveal d3 flex flex-wrap gap-2">
+          <span class="purple-tag">Escalabilidade</span>
+          <span class="purple-tag">Versatilidade</span>
+          <span class="purple-tag">Coerência Nubank</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="reveal-scale d1">
+          <div class="spotlight-card-dark rounded-3xl p-10" style="background:rgba(255,255,255,.03);border:1px solid rgba(160,93,255,.2);position:relative;">
+            <span class="step-number" style="color:#fff;">03</span>
+            <p class="text-xs font-semibold uppercase tracking-[.1em] mb-6" style="color:#A05DFF;">6 Propostas Avaliadas</p>
+            <div class="grid grid-cols-3 gap-3 mb-6">
+              <div class="rounded-xl overflow-hidden flex items-center justify-center p-3" style="background:#fff;aspect-ratio:1;">
+                <img src="images/nuspot-prop-1.png" alt="Proposta 1" style="width:100%;height:100%;object-fit:contain;" />
+              </div>
+              <div class="rounded-xl overflow-hidden flex items-center justify-center p-3" style="background:#fff;aspect-ratio:1;">
+                <img src="images/nuspot-prop-2.png" alt="Proposta 2" style="width:100%;height:100%;object-fit:contain;" />
+              </div>
+              <div class="rounded-xl overflow-hidden flex items-center justify-center p-3" style="background:#fff;aspect-ratio:1;">
+                <img src="images/nuspot-prop-3.png" alt="Proposta 3" style="width:100%;height:100%;object-fit:contain;" />
+              </div>
+              <div class="rounded-xl overflow-hidden flex items-center justify-center p-3" style="background:#fff;aspect-ratio:1;">
+                <img src="images/nuspot-prop-4.png" alt="Proposta 4" style="width:100%;height:100%;object-fit:contain;" />
+              </div>
+              <div class="rounded-xl overflow-hidden flex items-center justify-center p-3" style="background:#fff;aspect-ratio:1;">
+                <img src="images/nuspot-prop-5.png" alt="Proposta 5" style="width:100%;height:100%;object-fit:contain;" />
+              </div>
+              <div class="rounded-xl overflow-hidden flex items-center justify-center p-3" style="background:#fff;aspect-ratio:1;">
+                <img src="images/nuspot-prop-6.png" alt="Proposta 6" style="width:100%;height:100%;object-fit:contain;" />
+              </div>
+            </div>
+            <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.4);">Cada proposta avaliada em escalabilidade, versatilidade e coerência com o ecossistema Nubank.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STEP 04 — REFINAMENTO E SISTEMA ═══ -->
+<section class="py-20" style="background:#FFFCF7;position:relative;overflow:hidden;">
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+      <div class="lg:col-span-7 order-2 lg:order-1">
+        <div class="reveal-scale">
+          <div class="spotlight-card rounded-3xl p-10" style="background:#fff;border:1px solid rgba(0,0,0,.07);position:relative;">
+            <span class="step-number" style="color:#333;">04</span>
+            <div class="flex justify-center mb-8">
+              <img src="images/nuspot-logo-vertical.svg" alt="NuSpot logo vertical" style="height:180px;width:auto;" />
+            </div>
+            <p class="text-xs font-semibold uppercase tracking-[.1em] mb-4 text-center" style="color:#7C756B;">5 Variações Sistematizadas</p>
+            <div class="flex flex-wrap justify-center gap-2">
+              <span class="tag" style="background:#EFECE7;color:#333;">Ícone</span>
+              <span class="tag" style="background:#EFECE7;color:#333;">Vertical</span>
+              <span class="tag" style="background:#EFECE7;color:#333;">Vert. + Tagline</span>
+              <span class="tag" style="background:#EFECE7;color:#333;">Horizontal</span>
+              <span class="tag" style="background:#EFECE7;color:#333;">Horiz. + Tagline</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 order-1 lg:order-2">
+        <div class="reveal mb-3">
+          <span class="text-xs font-semibold uppercase tracking-[.18em]" style="color:#820AD1;">Etapa 04</span>
+        </div>
+        <h3 class="reveal d1 font-bold leading-tight mb-6" style="font-size:clamp(1.8rem,3vw,2.6rem);color:#333;">
+          Refinamento e<br/>Sistema de Identidade
+        </h3>
+        <p class="reveal d2 leading-relaxed" style="color:#7C756B;font-size:.93rem;">
+          A partir das duas versões finalistas, a identidade foi refinada e sistematizada. Foram criadas cinco variações de logo (ícone isolado, vertical, vertical com tagline, horizontal, horizontal com tagline), cada uma em quatro versões cromáticas (colorida, negativa, preta e branca). O Design System Nu+ foi documentado com paleta completa, escala tipográfica e biblioteca de componentes.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VISUAL ANALYSIS ═══ -->
+<section class="py-24" style="background:linear-gradient(180deg,#0d0d0d 0%,#0f0620 100%);position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(160,93,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(160,93,255,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;"></div>
+
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16" style="position:relative;">
+
+    <div class="reveal mb-3">
+      <span class="text-xs tracking-[.22em] uppercase" style="color:#7C756B;">Análise Visual · NuSpot</span>
+    </div>
+    <h2 class="reveal d1 font-black tracking-tight leading-tight mb-16" style="font-size:clamp(2rem,4vw,3.2rem);color:#fff;">
+      A Nova Identidade
+    </h2>
+
+    <!-- Symbol + Logotype -->
+    <div class="reveal mb-8">
+      <div class="spotlight-card-dark rounded-3xl p-10 lg:p-14" style="background:rgba(255,255,255,.03);border:1px solid rgba(160,93,255,.15);">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="flex justify-center">
+            <div class="nuspot-glow rounded-2xl p-10 flex items-center justify-center" style="background:rgba(130,10,209,.08);border:1px solid rgba(160,93,255,.2);">
+              <img src="images/nuspot-logo-horizontal.svg" alt="NuSpot logo" style="width:100%;max-width:280px;height:auto;" />
+            </div>
+          </div>
+          <div>
+            <h3 class="font-bold mb-4" style="color:#fff;font-size:1.3rem;">Símbolo e Logotipo</h3>
+            <p class="leading-relaxed" style="color:rgba(255,255,255,.55);font-size:.93rem;">
+              O ícone central do NuSpot, duas elipses concêntricas formando um círculo com um núcleo luminoso, é a decisão mais significativa da nova identidade. O círculo é universalmente associado a completude, foco e centralidade. O efeito de profundidade criado pela elipse interna (o "núcleo") remete à ideia de um ponto de convergência, o <em style="color:#A05DFF;">spot</em>, o lugar onde as coisas acontecem. O wordmark "nuspot" em caixa-baixa reforça a acessibilidade e a proximidade com o usuário.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color Palette -->
+    <div class="reveal d1 mb-8">
+      <div class="spotlight-card-dark rounded-3xl p-10" style="background:rgba(255,255,255,.03);border:1px solid rgba(160,93,255,.15);">
+        <h3 class="font-bold mb-8" style="color:#fff;font-size:1.3rem;">Paleta de Cores</h3>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+          <div>
+            <div class="color-swatch" style="background:#820AD1;"></div>
+            <p class="text-xs font-bold mb-1" style="color:#fff;">Roxo Primário</p>
+            <p class="text-xs font-mono mb-2" style="color:#A05DFF;">#820AD1</p>
+            <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.45);">Criatividade, confiança e inovação</p>
+          </div>
+          <div>
+            <div class="color-swatch" style="background:#A05DFF;"></div>
+            <p class="text-xs font-bold mb-1" style="color:#fff;">Roxo Light</p>
+            <p class="text-xs font-mono mb-2" style="color:#A05DFF;">#A05DFF</p>
+            <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.45);">Elementos interativos e destaques</p>
+          </div>
+          <div>
+            <div class="color-swatch" style="background:#0A0A0A;border:1px solid rgba(255,255,255,.1);"></div>
+            <p class="text-xs font-bold mb-1" style="color:#fff;">Preto</p>
+            <p class="text-xs font-mono mb-2" style="color:#A05DFF;">#0A0A0A</p>
+            <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.45);">Contraste WCAG</p>
+          </div>
+          <div>
+            <div class="color-swatch" style="background:#FAFAFA;"></div>
+            <p class="text-xs font-bold mb-1" style="color:#fff;">Branco</p>
+            <p class="text-xs font-mono mb-2" style="color:#A05DFF;">#FAFAFA</p>
+            <p class="text-xs leading-relaxed" style="color:rgba(255,255,255,.45);">Versatilidade</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typography -->
+    <div class="reveal d2 mb-8">
+      <div class="spotlight-card-dark rounded-3xl p-10" style="background:rgba(255,255,255,.03);border:1px solid rgba(160,93,255,.15);">
+        <h3 class="font-bold mb-4" style="color:#fff;font-size:1.3rem;">Tipografia</h3>
+        <p class="leading-relaxed mb-8" style="color:rgba(255,255,255,.55);font-size:.93rem;">
+          O sistema tipográfico do NuSpot, documentado no Nu+ Design System, estabelece uma hierarquia clara com múltiplos graus de título e texto corrido. A escala tipográfica privilegia legibilidade em interfaces digitais, com variações de peso (Regular, Medium, Bold) que permitem construir hierarquias visuais complexas.
+        </p>
+        <div class="flex flex-wrap gap-6">
+          <div>
+            <p class="font-black" style="color:#fff;font-size:2.5rem;line-height:1;">nuspot</p>
+            <p class="text-xs uppercase tracking-[.1em] mt-2" style="color:rgba(255,255,255,.3);">Black · 900</p>
+          </div>
+          <div>
+            <p class="font-bold" style="color:#fff;font-size:2.5rem;line-height:1;">nuspot</p>
+            <p class="text-xs uppercase tracking-[.1em] mt-2" style="color:rgba(255,255,255,.3);">Bold · 700</p>
+          </div>
+          <div>
+            <p class="font-medium" style="color:#fff;font-size:2.5rem;line-height:1;">nuspot</p>
+            <p class="text-xs uppercase tracking-[.1em] mt-2" style="color:rgba(255,255,255,.3);">Medium · 500</p>
+          </div>
+          <div>
+            <p class="font-normal" style="color:rgba(255,255,255,.6);font-size:2.5rem;line-height:1;">nuspot</p>
+            <p class="text-xs uppercase tracking-[.1em] mt-2" style="color:rgba(255,255,255,.3);">Regular · 400</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tagline — Full width dark card -->
+    <div class="reveal d3">
+      <div class="spotlight-card-dark rounded-3xl p-12 lg:p-16 text-center" style="background:rgba(130,10,209,.08);border:1px solid rgba(160,93,255,.2);">
+        <span class="text-xs font-semibold uppercase tracking-[.22em] mb-8 block" style="color:#A05DFF;">Tagline</span>
+        <p class="font-black tracking-tight leading-none mb-8" style="font-size:clamp(2.2rem,6vw,5rem);color:#fff;">
+          where things get done
+        </p>
+        <p class="leading-relaxed mx-auto mb-12 max-w-2xl" style="color:rgba(255,255,255,.5);font-size:1rem;">
+          NuSpot define a plataforma como um motor de execução. Uma virada semântica de substantivo para verbo, de lugar de acesso para lugar de ação.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+          <div class="rounded-2xl p-6" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);">
+            <p class="text-xs font-semibold uppercase tracking-[.1em] mb-3" style="color:rgba(255,255,255,.35);">AskNu</p>
+            <p class="text-sm italic" style="color:rgba(255,255,255,.5);">"where everything you need is in one place"</p>
+          </div>
+          <div class="rounded-2xl p-6" style="background:rgba(130,10,209,.2);border:1px solid rgba(160,93,255,.25);">
+            <p class="text-xs font-semibold uppercase tracking-[.1em] mb-3" style="color:#A05DFF;">NuSpot</p>
+            <p class="text-sm italic font-medium" style="color:#fff;">"where things get done"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ CONTATO ═══ -->
+<section id="contato" class="py-24 bg-[#EFECE7]">
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16">
+    <div class="max-w-3xl mx-auto text-center reveal">
+      <h2 class="text-5xl lg:text-7xl font-bold text-[#333] mb-7 leading-tight tracking-tight">Vamos construir algo juntos?</h2>
+      <p class="text-xl text-[#7C756B] leading-relaxed mb-14 max-w-xl mx-auto">Estou sempre aberta para conversar sobre minha experiência em Product Design ou explorar colaborações em criação de identidade visual.</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://www.linkedin.com/in/nayene-espindola-88b132150/" target="_blank"
+           class="inline-flex items-center gap-3 bg-[#7C756B] text-white px-8 py-5 rounded-2xl font-semibold hover:bg-[#333] transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 group">
+          <svg width="18" height="18" fill="none" viewBox="0 0 18 18"><rect x="1" y="1" width="16" height="16" rx="3" stroke="white" stroke-width="1.5"/><path d="M5.5 7.5v5M5.5 5v.01M8.5 12.5V10a1.5 1.5 0 013 0v2.5M8.5 10v2.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>LinkedIn</span>
+          <svg width="12" height="12" fill="none" viewBox="0 0 12 12" class="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"><path d="M1 11L11 1M11 1H4M11 1v7" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+        <a href="https://nubank.enterprise.slack.com/team/U01RH28RPPF" target="_blank"
+           class="inline-flex items-center gap-3 bg-[#7C756B] text-white px-8 py-5 rounded-2xl font-semibold hover:bg-[#333] transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 group">
+          <svg width="18" height="18" fill="none" viewBox="0 0 18 18"><path d="M6.5 4a1.5 1.5 0 0 0-3 0v5a1.5 1.5 0 0 0 3 0" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M4 11.5a1.5 1.5 0 0 0 0 3h5a1.5 1.5 0 0 0 0-3" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M11.5 14a1.5 1.5 0 0 0 3 0V9a1.5 1.5 0 0 0-3 0" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M14 6.5a1.5 1.5 0 0 0 0-3H9a1.5 1.5 0 0 0 0 3" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Slack @nay</span>
+          <svg width="12" height="12" fill="none" viewBox="0 0 12 12" class="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"><path d="M1 11L11 1M11 1H4M11 1v7" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="py-6 bg-[#222]">
+  <div class="max-w-[1360px] mx-auto px-6 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-3">
+    <span class="text-white/30 text-sm">Nayene Espindola · Product Designer</span>
+    <span class="text-white/30 text-sm">IC3 IT Engineering Assistant · Nubank</span>
+  </div>
+</footer>
+
+<script>
+/* ── mobile menu ── */
+function toggleMenu() { document.getElementById('mob-menu').classList.toggle('hidden'); }
+
+/* ── nav scroll ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('fnav').classList.toggle('scrolled', scrollY > 40);
+});
+
+/* ── reveal on scroll ── */
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); revObs.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach(el => revObs.observe(el));
+
+/* ── spotlight card tracking ── */
+document.querySelectorAll('.spotlight-card, .spotlight-card-dark').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%';
+    const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1) + '%';
+    card.style.setProperty('--mouse-x', x);
+    card.style.setProperty('--mouse-y', y);
+  });
+});
+</script>
+</body>
+</html>

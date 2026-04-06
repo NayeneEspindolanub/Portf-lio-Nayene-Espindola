@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nayene Espindola — Product Designer</title>
+  <title>Nayene Espindola, Product Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -284,10 +284,10 @@
   <div class="flex items-center justify-between px-5 py-2.5">
     <span class="font-bold text-[#333] cursor-pointer select-none text-sm" onclick="window.scrollTo({top:0,behavior:'smooth'})">Nayene Espindola</span>
     <div class="hidden md:flex items-center gap-0.5">
-      <a href="#case-mi6"        class="px-3 py-1.5 text-sm text-[#7C756B] hover:text-[#333] hover:bg-[#EFECE7] rounded-lg transition-all">Case MI6</a>
-      <a href="#asknu"           class="px-3 py-1.5 text-sm text-[#7C756B] hover:text-[#333] hover:bg-[#EFECE7] rounded-lg transition-all">AskNu</a>
-      <a href="#outros-projetos" class="px-3 py-1.5 text-sm text-[#7C756B] hover:text-[#333] hover:bg-[#EFECE7] rounded-lg transition-all">Projetos</a>
       <a href="#sobre"           class="px-3 py-1.5 text-sm text-[#7C756B] hover:text-[#333] hover:bg-[#EFECE7] rounded-lg transition-all">Sobre</a>
+      <a href="case-mi6.html"        class="px-3 py-1.5 text-sm text-[#7C756B] hover:text-[#333] hover:bg-[#EFECE7] rounded-lg transition-all">Case MI6</a>
+      <a href="asknu.html"           class="px-3 py-1.5 text-sm text-[#7C756B] hover:text-[#333] hover:bg-[#EFECE7] rounded-lg transition-all">AskNu</a>
+      <a href="outros-projetos.html" class="px-3 py-1.5 text-sm text-[#7C756B] hover:text-[#333] hover:bg-[#EFECE7] rounded-lg transition-all">Projetos</a>
     </div>
     <div class="flex items-center gap-2">
       <span class="hidden sm:flex items-center gap-1.5 text-xs text-[#7C756B]">
@@ -303,10 +303,10 @@
     </div>
   </div>
   <div id="mob-menu" class="hidden md:hidden border-t border-[#DED2C4] px-4 py-3 grid gap-1">
-    <a href="#case-mi6"        onclick="toggleMenu()" class="px-3 py-2 text-sm text-[#7C756B] hover:bg-[#EFECE7] rounded-lg">Case MI6</a>
-    <a href="#asknu"           onclick="toggleMenu()" class="px-3 py-2 text-sm text-[#7C756B] hover:bg-[#EFECE7] rounded-lg">AskNu</a>
-    <a href="#outros-projetos" onclick="toggleMenu()" class="px-3 py-2 text-sm text-[#7C756B] hover:bg-[#EFECE7] rounded-lg">Projetos</a>
     <a href="#sobre"           onclick="toggleMenu()" class="px-3 py-2 text-sm text-[#7C756B] hover:bg-[#EFECE7] rounded-lg">Sobre</a>
+    <a href="case-mi6.html"        onclick="toggleMenu()" class="px-3 py-2 text-sm text-[#7C756B] hover:bg-[#EFECE7] rounded-lg">Case MI6</a>
+    <a href="asknu.html"           onclick="toggleMenu()" class="px-3 py-2 text-sm text-[#7C756B] hover:bg-[#EFECE7] rounded-lg">AskNu</a>
+    <a href="outros-projetos.html" onclick="toggleMenu()" class="px-3 py-2 text-sm text-[#7C756B] hover:bg-[#EFECE7] rounded-lg">Projetos</a>
   </div>
 </nav>
 
@@ -314,29 +314,20 @@
 <section class="min-h-screen flex items-center bg-[#FFFCF7] pt-20" style="position:relative;overflow:hidden;">
   <canvas id="dot-grid" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
   <div class="max-w-[1360px] mx-auto px-6 lg:px-16 py-24 w-full" style="position:relative;z-index:1;">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-24 items-center">
       <div>
-        <div class="reveal mb-5">
-          <span class="text-xs text-[#7C756B] tracking-[.22em] uppercase">Designer em ETS · IC3 IT Engineering</span>
+        <div class="reveal mb-4">
+          <span style="font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;color:#7C756B;font-weight:500;">Designer no Nubank</span>
         </div>
-        <h1 class="reveal d1 text-5xl lg:text-[4.4rem] font-bold text-[#333] mb-7 leading-[.95] tracking-tight">
-          Projetando plataformas internas e experiências digitais inteligentes.
+        <h1 class="reveal d1 text-5xl lg:text-[4.2rem] text-[#333] mb-7 leading-[1.08] tracking-tight" style="font-weight:300;text-wrap:balance;">
+          com foco em ferramentas de IA, fluxos descomplicados e experiências com visual intuitivo.
         </h1>
-        <p class="reveal d2 text-xl text-[#7C756B] mb-12 max-w-lg leading-relaxed">
-          Designer no Nubank com foco em ferramentas de IA, fluxos de suporte e experiências com visual intuitivo.
-        </p>
-        <div class="reveal d3 flex flex-wrap gap-6 items-center">
-          <a href="#case-mi6" class="group flex items-center gap-2 text-[#333] font-semibold text-base transition-all hover:gap-3">
-            <span>Ver Case Principal</span><span class="text-[#7C756B]">→</span>
-          </a>
-          <a href="#outros-projetos" class="text-[#7C756B] font-medium text-base hover:text-[#333] transition-colors">Outros Projetos</a>
-        </div>
       </div>
-      <div class="reveal-scale hidden lg:flex justify-center">
-        <div class="relative w-full max-w-[340px]">
-          <img src="images/Nayene-header.jpeg" alt="Nayene Espindola"
-               class="w-full h-auto object-contain rounded-2xl"
-               style="filter:contrast(1.04) brightness(1.03); mix-blend-mode:multiply;"
+      <div class="reveal-scale hidden lg:flex justify-center items-stretch">
+        <div class="relative w-full">
+          <img src="images/nayene-sobre.jpg" alt="Nayene Espindola"
+               class="w-full h-full object-cover rounded-2xl"
+               style="opacity:1; filter:contrast(1.04) brightness(1.02); mix-blend-mode:multiply; object-position:center top;"
                onerror="this.parentElement.innerHTML='<div class=\'img-ph w-full aspect-[3/4] rounded-2xl\' style=\'font-size:.75rem;letter-spacing:.1em\'>Adicione Nayene-header.png<br>na pasta images/</div>';" />
         </div>
       </div>
@@ -344,806 +335,100 @@
   </div>
 </section>
 
-<!-- ═══ MI6 CASE ═══ -->
-<section id="case-mi6" class="py-24 bg-[#EFECE7]">
+<!-- ═══ SOBRE + NAVEGAÇÃO ═══ -->
+<section id="sobre" class="py-24 bg-[#FFFCF7]">
   <div class="max-w-[1360px] mx-auto px-6 lg:px-16">
 
-    <!-- Header -->
-    <div class="reveal mb-3"><span class="text-xs text-[#7C756B] tracking-[.22em] uppercase">Case Principal · Nubank</span></div>
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end mb-12">
-      <div class="lg:col-span-8">
-        <h2 class="reveal text-4xl lg:text-6xl font-bold text-[#333] tracking-tight leading-tight mb-4">
-          Casino Royale — <span class="text-[#7C756B]">Portal MI6</span>
-        </h2>
-        <p class="reveal text-lg text-[#7C756B] leading-relaxed">
-          Redesenho completo do fluxo de suporte do BPO — unificando um ecossistema fragmentado entre Brasil, México e Colômbia, eliminando 10 fricções críticas e reduzindo o TMA de 10 para 3 minutos.
-        </p>
-      </div>
-      <div class="lg:col-span-4 flex flex-col gap-2 lg:items-end">
-        <div class="flex items-center gap-2">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#7C756B] inline-block"></span>
-          <span class="text-xs text-[#7C756B] font-medium tracking-wide">Em Andamento</span>
+    <!-- Sobre mim -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-24">
+      <div class="lg:col-span-3 reveal-left">
+        <div class="rounded-2xl overflow-hidden shadow-md" style="max-height:340px;">
+          <img src="images/nayene-sobre2.jpg" alt="Nayene Espindola" class="w-full object-cover" style="height:340px; object-position:center top;"
+               onerror="this.parentElement.innerHTML='<div class=\'img-ph w-full\' style=\'height:340px;font-size:.68rem;letter-spacing:.1em\'>Nayene-header.png<br>na pasta images/</div>';" />
         </div>
-        <div class="text-xs text-[#7C756B] tracking-wider">Product Design <span class="opacity-40 mx-1">·</span> UX Strategy</div>
+      </div>
+      <div class="lg:col-span-9 reveal space-y-5 text-[#7C756B] text-lg leading-relaxed">
+        <p>Minha base vem do Desenvolvimento de Software, mas foi no design que encontrei minha forma de resolver problemas. Comecei explorando o design através da comunicação visual e da criação de Realidade Aumentada, o que me deu uma percepção clara de como a estética e a função precisam coexistir.</p>
+        <p>No Nubank, tracei um caminho de evolução contínua: de Jovem Aprendiz focado em comunicação a projetos como Product Designer dedicado a ferramentas internas complexas. Hoje, uso esse background técnico para facilitar a usabilidade do nubanker, projetando features para fluxos operacionais que transformam processos complexos em experiências funcionais.</p>
+        <p class="text-[#333] font-medium">Meu foco é entender a estrutura técnica por trás do produto para entregar uma usabilidade que realmente faça sentido para quem a opera.</p>
       </div>
     </div>
 
-    <!-- Cover image -->
-    <div class="reveal-scale mb-14">
-      <a href="https://docs.google.com/document/d/1VG51-bqkxPb_2LEQF5SRCbcrJ4byYYG2_1Yz0chi5eA/edit?usp=sharing" target="_blank" rel="noopener" class="block group">
-        <div class="w-full rounded-2xl overflow-hidden shadow-lg relative" style="aspect-ratio: 16 / 4.8;">
-          <img src="images/capa-discovery.png" alt="MI6 Cover" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-               onerror="this.parentElement.innerHTML='<div class=\'img-ph w-full h-full flex-col gap-2\'><div style=\'font-size:5rem;font-weight:800;opacity:.1\'>MI6</div><span style=\'font-size:.7rem;letter-spacing:.1em\'>Adicione capa-discovery.png na pasta images/</span></div>';" />
-          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-end justify-end p-5">
-            <span class="opacity-0 group-hover:opacity-100 transition-opacity text-white text-xs font-semibold bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-lg">Ver documento completo ↗</span>
-          </div>
-        </div>
-      </a>
-    </div>
+    <!-- Menu de Navegação -->
+    <div class="reveal">
+      <p class="text-xs text-[#7C756B] tracking-[.22em] uppercase mb-8">Trabalhos</p>
+      <div class="grid grid-cols-1 gap-4">
 
-    <!-- Metrics -->
-    <div class="reveal grid grid-cols-2 lg:grid-cols-4 gap-3 mb-20">
-      <div class="bg-[#FFFCF7] rounded-2xl p-6"><div class="stat">10→3</div><div class="text-xs text-[#7C756B] uppercase tracking-wider mt-2 font-medium">min · TMA alvo</div></div>
-      <div class="bg-[#FFFCF7] rounded-2xl p-6"><div class="stat">10</div><div class="text-xs text-[#7C756B] uppercase tracking-wider mt-2 font-medium">Fricções mapeadas</div></div>
-      <div class="bg-[#FFFCF7] rounded-2xl p-6"><div class="stat" style="font-size:1.6rem;">100%</div><div class="text-xs text-[#7C756B] uppercase tracking-wider mt-2 font-medium">Unificado BRA · MX · CO</div></div>
-      <div class="bg-[#FFFCF7] rounded-2xl p-6"><div class="stat" style="font-size:1.4rem;line-height:1.1;">Real-Time</div><div class="text-xs text-[#7C756B] uppercase tracking-wider mt-2 font-medium">Acompanhamento</div></div>
-    </div>
-
-    <!-- ─── ROADMAP (animated, 4 steps) ─── -->
-    <div class="reveal mb-20">
-      <p class="text-xs text-[#7C756B] uppercase tracking-[.22em] mb-2">Roadmap do Projeto</p>
-      <h3 class="text-xl font-bold text-[#333] mb-10">Etapas percorridas do projeto até março</h3>
-      <div style="overflow-x: auto; padding: 14px 0 4px;">
-        <div class="rm-track min-w-max" id="rm-track">
-          <!-- 01 -->
-          <div class="rm-node" id="rm-0" onclick="goTo('discovery')">
-            <div class="rm-circle-wrap"><div class="rm-circle">01</div></div>
-            <div class="w-px h-5 bg-[#DED2C4] mt-1"></div>
-            <div class="text-center mt-1" style="max-width:90px">
-              <div class="text-xs font-semibold text-[#333]">Discovery</div>
-              <div class="text-xs text-[#7C756B]">UX Strategy</div>
+        <!-- Case Principal, MI6 (destaque máximo) -->
+        <a href="case-mi6.html" class="group block rounded-2xl p-8 lg:p-10 card-lift transition-all duration-400 relative overflow-hidden" style="background:#1a1a1a; text-decoration:none;">
+          <div class="absolute top-0 right-0 opacity-10 pointer-events-none" style="width:360px;height:360px;background:radial-gradient(circle, #AA68FF 0%, transparent 70%);transform:translate(30%,-30%);border-radius:50%;"></div>
+          <div class="absolute bottom-0 left-0 opacity-5 pointer-events-none" style="width:240px;height:240px;background:radial-gradient(circle, #DED2C4 0%, transparent 70%);transform:translate(-30%,30%);border-radius:50%;"></div>
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 relative z-10">
+            <div>
+              <span class="inline-flex items-center gap-2 text-xs tracking-[.22em] uppercase mb-4" style="color:#7C756B;">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#7C756B] inline-block"></span>
+                Case Principal · Nubank
+              </span>
+              <h3 class="text-3xl lg:text-5xl font-bold tracking-tight leading-tight mb-4" style="color:#fff;">
+                Casino Royale<br><span style="color:#7C756B;">Portal MI6</span>
+              </h3>
+              <p class="text-sm leading-relaxed max-w-xl" style="color:#7C756B;">Redesenho completo do fluxo de suporte do BPO, unificando Brasil, México e Colômbia em um único sistema. 10 fricções eliminadas, TMA reduzido de 10 para 3 minutos.</p>
+              <div class="flex gap-2 mt-5">
+                <span class="tag" style="background:rgba(124,117,107,.15);color:#7C756B;">Product Design</span>
+                <span class="tag" style="background:rgba(124,117,107,.15);color:#7C756B;">UX Strategy</span>
+                <span class="tag" style="background:rgba(124,117,107,.15);color:#7C756B;">Em Andamento</span>
+              </div>
             </div>
-          </div>
-          <div class="rm-line-wrap"><div class="rm-line-fill" id="rf-0"></div></div>
-          <!-- 02 -->
-          <div class="rm-node" id="rm-1" onclick="goTo('shadowing')">
-            <div class="rm-circle-wrap"><div class="rm-circle">02</div></div>
-            <div class="w-px h-5 bg-[#DED2C4] mt-1"></div>
-            <div class="text-center mt-1" style="max-width:90px">
-              <div class="text-xs font-semibold text-[#333]">Shadowing</div>
-              <div class="text-xs text-[#7C756B]">Evidências</div>
-            </div>
-          </div>
-          <div class="rm-line-wrap"><div class="rm-line-fill" id="rf-1"></div></div>
-          <!-- 03 -->
-          <div class="rm-node" id="rm-2" onclick="goTo('prototipagem')">
-            <div class="rm-circle-wrap"><div class="rm-circle">03</div></div>
-            <div class="w-px h-5 bg-[#DED2C4] mt-1"></div>
-            <div class="text-center mt-1" style="max-width:90px">
-              <div class="text-xs font-semibold text-[#333]">Prototipagem</div>
-              <div class="text-xs text-[#7C756B]">Validação</div>
-            </div>
-          </div>
-          <div class="rm-line-wrap"><div class="rm-line-fill" id="rf-2"></div></div>
-          <!-- 04 -->
-          <div class="rm-node" id="rm-3" onclick="goTo('mvp')">
-            <div class="rm-circle-wrap"><div class="rm-circle">04</div></div>
-            <div class="w-px h-5 bg-[#DED2C4] mt-1"></div>
-            <div class="text-center mt-1" style="max-width:90px">
-              <div class="text-xs font-semibold text-[#333]">MVP</div>
-              <div class="text-xs text-[#7C756B]">Mar 2026</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ──── ETAPA 01 — DISCOVERY ──── -->
-    <div id="discovery" class="mb-24 scroll-mt-32">
-      <div class="reveal flex items-center gap-3 mb-8">
-        <div class="w-8 h-8 rounded-full bg-[#333] text-white flex items-center justify-center text-xs font-bold">01</div>
-        <div><span class="text-xs text-[#7C756B] uppercase tracking-widest block">Etapa 01</span><h3 class="text-xl font-bold text-[#333]">Discovery & UX Strategy</h3></div>
-      </div>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
-        <div class="reveal bg-[#FFFCF7] rounded-2xl p-7 card-lift spotlight-card">
-          <h4 class="text-xs font-semibold text-[#333] uppercase tracking-[.15em] mb-3">O Desafio</h4>
-          <p class="text-[#7C756B] leading-relaxed mb-4 text-sm">O MI6 surgiu para unificar o ecossistema de tickets do Casino Royale, substituindo um modelo fragmentado — Zammad no Brasil, Slack no MX e CO — que gerava perda de informação e falta de rastreabilidade.</p>
-          <p class="text-[#333] font-medium text-sm leading-relaxed">Meta: eliminar 10 fricções críticas, reduzir o TMA de 10→3 min e centralizar 100% das operações internacionais.</p>
-        </div>
-        <div class="reveal d1 bg-[#FFFCF7] rounded-2xl p-7 card-lift spotlight-card">
-          <h4 class="text-xs font-semibold text-[#333] uppercase tracking-[.15em] mb-3">Meu Ponto de Vista</h4>
-          <p class="text-[#7C756B] leading-relaxed mb-3 text-sm">Minha entrada foi entender como o BPO abre o ticket no Zammad e via Slack, para daí idealizar uma plataforma única que centralizasse tudo sem replicar os mesmos problemas.</p>
-          <p class="text-[#7C756B] leading-relaxed text-sm">Principal heurística aplicada: <strong class="text-[#333]">Prevenção de Erros</strong> + <strong class="text-[#333]">Flexibilidade e Eficiência de Uso</strong> — transformando a interface de barreira burocrática em facilitador.</p>
-        </div>
-      </div>
-      <!-- Heuristics -->
-      <div class="reveal bg-[#222] rounded-2xl p-8 lg:p-12 mb-8">
-        <h4 class="text-xs font-semibold text-white/50 uppercase tracking-[.2em] mb-8">Análise de Heurísticas no MI6</h4>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-4">
-              <svg width="20" height="20" fill="none" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="white" stroke-width="1.5"/><path d="M10 6v4l3 3" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </div>
-            <h5 class="text-white font-semibold mb-2 text-sm">Prevenção de Erros</h5>
-            <p class="text-white/55 text-sm leading-relaxed">UI flexível que permite edição de categorias sem perda de dados preenchidos. Elimina o bloqueio de campo que obriga reinício do zero.</p>
-          </div>
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-4">
-              <svg width="20" height="20" fill="none" viewBox="0 0 20 20"><path d="M4 10h12M13 7l3 3-3 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <h5 class="text-white font-semibold mb-2 text-sm">Flexibilidade e Eficiência</h5>
-            <p class="text-white/55 text-sm leading-relaxed">Solicitação por "Escopo de Função" substitui dezenas de tickets individuais por uma única ação. Uma turma de 20 agentes = 1 ticket em vez de 100.</p>
-          </div>
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-4">
-              <svg width="20" height="20" fill="none" viewBox="0 0 20 20"><rect x="3" y="5" width="14" height="10" rx="2" stroke="white" stroke-width="1.5"/><path d="M7 9h6M7 12h4" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </div>
-            <h5 class="text-white font-semibold mb-2 text-sm">Visibilidade do Status</h5>
-            <p class="text-white/55 text-sm leading-relaxed">Real-Time Tracking resolve o déficit de transparência — feedback visual claro sobre o progresso do chamado, eliminando dependência do Slack como canal de crise.</p>
-          </div>
-        </div>
-      </div>
-      <!-- Double Diamond -->
-      <div class="reveal bg-[#111] rounded-2xl p-8 lg:p-12 mb-8">
-        <p class="text-xs text-white/40 uppercase tracking-[.2em] mb-2">Metodologia</p>
-        <h4 class="text-2xl font-bold text-white mb-2 leading-tight">Double Diamond</h4>
-        <p class="text-white/55 text-sm mb-8">Estrutura que guiou o processo do MI6 — do problema nebuloso à solução validada, passando por duas fases de divergência e convergência.</p>
-        <div class="flex justify-center mb-8 overflow-x-auto">
-          <svg viewBox="0 0 640 160" width="100%" style="max-width:640px;min-width:300px;" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Gradient defs -->
-            <defs>
-              <linearGradient id="d1g" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#DED2C4" stop-opacity="0.06"/>
-                <stop offset="50%" stop-color="#DED2C4" stop-opacity="0.18"/>
-                <stop offset="100%" stop-color="#DED2C4" stop-opacity="0.06"/>
-              </linearGradient>
-              <linearGradient id="d2g" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#DED2C4" stop-opacity="0.12"/>
-                <stop offset="50%" stop-color="#DED2C4" stop-opacity="0.28"/>
-                <stop offset="100%" stop-color="#DED2C4" stop-opacity="0.12"/>
-              </linearGradient>
-            </defs>
-            <!-- Diamond 1 (Discover + Define) -->
-            <polygon points="30,80 160,16 290,80 160,144" fill="url(#d1g)" stroke="rgba(222,210,196,0.3)" stroke-width="1.5" stroke-linejoin="round"/>
-            <!-- Diamond 2 (Develop + Deliver) -->
-            <polygon points="350,80 480,16 610,80 480,144" fill="url(#d2g)" stroke="rgba(222,210,196,0.45)" stroke-width="1.5" stroke-linejoin="round"/>
-            <!-- Gap line -->
-            <line x1="292" y1="80" x2="348" y2="80" stroke="rgba(222,210,196,0.2)" stroke-width="1.5" stroke-dasharray="4,4"/>
-            <!-- Diamond 1 left triangle highlight -->
-            <polygon points="30,80 160,16 160,144" fill="rgba(255,255,255,0.04)"/>
-            <!-- Diamond 2 right triangle highlight -->
-            <polygon points="480,16 610,80 480,144" fill="rgba(255,255,255,0.06)"/>
-            <!-- Phase labels inside -->
-            <text x="100" y="76" fill="rgba(255,255,255,0.5)" font-size="10" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" letter-spacing="0.5">DISCOVER</text>
-            <text x="218" y="76" fill="rgba(255,255,255,0.5)" font-size="10" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" letter-spacing="0.5">DEFINE</text>
-            <text x="418" y="76" fill="rgba(255,255,255,0.5)" font-size="10" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" letter-spacing="0.5">DEVELOP</text>
-            <text x="542" y="76" fill="rgba(255,255,255,0.5)" font-size="10" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" letter-spacing="0.5">DELIVER</text>
-            <!-- Center nodes -->
-            <circle cx="160" cy="80" r="5" fill="rgba(222,210,196,0.35)" stroke="rgba(222,210,196,0.5)" stroke-width="1"/>
-            <circle cx="480" cy="80" r="7" fill="rgba(222,210,196,0.6)" stroke="rgba(222,210,196,0.8)" stroke-width="1.5"/>
-            <!-- "Now" label -->
-            <text x="480" y="103" fill="rgba(222,210,196,0.55)" font-size="8" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" letter-spacing="1">AGORA</text>
-          </svg>
-        </div>
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-          <div class="mb-card mb-card-dark bg-white/[.05] border border-white/10 rounded-xl p-5">
-            <div class="text-[#DED2C4] text-[10px] uppercase tracking-widest mb-2">Fase 01</div>
-            <h5 class="text-white font-semibold text-sm mb-2">Discover</h5>
-            <p class="text-white/50 text-xs leading-relaxed">Shadowing com BPOs, mapeamento de 50+ telas e identificação de 10 fricções críticas no fluxo atual.</p>
-          </div>
-          <div class="mb-card mb-card-dark bg-white/[.05] border border-white/10 rounded-xl p-5">
-            <div class="text-[#DED2C4] text-[10px] uppercase tracking-widest mb-2">Fase 02</div>
-            <h5 class="text-white font-semibold text-sm mb-2">Define</h5>
-            <p class="text-white/50 text-xs leading-relaxed">Síntese dos insights em HMW statements, priorização por impacto e definição do problema central a resolver.</p>
-          </div>
-          <div class="mb-card mb-card-dark bg-white/[.07] border border-white/10 rounded-xl p-5">
-            <div class="text-[#DED2C4] text-[10px] uppercase tracking-widest mb-2">Fase 03</div>
-            <h5 class="text-white font-semibold text-sm mb-2">Develop</h5>
-            <p class="text-white/50 text-xs leading-relaxed">3 cenários de prototipagem no Figma Make, alinhamento com Engenharia e validação da estrutura lógica.</p>
-          </div>
-          <div class="mb-card mb-card-dark bg-white/[.07] border border-white/10 rounded-xl p-5">
-            <div class="text-[#DED2C4] text-[10px] uppercase tracking-widest mb-2">Fase 04</div>
-            <h5 class="text-white font-semibold text-sm mb-2">Deliver</h5>
-            <p class="text-white/50 text-xs leading-relaxed">MVP funcional com fluxo em steps e cards — validação com BPOs antes do refinamento visual em hi-fi.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Process mapping -->
-      <div class="reveal mb-6"><h4 class="text-xs font-semibold text-[#333] uppercase tracking-[.15em]">Mapeamento de Processos Atuais (As-Is)</h4></div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="reveal bg-[#FFFCF7] rounded-2xl p-6 card-lift spotlight-card">
-          <div class="w-8 h-8 rounded-xl bg-[#EFECE7] flex items-center justify-center mb-4">
-            <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2" stroke="#7C756B" stroke-width="1.5"/><path d="M5 5h6M5 8h6M5 11h4" stroke="#7C756B" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <h5 class="font-semibold text-[#333] mb-2 text-sm">Simulação de Fluxo no Figma</h5>
-          <p class="text-[#7C756B] text-sm leading-relaxed">Mapear o fluxo não foi só documentar — foi enxergar onde o sistema travava o usuário. O Zammad é punitivo: erro de clique = recomeçar do zero. Uma tarefa de 2 min vira 10 min de estresse.</p>
-        </div>
-        <div class="reveal d1 bg-[#FFFCF7] rounded-2xl p-6 card-lift spotlight-card">
-          <div class="w-8 h-8 rounded-xl bg-[#EFECE7] flex items-center justify-center mb-4">
-            <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="#7C756B" stroke-width="1.5"/><path d="M5 8h3V5" stroke="#7C756B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h5 class="font-semibold text-[#333] mb-2 text-sm">Engenharia Reversa com IA</h5>
-          <p class="text-[#7C756B] text-sm leading-relaxed">Identifiquei mais de <strong class="text-[#333]">50 telas possíveis</strong> no fluxo atual. "Mais opções" não é mais clareza — o excesso de ramificações só induz ao erro e gera retrabalho.</p>
-        </div>
-        <div class="reveal d2 bg-[#FFFCF7] rounded-2xl p-6 card-lift spotlight-card">
-          <div class="w-8 h-8 rounded-xl bg-[#EFECE7] flex items-center justify-center mb-4">
-            <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="4" cy="4" r="2" stroke="#7C756B" stroke-width="1.5"/><circle cx="12" cy="4" r="2" stroke="#7C756B" stroke-width="1.5"/><circle cx="4" cy="12" r="2" stroke="#7C756B" stroke-width="1.5"/><circle cx="12" cy="12" r="2" stroke="#7C756B" stroke-width="1.5"/><path d="M6 4h4M4 6v4M12 6v4M6 12h4" stroke="#7C756B" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <h5 class="font-semibold text-[#333] mb-2 text-sm">Mapeamento de Ferramentas</h5>
-          <p class="text-[#7C756B] text-sm leading-relaxed">BR usa Jira, MX e CO usam Slack e planilhas paralelas. Se o processo oficial é lento, o time cria um caminho de sombra. Unificação não é trocar software — é dar confiança.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ──── ETAPA 02 — SHADOWING ──── -->
-    <div id="shadowing" class="mb-24 scroll-mt-32">
-      <div class="reveal flex items-center gap-3 mb-8">
-        <div class="w-8 h-8 rounded-full border-2 border-[#333] text-[#333] flex items-center justify-center text-xs font-bold">02</div>
-        <div><span class="text-xs text-[#7C756B] uppercase tracking-widest block">Etapa 02</span><h3 class="text-xl font-bold text-[#333]">Shadowing & Evidências Qualitativas</h3></div>
-      </div>
-      <div class="reveal bg-[#FFFCF7] rounded-2xl p-7 mb-8">
-        <p class="text-[#7C756B] leading-relaxed text-sm">Realizei sessões de observação direta com BPOs (Teleperformance e Paschoalotto) e times de suporte para capturar comportamentos reais sob pressão operacional — não o que o processo dizia, mas o que realmente acontecia.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-14">
-        <div class="reveal bg-[#FFFCF7] rounded-2xl p-6 card-lift spotlight-card">
-          <span class="tag bg-[#EFECE7] text-[#333] mb-4 block w-fit">Insight 01</span>
-          <h5 class="font-bold text-[#333] mb-3 text-sm">O "Vai e Volta" com o Suporte</h5>
-          <p class="text-[#7C756B] text-sm leading-relaxed mb-3">No shadowing com o Lucas, o sistema só permitia uma tratativa por vez. O suporte retornava pedindo testes que o BPO já havia feito, mas não conseguia registrar.</p>
-          <p class="text-[#333] text-xs font-semibold">Um rádio button no lugar de um checkbox → atraso de +24h na solução.</p>
-        </div>
-        <div class="reveal d1 bg-[#FFFCF7] rounded-2xl p-6 card-lift spotlight-card">
-          <span class="tag bg-[#EFECE7] text-[#333] mb-4 block w-fit">Insight 02</span>
-          <h5 class="font-bold text-[#333] mb-3 text-sm">Ticket invisível para o time</h5>
-          <p class="text-[#7C756B] text-sm leading-relaxed mb-3">Lucas abre um ticket mas só ele consegue ver. Quando a Rafaela assume o turno e Lucas não está, o ticket some — o time fica sem acesso e a operação trava.</p>
-          <p class="text-[#333] text-xs font-semibold">Ticket pertence à pessoa, não ao time — e isso custa horas de operação.</p>
-        </div>
-        <div class="reveal d2 bg-[#FFFCF7] rounded-2xl p-6 card-lift spotlight-card">
-          <span class="tag bg-[#EFECE7] text-[#333] mb-4 block w-fit">Insight 03</span>
-          <h5 class="font-bold text-[#333] mb-3 text-sm">Punição ao Erro — O Custo do Reinício</h5>
-          <p class="text-[#7C756B] text-sm leading-relaxed mb-3">Clique errado → trava → cancela tudo → recomeça do zero. Com latência de até 4 min por clique, uma tarefa de 2 min vira 10 min de puro retrabalho sob pressão.</p>
-          <p class="text-[#333] text-xs font-semibold">Flexibilidade não é luxo — é o básico.</p>
-        </div>
-      </div>
-
-      <!-- ── SHADOWING Q&A MARQUEE ── -->
-      <div class="reveal mb-14">
-        <p class="text-xs text-[#7C756B] uppercase tracking-[.22em] mb-5">Perguntas &amp; Respostas do Shadowing</p>
-        <!-- Row 1: Paschoalotto (light, scrolls left) -->
-        <div class="marquee-wrap mb-3">
-          <div class="marquee-track marquee-left">
-            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q1</div><p class="text-[#333] text-xs font-semibold mb-1">"Quantas abas você abre por turno?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Umas 15. Cada sistema é uma janela. Zammad, CRM, planilha, Slack..."</p></div>
-            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q2</div><p class="text-[#333] text-xs font-semibold mb-1">"O que acontece quando você erra a categoria?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Trava tudo. Cancelo e começo do zero. Acontece mais do que devia."</p></div>
-            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q3</div><p class="text-[#333] text-xs font-semibold mb-1">"Quanto tempo leva pra abrir um ticket?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Rápido são 5 minutos. Às vezes 15–20 por causa do sistema lento."</p></div>
-            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q4</div><p class="text-[#333] text-xs font-semibold mb-1">"Como você sabe o status do chamado?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Pergunto no Slack. Não tem como ver no sistema. Fica no escuro."</p></div>
-            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q5</div><p class="text-[#333] text-xs font-semibold mb-1">"E quando o coordenador sai do turno?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"O ticket fica parado. Só ele consegue ver. O time fica sem acesso."</p></div>
-            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q6</div><p class="text-[#333] text-xs font-semibold mb-1">"Qual a pior parte do processo atual?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Preencher tudo de novo quando trava. Você perde tudo que já digitou."</p></div>
-            <!-- duplicate for seamless loop -->
-            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q1</div><p class="text-[#333] text-xs font-semibold mb-1">"Quantas abas você abre por turno?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Umas 15. Cada sistema é uma janela. Zammad, CRM, planilha, Slack..."</p></div>
-            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q2</div><p class="text-[#333] text-xs font-semibold mb-1">"O que acontece quando você erra a categoria?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Trava tudo. Cancelo e começo do zero. Acontece mais do que devia."</p></div>
-            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q3</div><p class="text-[#333] text-xs font-semibold mb-1">"Quanto tempo leva pra abrir um ticket?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Rápido são 5 minutos. Às vezes 15–20 por causa do sistema lento."</p></div>
-            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q4</div><p class="text-[#333] text-xs font-semibold mb-1">"Como você sabe o status do chamado?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Pergunto no Slack. Não tem como ver no sistema. Fica no escuro."</p></div>
-            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q5</div><p class="text-[#333] text-xs font-semibold mb-1">"E quando o coordenador sai do turno?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"O ticket fica parado. Só ele consegue ver. O time fica sem acesso."</p></div>
-            <div class="marquee-card bg-[#FFFCF7] border border-[#DED2C4]"><div class="text-[10px] text-[#7C756B] uppercase tracking-widest mb-2">Paschoalotto · Q6</div><p class="text-[#333] text-xs font-semibold mb-1">"Qual a pior parte do processo atual?"</p><p class="text-[#7C756B] text-xs leading-relaxed">"Preencher tudo de novo quando trava. Você perde tudo que já digitou."</p></div>
-          </div>
-        </div>
-        <!-- Row 2: Teleperformance (dark, scrolls right) -->
-        <div class="marquee-wrap">
-          <div class="marquee-track marquee-right">
-            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q1</div><p class="text-white text-xs font-semibold mb-1">"O MX usa Slack porque o Zammad não suporta vocês?"</p><p class="text-white/55 text-xs leading-relaxed">"Exato. A gente abre chamado no Slack e reza pra alguém ver."</p></div>
-            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q2</div><p class="text-white text-xs font-semibold mb-1">"Vocês têm histórico dos tickets?"</p><p class="text-white/55 text-xs leading-relaxed">"Histórico? Não. Quando o problema some do Slack, sumiu. Sem rastreio."</p></div>
-            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q3</div><p class="text-white text-xs font-semibold mb-1">"Como é o onboarding de um agente novo?"</p><p class="text-white/55 text-xs leading-relaxed">"5 tickets diferentes, às vezes mais. Cada acesso é um pedido separado."</p></div>
-            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q4</div><p class="text-white text-xs font-semibold mb-1">"Quando tem crise, como você escala?"</p><p class="text-white/55 text-xs leading-relaxed">"Slack mesmo. O sistema não tem urgência. Fica na fila com todos."</p></div>
-            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q5</div><p class="text-white text-xs font-semibold mb-1">"O suporte pede testes que você já fez?"</p><p class="text-white/55 text-xs leading-relaxed">"Sempre. Refaço tudo do começo porque eles não veem o que tentei."</p></div>
-            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q6</div><p class="text-white text-xs font-semibold mb-1">"O que te daria mais confiança no sistema?"</p><p class="text-white/55 text-xs leading-relaxed">"Saber que meu ticket existe e que alguém vai olhar. Só isso já ajudava."</p></div>
-            <!-- duplicate -->
-            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q1</div><p class="text-white text-xs font-semibold mb-1">"O MX usa Slack porque o Zammad não suporta vocês?"</p><p class="text-white/55 text-xs leading-relaxed">"Exato. A gente abre chamado no Slack e reza pra alguém ver."</p></div>
-            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q2</div><p class="text-white text-xs font-semibold mb-1">"Vocês têm histórico dos tickets?"</p><p class="text-white/55 text-xs leading-relaxed">"Histórico? Não. Quando o problema some do Slack, sumiu. Sem rastreio."</p></div>
-            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q3</div><p class="text-white text-xs font-semibold mb-1">"Como é o onboarding de um agente novo?"</p><p class="text-white/55 text-xs leading-relaxed">"5 tickets diferentes, às vezes mais. Cada acesso é um pedido separado."</p></div>
-            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q4</div><p class="text-white text-xs font-semibold mb-1">"Quando tem crise, como você escala?"</p><p class="text-white/55 text-xs leading-relaxed">"Slack mesmo. O sistema não tem urgência. Fica na fila com todos."</p></div>
-            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q5</div><p class="text-white text-xs font-semibold mb-1">"O suporte pede testes que você já fez?"</p><p class="text-white/55 text-xs leading-relaxed">"Sempre. Refaço tudo do começo porque eles não veem o que tentei."</p></div>
-            <div class="marquee-card" style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);"><div class="text-[10px] text-white/40 uppercase tracking-widest mb-2">Teleperformance · Q6</div><p class="text-white text-xs font-semibold mb-1">"O que te daria mais confiança no sistema?"</p><p class="text-white/55 text-xs leading-relaxed">"Saber que meu ticket existe e que alguém vai olhar. Só isso já ajudava."</p></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── 10 PAIN POINTS TABLE ── -->
-      <div class="reveal mb-4">
-        <p class="text-xs text-[#7C756B] uppercase tracking-[.22em] mb-2">Pain Points</p>
-        <h4 class="text-xl font-bold text-[#333] mb-2">10 Atritos Críticos Identificados</h4>
-        <p class="text-[#7C756B] text-sm mb-8">O Discovery identificou as fricções que bloqueiam a produtividade dos coordenadores, categorizadas por impacto e criticidade.</p>
-      </div>
-
-      <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-4">
-
-        <div class="mb-card mb-card-purple bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:shadow-lg transition-shadow">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold text-white bg-[#333] rounded-full px-3 py-1">01</span>
-            <span class="text-xs font-semibold text-red-600 bg-red-50 rounded-full px-3 py-1">● Crítica</span>
-          </div>
-          <h5 class="font-bold text-[#333] text-sm mb-2">Abertura de tickets MX e CO via Slack</h5>
-          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">MX e CO abrem chamados pelo Slack porque o Zammad não atende eles. Sem histórico, sem controle — qualquer coisa importante some.</p>
-          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Portal único centralizando todos os países no Casino Royale.</div>
-        </div>
-
-        <div class="mb-card mb-card-purple bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:shadow-lg transition-shadow">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold text-white bg-[#333] rounded-full px-3 py-1">02</span>
-            <span class="text-xs font-semibold text-red-600 bg-red-50 rounded-full px-3 py-1">● Crítica</span>
-          </div>
-          <h5 class="font-bold text-[#333] text-sm mb-2">Interface que não perdoa erro</h5>
-          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">Selecionou categoria errada? Trava tudo, cancela, recomeça do zero. Com 4 min de latência por carregamento, uma tarefa de 2 min vira 10 de estresse.</p>
-          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Edição inline — trocar a categoria sem perder o que já foi preenchido.</div>
-        </div>
-
-        <div class="mb-card mb-card-purple bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:shadow-lg transition-shadow">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold text-white bg-[#7C756B] rounded-full px-3 py-1">03</span>
-            <span class="text-xs font-semibold text-yellow-700 bg-yellow-50 rounded-full px-3 py-1">● Alta</span>
-          </div>
-          <h5 class="font-bold text-[#333] text-sm mb-2">Preenchimento manual de data e hora</h5>
-          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">100% dos tickets exigem preencher data e hora à mão. Todo mundo digita, todo mundo pode errar — e o sistema não avisa.</p>
-          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Auto-preenchimento pelo sistema. Campo some da vista do usuário.</div>
-        </div>
-
-        <div class="mb-card mb-card-purple bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:shadow-lg transition-shadow">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold text-white bg-[#7C756B] rounded-full px-3 py-1">04</span>
-            <span class="text-xs font-semibold text-red-600 bg-red-50 rounded-full px-3 py-1">● Crítica</span>
-          </div>
-          <h5 class="font-bold text-[#333] text-sm mb-2">Categorias desatualizadas e confusas</h5>
-          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">São mais de 50 fluxos possíveis com nomes que não fazem sentido. Ticket rejeitado por categoria inexistente é o dia a dia.</p>
-          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Taxonomia revisada + IA sugerindo categoria pela descrição do chamado.</div>
-        </div>
-
-        <div class="mb-card mb-card-purple bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:shadow-lg transition-shadow">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold text-white bg-[#333] rounded-full px-3 py-1">05</span>
-            <span class="text-xs font-semibold text-red-600 bg-red-50 rounded-full px-3 py-1">● Crítica</span>
-          </div>
-          <h5 class="font-bold text-[#333] text-sm mb-2">Ticket preso ao dono</h5>
-          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">Só quem criou o ticket consegue ver status e resposta. O coordenador sai do turno — a operação trava junto.</p>
-          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Visão por squad. Ticket pertence ao time, não à pessoa.</div>
-        </div>
-
-        <div class="mb-card mb-card-purple bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:shadow-lg transition-shadow">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold text-white bg-[#333] rounded-full px-3 py-1">06</span>
-            <span class="text-xs font-semibold text-red-600 bg-red-50 rounded-full px-3 py-1">● Crítica</span>
-          </div>
-          <h5 class="font-bold text-[#333] text-sm mb-2">Sem fila prioritária para crises</h5>
-          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">Crise entra na fila comum. O Slack virou o canal de urgência porque o sistema oficial não tem prioridade. Resolução pode demorar 3–4 dias.</p>
-          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Campo de prioridade para crises com SLA diferenciado.</div>
-        </div>
-
-        <div class="mb-card mb-card-purple bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:shadow-lg transition-shadow">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold text-white bg-[#7C756B] rounded-full px-3 py-1">07</span>
-            <span class="text-xs font-semibold text-red-600 bg-red-50 rounded-full px-3 py-1">● Crítica</span>
-          </div>
-          <h5 class="font-bold text-[#333] text-sm mb-2">Um acesso por agente, na mão</h5>
-          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">Nova turma de 20 agentes = 100 tickets manuais. Cada pessoa precisa de 5 liberações diferentes. Todo esse esforço cai no colo do coordenador.</p>
-          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Acesso por função/cargo. Um ticket libera tudo do perfil de uma vez.</div>
-        </div>
-
-        <div class="mb-card mb-card-purple bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:shadow-lg transition-shadow">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold text-white bg-[#7C756B] rounded-full px-3 py-1">08</span>
-            <span class="text-xs font-semibold text-yellow-700 bg-yellow-50 rounded-full px-3 py-1">● Alta</span>
-          </div>
-          <h5 class="font-bold text-[#333] text-sm mb-2">Só uma tratativa por vez</h5>
-          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">Radio button onde precisava ser checkbox. O suporte pede de novo o teste que o BPO já tentou — porque o sistema não deixou registrar tudo. +24h de atraso por isso.</p>
-          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Checklist múltiplo com todos os procedimentos já tentados visíveis.</div>
-        </div>
-
-        <div class="mb-card mb-card-purple bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:shadow-lg transition-shadow">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold text-white bg-[#7C756B] rounded-full px-3 py-1">09</span>
-            <span class="text-xs font-semibold text-yellow-700 bg-yellow-50 rounded-full px-3 py-1">● Alta</span>
-          </div>
-          <h5 class="font-bold text-[#333] text-sm mb-2">Ninguém sabe o que está acontecendo</h5>
-          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">Abriu o ticket, sumiu no sistema. Sem visibilidade de quem está tratando, sem atualização de status. Espera de mais de uma semana sem nenhum retorno.</p>
-          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Status em tempo real — o coordenador vê exatamente onde o chamado está.</div>
-        </div>
-
-        <div class="mb-card mb-card-purple bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-5 hover:shadow-lg transition-shadow">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold text-white bg-[#333] rounded-full px-3 py-1">10</span>
-            <span class="text-xs font-semibold text-red-600 bg-red-50 rounded-full px-3 py-1">● Crítica</span>
-          </div>
-          <h5 class="font-bold text-[#333] text-sm mb-2">Sistema lento e instável</h5>
-          <p class="text-[#7C756B] text-xs leading-relaxed mb-3">Até 4 minutos por clique. Deslogar automático a cada 5–10 minutos. Isso não é inconveniente — é o principal motivo do TMA de 10 minutos.</p>
-          <div class="border-t border-[#EFECE7] pt-3 text-xs text-[#7C756B]"><strong class="text-[#333]">Oportunidade:</strong> Performance como requisito, não como melhoria futura.</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ──── ETAPA 03 — PROTOTIPAGEM (zeroheight full-section) ──── -->
-    <div id="prototipagem" class="mb-24 scroll-mt-32">
-      <div class="reveal flex items-center gap-3 mb-8">
-        <div class="w-8 h-8 rounded-full border-2 border-[#333] text-[#333] flex items-center justify-center text-xs font-bold">03</div>
-        <div><span class="text-xs text-[#7C756B] uppercase tracking-widest block">Etapa 03</span><h3 class="text-xl font-bold text-[#333]">Prototipagem & Validação (To-Be)</h3></div>
-      </div>
-
-      <!-- Flat layout with GSAP ScrollReveal headline -->
-      <div class="mb-8">
-        <h4 class="text-2xl lg:text-3xl font-bold text-[#333] mb-4 leading-tight">Protótipo e teste de usabilidade</h4>
-        <p class="text-[#7C756B] leading-relaxed mb-10 text-sm">Com o discovery consolidado, o objetivo era traduzir os insights em solução visual concreta — mantendo a identidade do Nubank, mas resolvendo a bagunça do BPO de uma vez por todas.</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
-          <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-6 spotlight-card">
-            <div class="text-xs text-[#7C756B] uppercase tracking-widest mb-2">Método 01</div>
-            <h5 class="text-[#333] font-semibold text-sm mb-2">Prompt Estratégico + Figma Make</h5>
-            <p class="text-[#7C756B] text-xs leading-relaxed">Prompts detalhados para traduzir o fluxo idealizado, respeitando a identidade do Nubank desde o primeiro rascunho.</p>
-          </div>
-          <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-6 spotlight-card">
-            <div class="text-xs text-[#7C756B] uppercase tracking-widest mb-2">Método 02</div>
-            <h5 class="text-[#333] font-semibold text-sm mb-2">3 Cenários de Visualização</h5>
-            <p class="text-[#7C756B] text-xs leading-relaxed">Cards, Selects e Steps. Objetivo: qual modelo abre ticket com menos cliques e menor carga cognitiva.</p>
-          </div>
-          <div class="bg-[#FFFCF7] border border-[#DED2C4] rounded-2xl p-6 spotlight-card">
-            <div class="text-xs text-[#7C756B] uppercase tracking-widest mb-2">Método 03</div>
-            <h5 class="text-[#333] font-semibold text-sm mb-2">Foco em Heurísticas</h5>
-            <p class="text-[#7C756B] text-xs leading-relaxed">Usuário pode corrigir sem perder o trabalho. TMA 10→3 min como KPI principal de todo o redesenho.</p>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="mb-card mb-card-dark bg-[#222] border border-white/10 rounded-2xl p-6">
-            <h5 class="font-semibold text-white mb-2 text-sm">Alinhamento com Engenharia</h5>
-            <p class="text-white/55 text-xs leading-relaxed">Antes de qualquer protótipo, alinhei com os devs do Casino as restrições técnicas. Não adianta idealizar o impossível.</p>
-          </div>
-          <div class="mb-card mb-card-dark bg-[#222] border border-white/10 rounded-2xl p-6">
-            <h5 class="font-semibold text-white mb-2 text-sm">Revisão de Taxonomia</h5>
-            <p class="text-white/55 text-xs leading-relaxed">Questionei cada campo: "isso é realmente necessário para o MI6?" O Zammad travava por excesso — não podia repetir o mesmo erro.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ──── IA FIRST (not a step — tools section) ──── -->
-    <div id="ia-first" class="mb-24 scroll-mt-32">
-      <div class="reveal mb-3"><span class="text-xs text-[#7C756B] uppercase tracking-[.22em]">Ferramentas Utilizadas</span></div>
-      <h3 class="reveal text-2xl font-bold text-[#333] mb-8">IA First no MI6</h3>
-
-      <div class="reveal bg-[#111] rounded-2xl p-8 lg:p-12 mb-5">
-        <p class="text-white/45 text-xs uppercase tracking-[.2em] mb-2">Abordagem</p>
-        <h4 class="text-2xl lg:text-3xl font-bold text-white mb-10 max-w-xl leading-tight">IA não como atalho, mas como aceleradora de qualidade.</h4>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-
-          <!-- Gemini -->
-          <div class="ia-card mb-card mb-card-dark">
-            <div class="ia-logo" style="background:linear-gradient(135deg,#1a73e8 0%,#4285f4 40%,#34a853 70%,#ea4335 100%)">
-              <!-- Gemini star icon -->
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 13.5 8.5 18 10C13.5 11.5 12 18 12 18C12 18 10.5 11.5 6 10C10.5 8.5 12 2 12 2Z" fill="white"/><path d="M19 17C19 17 19.8 20 22 21C19.8 22 19 25 19 25C19 25 18.2 22 16 21C18.2 20 19 17 19 17Z" fill="white" opacity=".7"/></svg>
-            </div>
-            <div class="ia-card-body">
-              <h5 class="text-white font-semibold mb-2 text-sm">Gemini</h5>
-              <p class="text-white/55 text-xs leading-relaxed">Redação técnica e estruturação do discovery. Processou o volume massivo de dados qualitativos do shadowing, transformando-os em insights acionáveis para PMs e Engenharia.</p>
-            </div>
-            <div class="mt-3 pt-3 border-t border-white/10 text-[#DED2C4] text-xs font-medium">Síntese de discovery acelerada</div>
-          </div>
-
-          <!-- Cursor -->
-          <div class="ia-card mb-card mb-card-dark">
-            <div class="ia-logo" style="background:#000; border:1px solid rgba(255,255,255,.15)">
-              <!-- Cursor logo approximation -->
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" fill="white" opacity=".08"/><path d="M8 7l8 5-8 5V7z" fill="white"/><rect x="14" y="14" width="6" height="6" rx="1" fill="white" opacity=".5"/></svg>
-            </div>
-            <div class="ia-card-body">
-              <h5 class="text-white font-semibold mb-2 text-sm">Cursor</h5>
-              <p class="text-white/55 text-xs leading-relaxed">Suporte crítico na redação técnica e documentação estratégica. Base teórica robusta para discussões com times de engenharia e produto durante o discovery.</p>
-            </div>
-            <div class="mt-3 pt-3 border-t border-white/10 text-[#DED2C4] text-xs font-medium">Documentação técnica estruturada</div>
-          </div>
-
-          <!-- Claude -->
-          <div class="ia-card mb-card mb-card-dark">
-            <div class="ia-logo" style="background:linear-gradient(135deg,#CC785C,#D4956A)">
-              <!-- Claude anthropic mark -->
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3L15.5 13H20L12 21L4 13H8.5L12 3Z" fill="white" opacity=".9"/></svg>
-            </div>
-            <div class="ia-card-body">
-              <h5 class="text-white font-semibold mb-2 text-sm">Claude</h5>
-              <p class="text-white/55 text-xs leading-relaxed">Organização da arquitetura de informação. Com +50 telas identificadas, renomeei e categorizei screenshots sistematicamente com o cowork, criando biblioteca de referências consultável.</p>
-            </div>
-            <div class="mt-3 pt-3 border-t border-white/10 text-[#DED2C4] text-xs font-medium">Eliminou retrabalho manual repetitivo</div>
-          </div>
-
-          <!-- Figma Make -->
-          <div class="ia-card mb-card mb-card-dark">
-            <div class="ia-logo" style="background:#fff">
-              <!-- Figma official logo colors -->
-              <svg width="22" height="22" viewBox="0 0 38 57" fill="none">
-                <path d="M19 28.5A9.5 9.5 0 1 1 28.5 19 9.5 9.5 0 0 1 19 28.5Z" fill="#1ABCFE"/>
-                <path d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19V47.5A9.5 9.5 0 0 1 0 47.5Z" fill="#0ACF83"/>
-                <path d="M19 0H9.5A9.5 9.5 0 0 0 9.5 19H19V0Z" fill="#FF7262"/>
-                <path d="M19 0H28.5A9.5 9.5 0 0 1 28.5 19H19V0Z" fill="#F24E1E"/>
-                <path d="M19 19H9.5A9.5 9.5 0 0 0 9.5 38H19V19Z" fill="#A259FF"/>
-              </svg>
-            </div>
-            <div class="ia-card-body">
-              <h5 class="text-white font-semibold mb-2 text-sm">Figma Make</h5>
-              <p class="text-white/55 text-xs leading-relaxed">MVP funcional via prompts detalhados respeitando a identidade do Nubank. Três cenários validados antes do hi-fi. Abordagem "fail fast" que evitou retrabalho de design.</p>
-            </div>
-            <div class="mt-3 pt-3 border-t border-white/10 text-[#DED2C4] text-xs font-medium">MVP gerado antes do hi-fi final</div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Quote + photo -->
-      <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-        <div class="lg:col-span-4">
-          <div class="w-full aspect-[4/5] rounded-2xl overflow-hidden">
-            <img src="images/Nayene-content.jpeg" alt="Nayene" class="w-full h-full object-cover"
-                 onerror="this.parentElement.innerHTML='<div class=\'img-ph w-full h-full\' style=\'font-size:.68rem;letter-spacing:.1em\'>Nayene-content.png<br>na pasta images/</div>';" />
-          </div>
-        </div>
-        <div class="lg:col-span-8">
-          <div class="bg-[#FFFCF7] rounded-2xl p-8 border-l-4 border-[#333]">
-            <svg width="32" height="22" viewBox="0 0 32 22" fill="none" class="mb-5"><path d="M0 22V13C0 5.82 4.67 1.53 14 0L15.5 2.5C10.83 3.83 8.17 6.33 7.5 10H13V22H0ZM19 22V13C19 5.82 23.67 1.53 33 0L34.5 2.5C29.83 3.83 27.17 6.33 26.5 10H32V22H19Z" fill="#DED2C4"/></svg>
-            <p id="ia-quote" class="text-[#333] font-medium leading-relaxed text-base lg:text-lg">
-              "Usar IA na prototipagem acelerou muito o alinhamento com Devs e PMs. Conseguimos sair da ideia abstrata para algo visual em minutos, mantendo a consistência visual que o Casino Royale precisava. No final das contas, o melhor design é aquele que o usuário nem percebe que está usando."
-            </p>
-            <div class="mt-5 pt-5 border-t border-[#EFECE7]">
-              <p class="text-sm font-semibold text-[#333]">Nayene Espindola</p>
-              <p class="text-xs text-[#7C756B]">Product Designer · IC3 IT Engineering, Nubank</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ──── ETAPA 04 — MVP ──── -->
-    <div id="mvp" class="mb-4 scroll-mt-32">
-      <div class="reveal flex items-center gap-3 mb-8">
-        <div class="w-8 h-8 rounded-full border-2 border-[#333] text-[#333] flex items-center justify-center text-xs font-bold">04</div>
-        <div><span class="text-xs text-[#7C756B] uppercase tracking-widest block">Etapa 04 · Atualização Março 2026</span><h3 class="text-xl font-bold text-[#333]">MVP — Validação de Fluxo</h3></div>
-      </div>
-      <div class="reveal bg-[#FFFCF7] rounded-2xl p-7 mb-8">
-        <p class="text-[#7C756B] leading-relaxed text-sm mb-4">O foco saiu do diagnóstico e entrou na materialização da solução. O objetivo central é validar a estrutura lógica do novo sistema de tickets antes de investir tempo no refinamento visual de alta fidelidade.</p>
-        <div class="flex flex-wrap gap-2">
-          <span class="tag bg-[#EFECE7] text-[#333]">Fluxo em Steps</span>
-          <span class="tag bg-[#EFECE7] text-[#333]">Interface em Cards</span>
-          <span class="tag bg-[#EFECE7] text-[#333]">Redução de Carga Cognitiva</span>
-          <span class="tag bg-[#DED2C4] text-[#7C756B]">UI ainda não definida</span>
-        </div>
-      </div>
-      <!-- Video inside browser mockup -->
-      <div class="reveal mb-8" id="laptop-outer">
-        <div style="background:linear-gradient(160deg,#0d0d14 0%,#12121e 45%,#0f1118 100%);border-radius:28px;padding:36px 36px 28px;box-shadow:0 48px 120px rgba(0,0,0,0.65),0 0 0 1px rgba(255,255,255,0.05);position:relative;overflow:hidden;">
-          <!-- ambient glow top-left -->
-          <div style="position:absolute;top:-100px;left:-80px;width:420px;height:420px;background:radial-gradient(circle,rgba(170,104,255,0.09) 0%,transparent 65%);pointer-events:none;"></div>
-          <!-- ambient glow bottom-right -->
-          <div style="position:absolute;bottom:-80px;right:-80px;width:340px;height:340px;background:radial-gradient(circle,rgba(100,160,255,0.06) 0%,transparent 65%);pointer-events:none;"></div>
-          <!-- subtle grid -->
-          <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;border-radius:28px;"></div>
-          <!-- perspective container -->
-          <div style="perspective:1100px;perspective-origin:50% 20%;">
-            <div id="laptop-lid" style="transform-origin:50% 100%;will-change:transform;transform-style:preserve-3d;">
-              <!-- Browser window frame -->
-              <div style="background:#18181f;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);box-shadow:0 28px 80px rgba(0,0,0,0.7),0 0 0 1px rgba(255,255,255,0.04);">
-                <!-- Browser chrome bar -->
-                <div style="background:#111115;padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.07);">
-                  <!-- Traffic lights -->
-                  <div style="display:flex;gap:6px;flex-shrink:0;">
-                    <div style="width:12px;height:12px;border-radius:50%;background:#FF5F57;box-shadow:0 0 6px rgba(255,95,87,0.5);"></div>
-                    <div style="width:12px;height:12px;border-radius:50%;background:#FFBD2E;box-shadow:0 0 6px rgba(255,189,46,0.4);"></div>
-                    <div style="width:12px;height:12px;border-radius:50%;background:#28CA41;box-shadow:0 0 6px rgba(40,202,65,0.4);"></div>
-                  </div>
-                  <!-- Active tab -->
-                  <div style="background:rgba(255,255,255,0.07);border-radius:7px 7px 0 0;padding:5px 14px;border:1px solid rgba(255,255,255,0.08);border-bottom:none;flex-shrink:0;margin-bottom:-10px;padding-bottom:14px;">
-                    <span style="font-size:10px;color:rgba(255,255,255,0.55);font-family:'Inter',sans-serif;font-weight:500;">Casino Royale · MI6</span>
-                  </div>
-                  <!-- URL bar -->
-                  <div style="flex:1;background:rgba(255,255,255,0.05);border-radius:7px;padding:5px 12px;border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:6px;">
-                    <div style="width:7px;height:7px;border-radius:50%;background:rgba(40,202,65,0.7);flex-shrink:0;"></div>
-                    <span style="font-size:10px;color:rgba(255,255,255,0.3);font-family:monospace;">nubank.io/casino-royale/mi6/portal</span>
-                  </div>
-                </div>
-                <!-- Video screen -->
-                <div style="aspect-ratio:16/10;background:#0a0a0d;position:relative;">
-                  <video id="mvp-video" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;">
-                    <source src="images/VIDEO-MVP.mov" type="video/mp4"/>
-                    <source src="images/VIDEO-MVP.mov" type="video/quicktime"/>
-                  </video>
-                </div>
-                <!-- Status bar -->
-                <div style="background:#0d0d10;padding:6px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.05);">
-                  <span style="font-size:9px;color:rgba(255,255,255,0.18);font-family:'Inter',sans-serif;letter-spacing:0.06em;">MVP · Fluxo em Validação</span>
-                  <span style="font-size:9px;color:rgba(170,104,255,0.65);font-family:'Inter',sans-serif;letter-spacing:0.06em;">● Live Demo · Mar 2026</span>
-                </div>
+            <div class="flex-shrink-0 flex items-center gap-3">
+              <span class="text-xs uppercase tracking-wider" style="color:#7C756B;">Ver case</span>
+              <div class="w-11 h-11 rounded-full border flex items-center justify-center group-hover:bg-white/10 transition-all" style="border-color:#333;">
+                <span style="color:#7C756B;font-size:1.1rem;">→</span>
               </div>
             </div>
           </div>
-          <p style="text-align:center;margin-top:22px;font-size:0.65rem;color:rgba(255,255,255,0.2);letter-spacing:0.14em;text-transform:uppercase;font-family:'Inter',sans-serif;">Demonstração do fluxo MVP — Cards + Steps · Março 2026</p>
-        </div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div class="reveal bg-[#FFFCF7] rounded-2xl p-6 card-lift">
-          <span class="tag bg-[#EFECE7] text-[#333] mb-4 block w-fit">Solução</span>
-          <h5 class="font-bold text-[#333] mb-3 text-sm">Fluxo Fragmentado em 3 Steps</h5>
-          <p class="text-[#7C756B] text-sm leading-relaxed">Em vez de exibir todos os campos de uma vez, a informação é fatiada. O usuário foca numa decisão por vez — eliminando a confusão dos menus com 50+ opções.</p>
-        </div>
-        <div class="reveal d1 bg-[#FFFCF7] rounded-2xl p-6 card-lift">
-          <span class="tag bg-[#EFECE7] text-[#333] mb-4 block w-fit">Heurística</span>
-          <h5 class="font-bold text-[#333] mb-3 text-sm">Cards com Descrições Claras</h5>
-          <p class="text-[#7C756B] text-sm leading-relaxed">Cada categoria vem com descrição clara. O coordenador identifica o caminho correto no primeiro clique — evitando o erro que hoje gera 100% de retrabalho.</p>
-        </div>
-        <div class="reveal d2 bg-[#FFFCF7] rounded-2xl p-6 card-lift">
-          <span class="tag bg-[#DED2C4] text-[#7C756B] mb-4 block w-fit">Próximo Passo</span>
-          <h5 class="font-bold text-[#333] mb-3 text-sm">Definição de Campos (Step 4)</h5>
-          <p class="text-[#7C756B] text-sm leading-relaxed">Identificar quais informações são realmente cruciais para o suporte, eliminando campos burocráticos como "Squad" e "ID de Job" em situações de crise.</p>
-        </div>
-      </div>
-      <div class="reveal">
-        <p class="text-xs text-[#7C756B] uppercase tracking-[.2em] mb-6">Próximos Passos</p>
-        <h4 class="text-2xl font-bold text-[#333] leading-tight mb-8">O caminho até o produto final.</h4>
-        <!-- ScrollStack: CSS sticky stacking cards -->
-        <div style="position:relative;">
-          <!-- Card 01 -->
-          <div style="position:sticky;top:88px;z-index:1;background:#FFFCF7;border:1px solid #DED2C4;border-radius:24px;padding:28px 32px;overflow:hidden;box-shadow:0 2px 24px rgba(0,0,0,0.06);">
-            <div style="position:absolute;right:20px;bottom:-14px;font-size:7rem;font-weight:900;color:#DED2C4;line-height:1;user-select:none;opacity:0.1;">01</div>
-            <div class="w-9 h-9 bg-[#EFECE7] rounded-xl flex items-center justify-center mb-4"><svg width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2" stroke="#7C756B" stroke-width="1.5"/><path d="M5 5h6M5 8h4" stroke="#7C756B" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-            <h5 class="font-bold text-[#333] mb-2">Definição de Campos</h5>
-            <p class="text-[#7C756B] text-sm leading-relaxed" style="max-width:480px;">Cortar campos burocráticos, manter só o que o suporte precisa para resolver. Nada de "Squad" em crise.</p>
-          </div>
-          <div style="height:8vh;"></div>
-          <!-- Card 02 -->
-          <div style="position:sticky;top:88px;z-index:2;background:#FFFCF7;border:1px solid #DED2C4;border-radius:24px;padding:28px 32px;overflow:hidden;box-shadow:0 2px 24px rgba(0,0,0,0.08);">
-            <div style="position:absolute;right:20px;bottom:-14px;font-size:7rem;font-weight:900;color:#DED2C4;line-height:1;user-select:none;opacity:0.1;">02</div>
-            <div class="w-9 h-9 bg-[#EFECE7] rounded-xl flex items-center justify-center mb-4"><svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="6" r="3" stroke="#7C756B" stroke-width="1.5"/><path d="M3 14c0-2.76 2.24-5 5-5s5 2.24 5 5" stroke="#7C756B" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-            <h5 class="font-bold text-[#333] mb-2">Validação com BPOs</h5>
-            <p class="text-[#7C756B] text-sm leading-relaxed" style="max-width:480px;">Levar o modelo de cards direto pra quem usa. TMA de 10 pra 3 — não no papel, na operação real.</p>
-          </div>
-          <div style="height:8vh;"></div>
-          <!-- Card 03 -->
-          <div style="position:sticky;top:88px;z-index:3;background:#FFFCF7;border:1px solid #DED2C4;border-radius:24px;padding:28px 32px;overflow:hidden;box-shadow:0 2px 24px rgba(0,0,0,0.10);">
-            <div style="position:absolute;right:20px;bottom:-14px;font-size:7rem;font-weight:900;color:#DED2C4;line-height:1;user-select:none;opacity:0.1;">03</div>
-            <div class="w-9 h-9 bg-[#EFECE7] rounded-xl flex items-center justify-center mb-4"><svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M2 14l4-4 3 3 5-8" stroke="#7C756B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <h5 class="font-bold text-[#333] mb-2">Refinamento Visual</h5>
-            <p class="text-[#7C756B] text-sm leading-relaxed" style="max-width:480px;">Com fluxo validado, aplicar o Design System do Nubank. Beleza vem depois da funcionalidade.</p>
-          </div>
-          <div style="height:8vh;"></div>
-          <!-- Card 04 dark -->
-          <div style="position:sticky;top:88px;z-index:4;background:#333;border-radius:24px;padding:28px 32px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.25);">
-            <div style="position:absolute;right:20px;bottom:-14px;font-size:7rem;font-weight:900;color:rgba(255,255,255,0.07);line-height:1;user-select:none;">04</div>
-            <div class="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center mb-4"><svg width="16" height="16" fill="none" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2" stroke="white" stroke-width="1.5" opacity="0.7"/><path d="M6 8l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <h5 class="font-bold text-white mb-2">Handoff para Dev</h5>
-            <p class="text-white/55 text-sm leading-relaxed" style="max-width:480px;">Especificações técnicas, guia de componentes e documentação para implementação no Casino Royale.</p>
-          </div>
-          <div style="height:8vh;"></div>
-          <!-- Card 05 dark -->
-          <div style="position:sticky;top:88px;z-index:5;background:#2a2a2a;border-radius:24px;padding:28px 32px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.3);">
-            <div style="position:absolute;right:20px;bottom:-14px;font-size:7rem;font-weight:900;color:rgba(255,255,255,0.07);line-height:1;user-select:none;">05</div>
-            <div class="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center mb-4"><svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="white" stroke-width="1.5" opacity="0.7"/><path d="M5 8h6M8 5v6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-            <h5 class="font-bold text-white mb-2">Expansão para MX e CO</h5>
-            <p class="text-white/55 text-sm leading-relaxed" style="max-width:480px;">Adaptar o fluxo para México e Colômbia — contextos diferentes, mesma estrutura unificada.</p>
-          </div>
-          <div style="height:8vh;"></div>
-          <!-- Card 06 dark -->
-          <div style="position:sticky;top:88px;z-index:6;background:#222;border-radius:24px;padding:28px 32px;overflow:hidden;box-shadow:0 4px 40px rgba(0,0,0,0.35);margin-bottom:0;">
-            <div style="position:absolute;right:20px;bottom:-14px;font-size:7rem;font-weight:900;color:rgba(255,255,255,0.07);line-height:1;user-select:none;">06</div>
-            <div class="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center mb-4"><svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="white" stroke-width="1.5" opacity="0.7"/><path d="M8 5v3l2 2" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-            <h5 class="font-bold text-white mb-2">Medição de Impacto</h5>
-            <p class="text-white/55 text-sm leading-relaxed" style="max-width:480px;">Acompanhamento do TMA em produção. Meta: 10→3 min comprovado na operação real dos três países.</p>
-          </div>
-          <div style="height:4vh;"></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══ ASKNU ═══ -->
-<section id="asknu" class="py-24 bg-[#FFFCF7]">
-  <div class="max-w-[1360px] mx-auto px-6 lg:px-16">
-    <div class="reveal mb-3"><span class="text-xs text-[#7C756B] tracking-[.22em] uppercase">Projetos em Destaque · Nubank</span></div>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-      <div>
-        <h3 class="reveal text-4xl lg:text-5xl font-bold text-[#333] tracking-tight leading-tight mb-3">AskNu</h3>
-        <p class="reveal text-xl text-[#7C756B] mb-5">Identidade Visual de Feature de IA</p>
-        <p class="reveal text-[#7C756B] leading-relaxed mb-8 text-sm max-w-md">Design de identidade visual para o assistente interno de IA do Nubank — ajudando nubankers a acessar conhecimento com clareza, confiança e adoção consistente nos canais internos.</p>
-        <a href="https://drive.google.com/file/d/1cAl3cNBgvMIF4XugImR56o16DQ-9aguL/view?usp=sharing" target="_blank"
-           class="reveal inline-flex items-center gap-2 text-[#333] font-semibold text-sm group hover:gap-3 transition-all">
-          <span>Ver Vídeo de Onboarding AskNu</span>
-          <svg width="14" height="14" fill="none" viewBox="0 0 14 14" class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="#7C756B" stroke-width="1.5" stroke-linecap="round"/></svg>
         </a>
-      </div>
-      <div class="space-y-4">
-        <div class="reveal grid grid-cols-2 gap-4">
-          <div class="bg-[#EFECE7] rounded-2xl p-5"><h4 class="text-xs font-semibold text-[#333] uppercase tracking-[.1em] mb-2">Contexto</h4><p class="text-[#7C756B] text-sm leading-relaxed">IT Engineering lançava o AskNu e precisava de identidade para facilitar compreensão, confiança e adoção entre nubankers.</p></div>
-          <div class="bg-[#EFECE7] rounded-2xl p-5"><h4 class="text-xs font-semibold text-[#333] uppercase tracking-[.1em] mb-2">Papel</h4><p class="text-[#7C756B] text-sm leading-relaxed">Identidade da Feature, Criativos de Comunicação Interna, Templates Slack, Automação com Zapier AI.</p></div>
-        </div>
-        <div class="reveal bg-[#222] rounded-2xl p-6">
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(255,74,0,.2)">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6L8 1Z" fill="#FF4A00"/></svg>
+
+        <!-- AskNu + Outros Projetos -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
+          <!-- AskNu (destaque médio) -->
+          <a href="asknu.html" class="group block bg-[#EFECE7] rounded-2xl p-7 card-lift spotlight-card transition-all duration-400" style="text-decoration:none;">
+            <span class="inline-flex items-center gap-2 text-xs text-[#7C756B] tracking-[.22em] uppercase mb-4">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#7C756B] inline-block"></span>
+              Identidade · Nubank
+            </span>
+            <h3 class="text-2xl font-bold text-[#333] tracking-tight mb-3">AskNu</h3>
+            <p class="text-[#7C756B] text-sm leading-relaxed mb-6">Identidade visual para ferramenta interna de IA, do naming ao vídeo animado exibido nos elevadores do Nubank.</p>
+            <div class="flex gap-2 mb-6">
+              <span class="tag bg-[#DED2C4] text-[#333]">Branding</span>
+              <span class="tag bg-[#DED2C4] text-[#333]">Motion</span>
             </div>
-            <div>
-              <h5 class="text-white font-semibold mb-1 text-sm">Automação com Zapier AI</h5>
-              <p class="text-white/65 text-sm leading-relaxed">Reduziu criação de comunicados de <strong class="text-white">43h para 1h por domínio</strong> — eliminando gargalos de coleta de informações e acelerando a execução do roadmap de comunicação.</p>
+            <div class="flex items-center gap-2 text-[#333] text-sm font-medium group-hover:gap-3 transition-all duration-300">
+              <span>Ver projeto</span><span class="text-[#7C756B]">→</span>
             </div>
-          </div>
+          </a>
+
+          <!-- Outros Projetos -->
+          <a href="outros-projetos.html" class="group block bg-[#EFECE7] rounded-2xl p-7 card-lift spotlight-card transition-all duration-400" style="text-decoration:none;">
+            <span class="inline-flex items-center gap-2 text-xs text-[#7C756B] tracking-[.22em] uppercase mb-4">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#7C756B] inline-block"></span>
+              Portfólio
+            </span>
+            <h3 class="text-2xl font-bold text-[#333] tracking-tight mb-3">Outros Projetos</h3>
+            <p class="text-[#7C756B] text-sm leading-relaxed mb-5">Identidade visual de eventos, exploração de UI, filtros AR e estudos com IA generativa.</p>
+            <div class="flex gap-2 mb-6">
+              <span class="tag bg-[#DED2C4] text-[#333]">Nubank</span>
+              <span class="tag bg-[#DED2C4] text-[#333]">Pessoais</span>
+            </div>
+            <div class="flex items-center gap-2 text-[#333] text-sm font-medium group-hover:gap-3 transition-all duration-300">
+              <span>Explorar</span><span class="text-[#7C756B]">→</span>
+            </div>
+          </a>
+
         </div>
-        <div class="reveal bg-[#EFECE7] rounded-2xl p-5"><h4 class="text-xs font-semibold text-[#333] uppercase tracking-[.1em] mb-2">Impacto</h4><p class="text-[#7C756B] text-sm leading-relaxed">Alta taxa de reconhecimento da ferramenta, feedback positivo sobre a linguagem de design acessível e vídeo animado exibido nos elevadores do Nubank até hoje.</p></div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ═══ OUTROS PROJETOS ═══ -->
-<section id="outros-projetos" class="py-24 bg-[#EFECE7]">
-  <div class="max-w-[1360px] mx-auto px-6 lg:px-16">
-    <div class="reveal mb-3"><span class="text-xs text-[#7C756B] tracking-[.22em] uppercase">Trabalhos Adicionais</span></div>
-    <h2 class="reveal text-5xl lg:text-6xl font-bold text-[#333] tracking-tight mb-16">Outros Projetos</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-      <div class="reveal group cursor-pointer" onclick="window.open('https://drive.google.com/drive/folders/1yGCTSz03WgNbZQIyBbYKu8m2LNlK1okv?usp=sharing','_blank')">
-        <div class="aspect-[4/3] rounded-2xl overflow-hidden mb-5 shadow-sm group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-400">
-          <img src="images/project-ctp-conference.png" alt="CTP Conference" class="w-full h-full object-cover"
-               onerror="this.parentElement.innerHTML='<div class=\'img-ph w-full h-full\'>project-ctp-conference.png</div>';" />
-        </div>
-        <div class="text-xs uppercase tracking-[.15em] text-[#7C756B] mb-1">Identidade Visual de Eventos</div>
-        <h3 class="text-2xl font-bold text-[#333] mb-2 tracking-tight">CTP Conference</h3>
-        <p class="text-[#7C756B] leading-relaxed text-sm">Design de comunicação para eventos incluindo identidade visual, reações personalizadas para Slack, assets visuais e desenvolvimento de swags para participantes.</p>
-      </div>
-
-      <div class="reveal d1 group cursor-pointer" onclick="window.open('https://www.figma.com/proto/kTX05dxhJeaQodMGn1IQmV/My-First-Project','_blank')">
-        <div class="aspect-[4/3] rounded-2xl overflow-hidden mb-5 shadow-sm group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-400">
-          <img src="images/project-pinterest.png" alt="Pinterest Prototype" class="w-full h-full object-cover"
-               onerror="this.parentElement.innerHTML='<div class=\'img-ph w-full h-full\'>project-pinterest.png</div>';" />
-        </div>
-        <div class="text-xs uppercase tracking-[.15em] text-[#7C756B] mb-1">Exploração de UI</div>
-        <h3 class="text-2xl font-bold text-[#333] mb-2 tracking-tight">Pinterest Prototype</h3>
-        <p class="text-[#7C756B] leading-relaxed text-sm">Projeto pessoal de exploração de interface focado em prototipagem — meu primeiro mergulho no Figma e no raciocínio de UI.</p>
-      </div>
-
-      <div class="reveal group">
-        <div class="aspect-[4/3] rounded-2xl overflow-hidden mb-5 shadow-sm group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-400">
-          <img src="images/project-ar-filters.png" alt="AR Filters" class="w-full h-full object-cover"
-               onerror="this.parentElement.innerHTML='<div class=\'img-ph w-full h-full\'>project-ar-filters.png</div>';" />
-        </div>
-        <div class="text-xs uppercase tracking-[.15em] text-[#7C756B] mb-1">Meta Spark · Realidade Aumentada</div>
-        <h3 class="text-2xl font-bold text-[#333] mb-2 tracking-tight">AR Filters</h3>
-        <p class="text-[#7C756B] leading-relaxed text-sm">Criação de filtros de realidade aumentada para Instagram usando Meta Spark. Exploração criativa onde design e tecnologia se encontravam. Plataforma descontinuada pela Meta.</p>
-      </div>
-
-      <div class="reveal d1 group cursor-pointer" onclick="window.open('https://drive.google.com/file/d/1gax1dRlAyA-KNoFLREanKmQYbtE9fwuR/view?usp=drive_link','_blank')">
-        <div class="aspect-[4/3] rounded-2xl overflow-hidden mb-5 shadow-sm group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-400">
-          <img src="images/project-ai-video.png" alt="Design em Vídeo com IA" class="w-full h-full object-cover"
-               onerror="this.parentElement.innerHTML='<div class=\'img-ph w-full h-full\'>project-ai-video.png</div>';" />
-        </div>
-        <div class="text-xs uppercase tracking-[.15em] text-[#7C756B] mb-1">Exploração Criativa · IA</div>
-        <h3 class="text-2xl font-bold text-[#333] mb-2 tracking-tight">Design em Vídeo com IA</h3>
-        <p class="text-[#7C756B] leading-relaxed text-sm">Vídeos com ferramentas de IA como estudos pessoais, além de vídeo animado no Canva para o AskNu — exibido nos elevadores do Nubank até hoje.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ SOBRE ═══ -->
-<section id="sobre" class="py-24 bg-[#FFFCF7]">
-  <div class="max-w-[1360px] mx-auto px-6 lg:px-16">
-    <h2 class="reveal text-5xl lg:text-6xl font-bold text-[#333] tracking-tight mb-16">Sobre mim</h2>
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-      <div class="lg:col-span-4 reveal-left">
-        <div class="rounded-2xl overflow-hidden shadow-md">
-          <img src="images/Nayene-header.jpeg" alt="Nayene Espindola" class="w-full h-auto object-cover"
-               onerror="this.parentElement.innerHTML='<div class=\'img-ph aspect-[3/4] w-full\' style=\'font-size:.68rem;letter-spacing:.1em\'>Nayene-header.png<br>na pasta images/</div>';" />
-        </div>
-      </div>
-      <div class="lg:col-span-8 reveal space-y-5 text-[#7C756B] text-lg leading-relaxed">
-        <p>Tenho 24 anos e formação técnica em Desenvolvimento de Software. Desde cedo me interessei por tecnologia e sempre tive uma grande paixão por design e comunicação visual.</p>
-        <p>Antes de entrar no Nubank, comecei explorando o design de forma independente — criativos para Instagram, logos, identidades visuais simples, além de filtros de realidade aumentada usando Meta Spark e AR Effects.</p>
-        <p>Entrei no Nubank como Jovem Aprendiz, onde colaborei em diferentes iniciativas de comunicação visual: apresentações, materiais internos e identidades para projetos e eventos.</p>
-        <p>Com o tempo, me aproximei cada vez mais do universo de design de produto, contribuindo com soluções visuais e estruturais para ferramentas internas utilizadas por times de engenharia e operações.</p>
-        <p>Atualmente estou aprofundando meus conhecimentos em Product Design — mentorias, projetos de aprendizado e prototipagem no Figma com foco em usabilidade e sistemas complexos.</p>
-        <p class="text-[#333] font-medium">Hoje meu foco é projetar interfaces e experiências que simplifiquem fluxos complexos, especialmente em plataformas internas, ferramentas de conhecimento e soluções baseadas em IA.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1178,26 +463,6 @@
   </div>
 </footer>
 
-<!-- ── BOTTOM CASE NAV ── -->
-<div id="case-nav">
-  <div class="cn-steps">
-    <div class="cn-step" onclick="document.getElementById('discovery').scrollIntoView({behavior:'smooth'})">
-      <div class="cn-dot"></div><span class="cn-label">Discovery</span>
-    </div>
-    <div class="cn-line"><div class="cn-line-fill"></div></div>
-    <div class="cn-step" onclick="document.getElementById('shadowing').scrollIntoView({behavior:'smooth'})">
-      <div class="cn-dot"></div><span class="cn-label">Shadowing</span>
-    </div>
-    <div class="cn-line"><div class="cn-line-fill"></div></div>
-    <div class="cn-step" onclick="document.getElementById('prototipagem').scrollIntoView({behavior:'smooth'})">
-      <div class="cn-dot"></div><span class="cn-label">Prototipagem</span>
-    </div>
-    <div class="cn-line"><div class="cn-line-fill"></div></div>
-    <div class="cn-step" onclick="document.getElementById('mvp').scrollIntoView({behavior:'smooth'})">
-      <div class="cn-dot"></div><span class="cn-label">MVP</span>
-    </div>
-  </div>
-</div>
 
 <script>
 /* ── mobile menu ── */
@@ -1214,79 +479,6 @@ const revObs = new IntersectionObserver(entries => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach(el => revObs.observe(el));
 
-/* ── roadmap scroll ── */
-function goTo(id) {
-  const el = document.getElementById(id);
-  if (el) window.scrollTo({ top: el.getBoundingClientRect().top + pageYOffset - 110, behavior: 'smooth' });
-}
-
-/* ── roadmap: steps 01-03 permanently active, 04 pending ── */
-(function() {
-  [0,1,2].forEach(function(i) {
-    var n = document.getElementById('rm-' + i);
-    if (n) n.classList.add('active');
-  });
-  var rf0 = document.getElementById('rf-0'), rf1 = document.getElementById('rf-1'), rf2 = document.getElementById('rf-2');
-  setTimeout(function() {
-    if (rf0) rf0.style.width = '100%';
-    if (rf1) rf1.style.width = '100%';
-    if (rf2) rf2.style.width = '60%';
-  }, 300);
-})();
-
-/* ── Bottom case nav ── */
-var mi6El = document.getElementById('case-mi6');
-var caseNavEl = document.getElementById('case-nav');
-var cnSections = ['discovery','shadowing','prototipagem','mvp'];
-function updateCaseNav() {
-  if (!mi6El || !caseNavEl) return;
-  var r = mi6El.getBoundingClientRect();
-  caseNavEl.classList.toggle('visible', r.top < window.innerHeight && r.bottom > 0);
-  var activeIdx = 0;
-  cnSections.forEach(function(id, i) {
-    var el = document.getElementById(id);
-    if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.55) activeIdx = i;
-  });
-  document.querySelectorAll('.cn-step').forEach(function(s, i) {
-    s.classList.toggle('cn-active', i === activeIdx);
-    s.classList.toggle('cn-done', i < activeIdx);
-  });
-  document.querySelectorAll('.cn-line').forEach(function(l, i) {
-    var fill = l.querySelector('.cn-line-fill');
-    if (fill) fill.style.width = i < activeIdx ? '100%' : (i === activeIdx ? '60%' : '0%');
-  });
-}
-window.addEventListener('scroll', updateCaseNav, { passive: true });
-updateCaseNav();
-
-/* ── GSAP ScrollReveal word-by-word (sr-headline) ── */
-if (window.gsap && window.ScrollTrigger) {
-  gsap.registerPlugin(ScrollTrigger);
-  document.querySelectorAll('.sr-headline').forEach(function(h) {
-    var words = h.innerText.split(' ');
-    h.innerHTML = words.map(function(w) {
-      return '<span class="sr-word">' + w + '</span>';
-    }).join(' ');
-    gsap.fromTo(h.querySelectorAll('.sr-word'),
-      { opacity: 0.08, filter: 'blur(4px)' },
-      { opacity: 1, filter: 'blur(0px)', stagger: 0.08,
-        scrollTrigger: { trigger: h, start: 'top 82%', end: 'bottom 30%', scrub: true }
-      }
-    );
-  });
-
-  /* ── IA quote blur-in reveal ── */
-  var quoteEl = document.getElementById('ia-quote');
-  if (quoteEl) {
-    gsap.set(quoteEl, { opacity: 0, filter: 'blur(12px)', y: 18 });
-    gsap.to(quoteEl, {
-      opacity: 1, filter: 'blur(0px)', y: 0,
-      duration: 1.4, ease: 'power3.out',
-      scrollTrigger: { trigger: quoteEl, start: 'top 82%', once: true }
-    });
-  }
-}
-
 /* ── SpotlightCard mouse tracking ── */
 document.querySelectorAll('.spotlight-card').forEach(function(el) {
   el.addEventListener('mousemove', function(e) {
@@ -1296,105 +488,16 @@ document.querySelectorAll('.spotlight-card').forEach(function(el) {
   });
 });
 
-/* ── MagicBento border glow + particles + click ripple ── */
-(function() {
-  var cards = document.querySelectorAll('.mb-card');
-  cards.forEach(function(card) {
-    var isDark = card.classList.contains('mb-card-dark');
-
-    /* glow tracking */
-    card.addEventListener('mousemove', function(e) {
-      var r = card.getBoundingClientRect();
-      card.style.setProperty('--glow-x', (e.clientX - r.left) + 'px');
-      card.style.setProperty('--glow-y', (e.clientY - r.top) + 'px');
-      card.style.setProperty('--glow-intensity', '1');
-    });
-    card.addEventListener('mouseleave', function() {
-      card.style.setProperty('--glow-intensity', '0');
-    });
-
-    /* particles */
-    var parts = [], tids = [];
-    function spawnParts() {
-      var r = card.getBoundingClientRect();
-      for (var i = 0; i < 6; i++) {
-        (function(delay) {
-          tids.push(setTimeout(function() {
-            if (!card.matches(':hover')) return;
-            var p = document.createElement('div');
-            p.className = 'mb-particle' + (isDark ? ' mb-card-dark' : '');
-            p.style.left = (Math.random() * 90 + 5) + '%';
-            p.style.top  = (Math.random() * 90 + 5) + '%';
-            card.appendChild(p);
-            parts.push(p);
-            if (window.gsap) {
-              gsap.fromTo(p, {scale:0,opacity:0},{scale:1,opacity:0.7,duration:0.25,ease:'back.out(2)'});
-              gsap.to(p, {x:(Math.random()-0.5)*50,y:(Math.random()-0.5)*50,opacity:0.2,duration:1.8,ease:'none',repeat:-1,yoyo:true});
-            }
-          }, delay));
-        })(i * 90);
-      }
-    }
-    function clearParts() {
-      tids.forEach(clearTimeout); tids = [];
-      parts.forEach(function(p) {
-        if (window.gsap) gsap.to(p,{scale:0,opacity:0,duration:0.15,onComplete:function(){p.remove();}});
-        else p.remove();
-      });
-      parts = [];
-    }
-    card.addEventListener('mouseenter', spawnParts);
-    card.addEventListener('mouseleave', clearParts);
-
-    /* click ripple */
-    card.addEventListener('click', function(e) {
-      var r = card.getBoundingClientRect();
-      var x = e.clientX - r.left, y = e.clientY - r.top;
-      var d = Math.max(Math.hypot(x,y),Math.hypot(x-r.width,y),Math.hypot(x,y-r.height),Math.hypot(x-r.width,y-r.height));
-      var rip = document.createElement('div');
-      var col = isDark ? '255,252,247' : '222,210,196';
-      rip.style.cssText='position:absolute;border-radius:50%;pointer-events:none;z-index:10;width:'+(d*2)+'px;height:'+(d*2)+'px;'+
-        'left:'+(x-d)+'px;top:'+(y-d)+'px;background:radial-gradient(circle,rgba('+col+',0.35) 0%,rgba('+col+',0.12) 35%,transparent 70%);';
-      card.appendChild(rip);
-      if (window.gsap) gsap.fromTo(rip,{scale:0,opacity:1},{scale:1,opacity:0,duration:0.7,ease:'power2.out',onComplete:function(){rip.remove();}});
-      else rip.remove();
-    });
-  });
-})();
-
-/* ── Browser mockup tilt-in on scroll ── */
-(function() {
-  var lid = document.getElementById('laptop-lid');
-  var video = document.getElementById('mvp-video');
-  if (!lid || !window.ScrollTrigger || !window.gsap) return;
-  gsap.set(lid, { rotateX: -18, scale: 0.94, opacity: 0.4 });
-  gsap.to(lid, {
-    rotateX: 0, scale: 1, opacity: 1,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: document.getElementById('laptop-outer'),
-      start: 'top 78%',
-      end: 'top 20%',
-      scrub: 1.6,
-      onUpdate: function(self) {
-        if (self.progress > 0.7 && video && video.paused) { video.play(); }
-        if (self.progress < 0.15 && video && !video.paused) { video.pause(); video.currentTime = 0; }
-      }
-    }
-  });
-})();
-
 /* ── DotGrid canvas ── */
 (function() {
   var canvas = document.getElementById('dot-grid');
   if (!canvas) return;
   var ctx = canvas.getContext('2d');
   var SPACING = 30, RADIUS = 1.8, PROXIMITY = 100;
-  var BASE_R = 222, BASE_G = 210, BASE_B = 196; /* #DED2C4 */
-  var ACT_R  =  90, ACT_G  =  85, ACT_B  =  80; /* #5A5550 */
+  var BASE_R = 222, BASE_G = 210, BASE_B = 196;
+  var ACT_R  =  90, ACT_G  =  85, ACT_B  =  80;
   var mouse = { x: -9999, y: -9999 };
   var dots = [];
-
   function resize() {
     canvas.width  = canvas.offsetWidth  || canvas.parentElement.offsetWidth;
     canvas.height = canvas.offsetHeight || canvas.parentElement.offsetHeight;
